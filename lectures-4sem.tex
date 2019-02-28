@@ -10,6 +10,7 @@
 \usepackage{euscript}
 \usepackage{icomma}
 
+
 \newlist{enum}{enumerate}{10}
 \setlist[enum]{label*=\arabic*.}
 \usepackage{tikz}
@@ -155,9 +156,7 @@
 	\label{OpenSetManifold}
 	Пусть $U \subseteq \mathbb{R}^n$ -- окрытое множество, тогда $U$ является 
 	$n$-мерным многообразием.
-\end{theorem}
-
-Первый способ 
+\end{theorem} 
 \begin{proof}
 	Напомним, что множество называется \textit{открытым}, если для любая его точка $x_0$ лежит в некоторой окрестности.\\
 	Отображение $\Phi$ можно определить следующим образом:
@@ -471,15 +470,38 @@
 \subsection{Касательное и нормальное пространства}
 
 \begin{definition}
+	Пусть $\gamma : [a, b] \to \mathbb{R}^n \in C^1$, тогда вектор $\gamma'(t) \in \mathbb{R}^n$ называется вектором скорости кривой $\gamma$.
+\end{definition}
+
+\begin{definition}
 	Вектор $\vec{v} \in \mathbb{R}^n$ называется касательным к множеству 
-	$M \subseteq \mathbb{R}^n$ в точке $x_0 \in M$, если существует кривая
+	$M \subseteq \mathbb{R}^n$ в точке $x_0 \in M$, если это вектор скорости некоторой кривой, лежащей в $M$, т.е. существует кривая
 	$\gamma : [0, \varepsilon] \to M$, такая что $\gamma(0) = x_0$ и $\gamma_t'(0) = \vec{v}$.
 \end{definition}
 
 Множество касательных векторов к $M$ в точке $x_0$ обозначается $T_{x_0}M$.
 
-Колинеарный касательному вектору так же является касательным вектором, т.е. 
-если $\vec{v} \in T_{x_0}M$, то $\lambda \vec{v} \in T_{x_0}M$.
+\begin{task}
+	Пусть $\gamma : (a, b) \to \mathbb{R}^n$ - параметрезированная кривая, $\varPsi : \mathbb{R}^n \to \mathbb{R}^n$ - $C^1$-диффеоморфизм. Показать, что если $v$ - вектор скорости кривой $\gamma$ в точке $t_0 \in (a,b)$, то $d \varPsi_{\gamma(t_0)} \langle v \rangle$ - вектор скорости кривой $\Gamma = \varPsi \circ \gamma$ в точке $t_0$.
+\end{task}
+
+\begin{proof}[Решение]
+	Воспользуемся правилом дифференцирования композиции:
+	
+	\begin{equation*}
+		d(\varPsi \circ \gamma) \langle t_0 \rangle = d(\varPsi_{\gamma(t_0)}) \langle \gamma(t_0) \rangle = 
+		d(\varPsi_{\gamma(t_0)}) \langle v \rangle
+	\end{equation*}
+\end{proof}
+
+\begin{lemma}
+	Колинеарный касательному вектору так же является касательным вектором, т.е. 
+	если $\vec{v} \in T_{x_0}M$, то $\forall \lambda > 0 \; \lambda \vec{v} \in T_{x_0}M$.
+\end{lemma}
+
+\begin{proof}
+	TODO
+\end{proof}
 
 \begin{theorem}[О множестве касательных векторов]
 	Если $M \subseteq \mathbb{R}^n$ - $C^1$-гладкое $k$-мерное многообразие,
@@ -723,8 +745,206 @@
 	$f(x, y, z) = x^2 - 2x + y^2 - z^2$ на $x^2 + y^2 \leq 4, 0 \leq z \leq 1.$
 \end{example}
 
+\subsection{Площадь поверхности}
 
+Пусть $v_1, \ldots, v_n \in \mathbb{R}^n$. Из прошлого семестра, мы знаем, что $n$-мерный объем параллепипеда $\text{П} (v_1, \ldots, v_n)= \{ t_1 v_1 + \ldots, t_n v_n : t_i \in [0, 1] \}$, натянутого на набор векторов $v_1, \ldots, v_n \in \mathbb{R}^n$ может быть вычислен по формуле $|\text{П}| = | \det [v_1, \ldots, v_n] |$. Так же он может быть вычислен с помощью определителя матрицы Грама, полагая $A = [v_1, \ldots, v_n]$, из $(\langle v_i, v_j \rangle)_{ij}=A^{T}A$ получаем: $\det A^{T}A = \det A^T \det A = (\det A)^2 = (| \text{П} |)^2$.
 
+Вспомним так же, как изменяется мера при отображениях.
+
+Пусть $L : \mathbb{R}^k \to \mathbb{R}^n$ - линейное отображение. Мы знаем, что для любого измеримого множества $E \subseteq \mathbb{R}^k$, мера его образа вычисляется по формуле $| L(E) | = J_L | E | = | \det L | | E |$.
+
+Если же отображние $\varphi \in C^1$ не является линейным, мы можем приблизить его линейным и получить формулу локального искажения меры:
+
+\begin{equation*}
+J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} = | \det D \varphi(x) |
+\end{equation*}
+
+Из чего мы получаем, что для каждого измеримого множества $E$, мера его образа вычисляется по формуле $| \varphi(E) | = \int\limits_{E} J_{\varphi(x)}$.
+
+Поскольку мы работаем не со всем пространством, мы можем расширить эти определения.
+
+\begin{theorem}[Объем k-мерного параллепипеда]
+	Пусть $v_1, \ldots, v_k \in \mathbb{R}^n, k \leq n$. Тогда $| \text{П} (v_1, \ldots, v_n) |_k = \sqrt{\det(\langle v_i, v_j \rangle)}$. Обозначив за $A = [v_1, \ldots, v_n]$, это выражение можно записать ввиде $| \text{П} | = \sqrt{\det A^* A}$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $k$-мерная гиперплоскость $L$ содержит в себе параллелепипед $\text{П}$.
+	
+	Существует ортогональное преобразование $Q : \mathbb{R}^n \to \mathbb{R}^n$, такое что $Q(L) = \mathbb{R}^k \times \{0\}^{n-k}$. Применим это преобразование к набору векторов, на которые натянут параллепипед: $Q(v_i)=(a_{1i}, \ldots, a_{kj}, 0, \ldots, 0)^T$.
+	
+	Заметим, что ортагональное преобразование не меняет объем.
+	
+	\begin{equation*}
+		A = [v_1; \ldots; v_k] \quad QA = 
+		\begin{pmatrix}
+			\theta \\
+			0
+		\end{pmatrix} 
+		\text{где} \; \theta -  k \times k \text{матрица}
+	\end{equation*}
+	
+	Используя равенство $(QA)^* QA = \theta^* \theta$, получаем требуемое утверждение:
+	
+	\begin{equation*}
+		|Q(\text{П})|_k=|\text{П}|_k=|\det \theta|=\sqrt{\det \theta^* \theta}=\sqrt{\det (QA)^* QA}=\sqrt{\det A^* A}
+	\end{equation*}
+\end{proof}
+
+\begin{definition}
+	Пусть $A$ -  матрица, имеющая из $n$ строк и $k$ столбцоц и $M(n,k) = \{I = (i_1, \ldots, i_k) \in \mathbb{N}^k : 1 \leq  i_1 < i_2 < \ldots < i_k \leq n \}$ - множество мультииндексов. Тогда $A_I$ - минор, составленный из $i_1, i_2, \ldots, i_k$ строк матрицы $A$.
+\end{definition}
+
+\begin{theorem}[Формула Бине-Коши]
+	Пусть $A$ -  матрица, имеющая из $n$ строк и $k$ столбцов, тогда $\det A^* A = \sum\limits_{I \in M(n,k)}^{} \det^2 A_I$.
+\end{theorem}
+
+\begin{proof}
+	Докажем более общее утверждение: пусть $A, B = (n, k)$-матрицы, тогда $\det A^* B = \sum\limits_{I \in M(n, k)} \det A_I \det B_I$.
+	
+	Пусть $A = [u_1; \ldots; u_n]$ и $B = [v_1, \ldots, v_n]$, определим отображения $L_1$ и $L_2$ следующим образом:
+	
+	\begin{equation*}
+		L_1 \langle u_1, \ldots, u_k, v_1, \ldots, v_k \rangle = \det A^* B 
+	\end{equation*}
+	
+	\begin{equation*}
+		L_2 \langle u_1, \ldots, u_k, v_1, \ldots, v_k \rangle = \sum\limits_{I \in M(n, k)} \det A_I \det B_I
+	\end{equation*}
+	
+	Заметим, что $L_1$ и $L_2$ линейны по каждому аргументу, следовательно, чтобы доказать, что $L_1=L_2$ достаточно доказать что они одинаково действуют на базис (TODO: ????).
+	
+	\begin{equation*}
+	L_1 \langle e_{i1}, \ldots, e_{ik}, e_{j1}, \ldots, e_{jk} \rangle = \delta_{IJ} = L_2 \langle e_{i1}, \ldots, e_{ik}, e_{j1}, \ldots, e_{jk} \rangle
+	\end{equation*}
+\end{proof}
+
+\begin{corollary}
+	Пусть $L : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ - линейное отображение, такое, что $\rank L = k \leq n$. Тогда для каждого измеримого множества $A$, $L(A)$ - измеримо и $| L(A) |_k = J_L |A|_k$, где $J_L = \sqrt{\det L^* L}$.
+\end{corollary}
+
+\begin{corollary}
+	Пусть $\text{П}$ - $k$-мерная плоскость в $\mathbb{R}^n$ и $\varphi : \mathbb{R}^k \to \text{П}$ - $C^1$-диффеоморфизм. Тогда для каждого измеримого $E \subset \mathbb{R}^k$, $\varPi(E)$ - измеримо и $|\varphi(E)|_k=\int_{E}^{} J_{\varphi}(x)dx$, где $J_{\varphi} = \sqrt{\det D \varphi^* (x) D \varphi(x)}$.
+\end{corollary}
+
+Из формулы Коши-Бине так же можно получить выражения для скалярного и векторного произведения. 
+
+К примеру, взяв за $A$ некоторый вектор $v \in \mathbb{R}^n$, можно получить:
+
+\begin{equation*}
+	v^T v = \langle v, v \rangle = |v|^2=\sum\limits_{i=1}^n v_i^2
+\end{equation*}
+
+Аналогично, если разместить векторы $u, v \in \mathbb{R}^3$ в столбцы матрицы $A$, получим (TODO: расписать это подробнее):
+
+\begin{equation*}
+	A^2 = 
+	\begin{vmatrix}
+		u_1 & v_1 \\
+		u_2 & v_2 \\
+	\end{vmatrix}
+	+
+	\begin{vmatrix}
+	u_1 & v_1 \\
+	u_2 & v_3 \\
+	\end{vmatrix}
+		+
+	\begin{vmatrix}
+	u_2 & v_2 \\
+	u_3 & v_3 \\
+	\end{vmatrix}
+	= |u \times v|^2
+\end{equation*}
+
+Теперь мы готовы определить меру на многообразиях.
+
+Пусть $M \subseteq \mathbb{R}^n$ - $k$-мерное $C^1$-гладкое многообразие, заданное параметрически, т.е. существует $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$, такое что $\varphi \in C^1$ и $M=\varphi(U)$. 
+
+\begin{equation*}
+\varphi = 
+\begin{cases}
+	x_1 = \varphi_1(t_1, \ldots, t_k) \\
+	\vdots \\
+	x_n = \varphi_n(t_1, \ldots, t_k)
+\end{cases}
+\quad 
+(t_1, \ldots, t_k) \in U
+\end{equation*}
+
+Определим меру $k$-мерной площади $S^k$ на параметрически заданном многообразии $M$.
+
+\begin{definition}
+	Пусть $E \subseteq U \to \mathbb{R}^k$ - измеримо по $|.|_k$, тогда $\varphi(E)$ назовем измеримым по $S^k$ и будем вычислять его меру как $S^k(\varphi(E)) := \int\limits_{E} J_{\varphi}(t)dt$, где $J_{\varphi}(t)=\sqrt{\det D \varphi^*(t) D \varphi(t)}$.
+\end{definition}
+
+Внимательный читатель задастся вопросом: а не зависит ли наша мера от параметризации многообразия?
+
+\begin{lemma}
+	Пусть  $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ и  $\psi : V \subseteq \mathbb{R}^k \to \mathbb{R}^n$ - различные параметризации многообразия, такие что $\rank D \varphi = \rank D \psi = k$. Тогда $\int\limits_{U} J_{\varphi}(t)dt = \int\limits_{V} J_{\psi}(t)dt$.
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим $\psi^{-1} \circ \varphi$ - отображение между $U$ и $V$.
+	
+	Очевидно, что $\psi^{-1} \circ \varphi$ является биекцией и $\det D \psi^{-1} \circ \varphi \not= 0$. Следовательно, $\psi^{-1} \circ \varphi$ - $C^1$-диффеоморфизм.
+	
+	Сделаем замену переменных $y = \psi^{-1} (\varphi (x))$ в интеграле:
+	
+	\begin{multline*}
+		\int\limits_{V} \sqrt{\det D \psi^* (y) D \psi (y)} dy = 
+		\int\limits_{U} \sqrt{\det D \psi^* (\psi^{-1} \circ \varphi (x)) D \psi (\psi^{-1} \circ \varphi (x)) } \\ 
+		|\det D \psi^{-1} \circ \varphi (x)|dx = \int\limits_{U} \sqrt{\det D \psi^* (\psi^{-1} \circ \varphi (x)) D \psi (\psi^{-1} \circ \varphi (x)) } \\ \sqrt{\det D (\psi^{-1} \circ \varphi)^* (x) \det D \psi^{-1} \circ \varphi (x)} dx
+	\end{multline*}
+	
+	Заметим, что: 
+	\begin{equation*}
+		D \psi(\psi^{-1} \circ \varphi) = D \psi (\psi^{-1} \circ \varphi) \cdot D (\psi^{-1} \circ \varphi) = D \varphi
+	\end{equation*}
+	
+	% и $D \psi^*(\psi^{-1} \circ \varphi) = D \psi^* (\psi^{-1} \circ \varphi) \cdot D (\psi^{-1} \circ \varphi) = D \varphi^*$%.
+	
+	Осталось применить то, что произведение определитей равно определителю произведения и подставить это равенство в интеграл.
+\end{proof}
+
+Рассмотрим некоторые свойства меры $S^k$:
+
+\begin{enumerate}
+	\item Счетная аддитивность. 
+	
+	Пусть $\{M_i\}_{i \in N}$ - не более чем счетный дизъюнктивный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
+	
+	\item Меру можно доопределить для кусочно-гладкого многообразия, так как мера множества размерности меньше $k$ равна нулю в мере $S^k$.
+\end{enumerate}
+
+\begin{example}
+	Вывести формулу длины кривой $\gamma : [a, b] \to \mathbb{R}^n$ с помощью меры $S^k$ и формулы Бине-Коши. 
+\end{example}
+
+\begin{proof}[Решение]
+	\begin{equation*}
+	\gamma(t) = 
+	\begin{pmatrix}
+	x_1(t) \\
+	\vdots \\
+	x_n(t)
+	\end{pmatrix}
+	\quad	
+	D \gamma(t) = 
+	\begin{pmatrix}
+	x_1'(t) \\
+	\vdots \\
+	x_n'(t)
+	\end{pmatrix} 
+	\text{ - вектор скорости}
+	\end{equation*}
+	
+	\begin{equation*}
+	\sqrt{\det D \gamma^* (t) D \gamma (t)} = \sqrt{{x'}_1^2 + \ldots + {x'}_n^2} = |\gamma'(t)|
+	\end{equation*}
+	
+	\begin{equation*}
+	l(\gamma) = \int\limits_{a}^{b} |\gamma'(t)|dt
+	\end{equation*}
+\end{proof}
 
 \end{document}
 
