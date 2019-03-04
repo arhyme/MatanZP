@@ -14,6 +14,7 @@
 \newlist{enum}{enumerate}{10}
 \setlist[enum]{label*=\arabic*.}
 \usepackage{tikz}
+\usetikzlibrary{positioning,arrows,shapes}
 
 \newlist{sectenum}{enumerate}{10}
 \setlist[sectenum]{
@@ -482,7 +483,7 @@
 Множество касательных векторов к $M$ в точке $x_0$ обозначается $T_{x_0}M$.
 
 \begin{task}
-	Пусть $\gamma : (a, b) \to \mathbb{R}^n$ - параметрезированная кривая, $\varPsi : \mathbb{R}^n \to \mathbb{R}^n$ - $C^1$-диффеоморфизм. Показать, что если $v$ - вектор скорости кривой $\gamma$ в точке $t_0 \in (a,b)$, то $d \varPsi_{\gamma(t_0)} \langle v \rangle$ - вектор скорости кривой $\Gamma = \varPsi \circ \gamma$ в точке $t_0$.
+	Пусть $\gamma : (a, b) \to \mathbb{R}^n$ - параметризованная кривая, $\varPsi : \mathbb{R}^n \to \mathbb{R}^n$ - $C^1$-диффеоморфизм. Показать, что если $v$ - вектор скорости кривой $\gamma$ в точке $t_0 \in (a,b)$, то $d \varPsi_{\gamma(t_0)} \langle v \rangle$ - вектор скорости кривой $\Gamma = \varPsi \circ \gamma$ в точке $t_0$.
 \end{task}
 
 \begin{proof}[Решение]
@@ -615,7 +616,7 @@
 \begin{proof}
 	Пусть $\vec{v} \in T_{x_0}M \Longleftrightarrow \exists $ кривая $\gamma : [0, \varepsilon] \to M$, такая что $\gamma(0) = x_0$ и $\gamma_t'(0) = \vec{v}$.
 	
-	Для $f \mid_{\gamma} x_0$ - экструмум, следовательно $f(\gamma(t))'(0)=0=df_{x_0}\langle\vec{v}\rangle$.
+	Для $f \mid_{\gamma} x_0$ - экстремум, следовательно $f(\gamma(t))'(0)=0=df_{x_0}\langle\vec{v}\rangle$.
 \end{proof}
 
 Пусть $f: U \to \mathbb{R}$, $U \subseteq \mathbb{R}^n$ -- открытое множество, $M \subseteq U$ - $k$-мерное многообразие. Ставится задача: найти экстремум на многообразии $f\mid_{M}$.
@@ -745,15 +746,17 @@
 	$f(x, y, z) = x^2 - 2x + y^2 - z^2$ на $x^2 + y^2 \leq 4, 0 \leq z \leq 1.$
 \end{example}
 
+% Лекция 28.02.19
+
 \subsection{Площадь поверхности}
 
-Пусть $v_1, \ldots, v_n \in \mathbb{R}^n$. Из прошлого семестра, мы знаем, что $n$-мерный объем параллепипеда $\text{П} (v_1, \ldots, v_n)= \{ t_1 v_1 + \ldots, t_n v_n : t_i \in [0, 1] \}$, натянутого на набор векторов $v_1, \ldots, v_n \in \mathbb{R}^n$ может быть вычислен по формуле $|\text{П}| = | \det [v_1, \ldots, v_n] |$. Так же он может быть вычислен с помощью определителя матрицы Грама, полагая $A = [v_1, \ldots, v_n]$, из $(\langle v_i, v_j \rangle)_{ij}=A^{T}A$ получаем: $\det A^{T}A = \det A^T \det A = (\det A)^2 = (| \text{П} |)^2$.
+Пусть $v_1, \ldots, v_n \in \mathbb{R}^n$. Из прошлого семестра, мы знаем, что $n$-мерный объем параллелепипеда $\text{П} (v_1, \ldots, v_n)= \{ t_1 v_1 + \ldots, t_n v_n : t_i \in [0, 1] \}$, натянутого на набор векторов $v_1, \ldots, v_n \in \mathbb{R}^n$ может быть вычислен по формуле $|\text{П}| = | \det [v_1, \ldots, v_n] |$. Так же он может быть вычислен с помощью определителя матрицы Грамма, полагая $A = [v_1, \ldots, v_n]$, из $(\langle v_i, v_j \rangle)_{ij}=A^{T}A$ получаем: $\det A^{T}A = \det A^T \det A = (\det A)^2 = (| \text{П} |)^2$.
 
 Вспомним так же, как изменяется мера при отображениях.
 
 Пусть $L : \mathbb{R}^k \to \mathbb{R}^n$ - линейное отображение. Мы знаем, что для любого измеримого множества $E \subseteq \mathbb{R}^k$, мера его образа вычисляется по формуле $| L(E) | = J_L | E | = | \det L | | E |$.
 
-Если же отображние $\varphi \in C^1$ не является линейным, мы можем приблизить его линейным и получить формулу локального искажения меры:
+Если же отображение $\varphi \in C^1$ не является линейным, мы можем приблизить его линейным и получить формулу локального искажения меры:
 
 \begin{equation*}
 J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} = | \det D \varphi(x) |
@@ -795,7 +798,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \end{definition}
 
 \begin{theorem}[Формула Бине-Коши]
-	Пусть $A$ -  матрица, имеющая из $n$ строк и $k$ столбцов, тогда $\det A^* A = \sum\limits_{I \in M(n,k)}^{} \det^2 A_I$.
+	Пусть $A$ --  матрица, имеющая из $n$ строк и $k$ столбцов, тогда $\det A^* A = \sum\limits_{I \in M(n,k)}^{} \det^2 A_I$.
 \end{theorem}
 
 \begin{proof}
@@ -823,7 +826,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \end{corollary}
 
 \begin{corollary}
-	Пусть $\text{П}$ - $k$-мерная плоскость в $\mathbb{R}^n$ и $\varphi : \mathbb{R}^k \to \text{П}$ - $C^1$-диффеоморфизм. Тогда для каждого измеримого $E \subset \mathbb{R}^k$, $\varPi(E)$ - измеримо и $|\varphi(E)|_k=\int_{E}^{} J_{\varphi}(x)dx$, где $J_{\varphi} = \sqrt{\det D \varphi^* (x) D \varphi(x)}$.
+	Пусть $\text{П}$ -- $k$-мерная плоскость в $\mathbb{R}^n$ и $\varphi : \mathbb{R}^k \to \text{П}$ - $C^1$-диффеоморфизм. Тогда для каждого измеримого $E \subset \mathbb{R}^k$, $\varPi(E)$ - измеримо и $|\varphi(E)|_k=\int_{E}^{} J_{\varphi}(x)dx$, где $J_{\varphi} = \sqrt{\det D \varphi^* (x) D \varphi(x)}$.
 \end{corollary}
 
 Из формулы Коши-Бине так же можно получить выражения для скалярного и векторного произведения. 
@@ -885,7 +888,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \begin{proof}
 	Рассмотрим $\psi^{-1} \circ \varphi$ - отображение между $U$ и $V$.
 	
-	Очевидно, что $\psi^{-1} \circ \varphi$ является биекцией и $\det D \psi^{-1} \circ \varphi \not= 0$. Следовательно, $\psi^{-1} \circ \varphi$ - $C^1$-диффеоморфизм.
+	Очевидно, что $\psi^{-1} \circ \varphi$ является биекцией и $\det D \psi^{-1} \circ \varphi \not= 0$. Следовательно, $\psi^{-1} \circ \varphi$ -- $C^1$-диффеоморфизм.
 	
 	Сделаем замену переменных $y = \psi^{-1} (\varphi (x))$ в интеграле:
 	
@@ -910,7 +913,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \begin{enumerate}
 	\item Счетная аддитивность. 
 	
-	Пусть $\{M_i\}_{i \in N}$ - не более чем счетный дизъюнктивный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
+	Пусть $\{M_i\}_{i \in N}$ -- не более чем счетный дизъюнктивный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
 	
 	\item Меру можно доопределить для кусочно-гладкого многообразия, так как мера множества размерности меньше $k$ равна нулю в мере $S^k$.
 \end{enumerate}
@@ -945,6 +948,173 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 	l(\gamma) = \int\limits_{a}^{b} |\gamma'(t)|dt
 	\end{equation*}
 \end{proof}
+
+% Лекция 01.03.19
+
+\begin{definition}
+	Мера угла -- длина дуги окружности с центром в начале угла.
+\end{definition}
+
+
+\subsection{Площадь графика функции}
+
+
+Пусть $f: U \to \mathbb{R}^n \in C^1$, где $U \subseteq \mathbb{R}^n$ её график -- $n$-мерное многообразие 
+$\Gamma_f = \{ (\bar{x}, f(x)) \in \mathbb{R}^{n + 1} \}.$
+
+Чтобы найти $S^k$ надо параметризовать график функции. 
+Пусть 
+\begin{equation*}
+\varphi:
+	\begin{cases}
+	x_1 = x_1, \\
+	\ldots \\
+	x_n = x_n, \\
+	y = f(x_1, \ldots, x_n).
+	\end{cases}
+\end{equation*}
+-- параметризация графика.
+Тогда $S^k(\Gamma_f) = \int_U J_{\varphi}(x) dx.$
+
+Посчитаем $D\varphi$. 
+
+\[
+	D\varphi = 
+\begin{pmatrix}
+	1 & & \\
+	& \ddots & \\
+	& & 1 \\\hline
+	\frac{\partial f}{\partial x_1} &
+	\ldots & 
+	\frac{\partial f}{\partial x_n}
+	
+\end{pmatrix}_{n \times (n+1)}
+\]
+
+Нам нужно посчитать определитель матрицы $\det D\varphi^*
+D\varphi$. Если мы будем считать «в лоб»:
+
+\begin{equation*}
+	D\varphi^* D\varphi = E +
+	\left( \frac{\partial f}{\partial x_i} \cdot
+	\frac{\partial f}{\partial x_j} \right)_{i, j}
+\end{equation*}
+
+Получилась довольно сложная конструкция.
+Определитель проще вычислить по формуле Бине-Коши. 
+\[\det D\varphi^*D\varphi = 1 + f_{x_1}^2 + f_{x_2}^2 + \ldots
++ f_{x_n}^2 = 1 + |\nabla f|^2\]
+Отсюда получаем, что 
+\begin{equation*} \label{SkFormulas}
+	S^k(\Gamma_f) = \int_U \sqrt{1 + |\nabla f(x) |^2}\ dx 
+\end{equation*}
+
+Свойство формулы \ref{SkFormulas}:
+\begin{itemize}
+	 \item 
+	 $S^k(\lambda M) = \lambda^k S^k(M)$
+	 \begin{proof}
+	 TODO %TODO
+	 \end{proof}
+	 
+\end{itemize}
+
+\begin{example}[Вывод частной формулы из общей]
+	Пусть $f: [a, b] \to \mathbb{R}_+$
+	
+	\begin{center}
+	\begin{tikzpicture}[el/.style args={#1,#2}{draw,ellipse,minimum width=#1, minimum height=#2},outer sep=0pt,>=latex']
+	
+	\draw[->] (-1, -0.05) -- (4, -0.05);
+	\draw[->] (-0.5,-1.5) -- (-0.5,2);
+
+	\coordinate [label=left:\textcolor{blue}{\textit{y}}]
+	(Y) at (-0.5,2);
+	\coordinate [label=right:\textcolor{blue}{\textit{x}}]
+	(Y) at  (4,-0.05);
+	arc(0:-90:1 and -1) -- (1, 1) node[midway, right, color =black]{} arc(270:360:1 and 1) ;
+	
+	\node(el-1) [el={.75cm,2cm}]at (0,0){};
+	
+	\node(el-2) [el={.75cm,2cm},fill=green!5]at (3,0){} (el-2.90)node [above right]{};
+	
+	\path [fill=white] (el-1.87)rectangle([shift={(1cm,-.1cm)}]el-1.-87);
+	\draw (3.95, -0.05) -- (3, -0.05);
+	\draw (0, -0.05) -- (1.1, -0.05);
+	\draw (el-1.87)to[bend right=20](el-2.93) (el-1.-87)to[bend left=20](el-2.-93);
+	
+	\begin{scope}
+	\path[clip](1,-1)rectangle(1.5,1);
+	\node(el-3) [el={.6cm,1.4cm},densely dashed,thin]at (1.5,0){};
+	\end{scope}
+	
+	\draw[densely dashed,thin] (el-1.-160)to[bend left=10](el-2.-160);	
+	
+	\end{tikzpicture}
+	\end{center}
+
+	-- поверхность, полученная вращением кривой относительно оси $Ox$.
+	
+	Для того, чтобы вывести формулу, нам нужно параметризовать поверхность.
+	Должно быть два параметра $(x, \varphi)$.
+	Воспользуемся цилиндрической системой координат: 
+	\begin{equation*}
+		\begin{cases}
+		x = x, \\
+		y = f(x)\cos \varphi, \\
+		z = f(x)\sin \varphi.
+		\end{cases}
+	\end{equation*}
+	
+	Вывод формулы: TODO. %TODO
+\end{example}
+
+
+
+\section{Криволинейные интегралы}
+\subsection{Криволинейные интегралы I-рода}
+
+\begin{definition}
+	Пусть $M$ -- $n$-мерное дифференцируемое многообразие, задана функция
+	$f: M \to \mathbb{E}$ -- измеримая по $S^k$. Тогда интегралом по поверхности назовем 
+	\[ \int_M f\ dS^k \]
+\end{definition}
+
+Чтобы взять интеграл по поверхности нам нужно: 
+\begin{enumerate}
+	\item 
+	надо выбрать параметризацию
+	
+	\item 
+	подставить параметризацию в интеграл
+\end{enumerate}
+
+Если мы выберем некоторую параметризацию $M = \varphi(U)$, то $S^k(M) = \int_U J_{\varphi}(x)dx$, получаем,
+ \[ \int_M f(y)dS^k = \int_U f(\varphi(x))\cdot J_\varphi (x)dx \]
+ 
+ 
+ Свойства интеграла по поверхности
+ \begin{enumerate}
+ 	\item 
+ 	линейность: если $f, g: M \to \mathbb{E}$ и $\alpha, \beta \in \mathbb{R}$, то 
+ 	\[ \int_M (\alpha f + \beta g) dS^k = \alpha \int_M f dS^k + 
+ 	\beta\int_M g dS^k. \]
+ 	
+ 	\item 
+ 	монотонность: если $f, g: M \to \mathbb{E}$ и $f \leq g$, то
+ 	\[ \int_M f dS^k \leq \int_M g dS^k. \]
+ 	
+ 	\item
+ 	аддитивность по области определения: если $f: M \to \mathbb{E}$ 
+ 	и $M_1 \cap M_2 = \emptyset$, то 
+ 	\[ \underset{M_1 \cup M_2}{\int} f dS^k = 
+ 	\underset{M_1}{\int} f dS^k +\underset{M_2}{\int}  f dS^k. \]
+ 	
+ 	\item 
+ 	ограниченность: если $f: M \to \mathbb{E}$, то
+ 	\[ \left| \int_M f dS^k \right| \leq \int_M |f| dS^k.  \]
+ 	
+ \end{enumerate}
 
 \end{document}
 
