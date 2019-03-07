@@ -1116,5 +1116,158 @@ D\varphi$. Если мы будем считать «в лоб»:
  	
  \end{enumerate}
 
+\subsection{Объем шара и площадь сферы} %07.03.19
+
+Введем сфеерическую систему координат в $\mathbb{R}^k$:
+
+\begin{equation*}
+	u = 
+	\begin{cases}
+		x_1 = r \cos \varphi \cos \theta_1 \cos \theta_2 \cdots \cos \theta_{n-2} \\
+		x_2  = r \sin \varphi \cos \theta_1 \cos \theta_2 \cdots \cos \theta_{n-2} \\
+		x_3 = r \sin \varphi \cos \theta_2 \cdots \cos \theta_{n-2} \\
+		\vdots \\
+		x_n = r \sin \theta_2 \cdots \cos \theta_{n-2} \\
+		
+		r \geq 0 \quad \varphi \in [0, 2\pi] \quad \theta_i \in [-\frac{\pi}{2}, \frac{\pi}{2}]
+	\end{cases}
+\end{equation*}
+
+Заметим, что $u(r, \varphi, \theta_1, \ldots, \theta_{n-2})$ - параметризация шара, а $\tilde{u}(\varphi, \theta_1, \ldots, \theta_{n-2})=u|_{r=const}$ - параметризация сферы.
+
+Обозначим $n$-мерный шар радиуса $r$ как $B_r$. Соотвественно $S_r$ - $(n-1)$-мерная сфера радиуса $r$.
+
+Вычислим якобианы $J_u$ и $J_{\tilde{u}}$ этих параметризаций. Нам известно, что $J_u = |\det Du|$ и $J_{\tilde{u}} = |\det D \tilde{u}|$. 
+
+Рассмотрим набор векторов $\{u_r, u_{\varphi}, u_{\theta}, \ldots, u_{\theta_{n-2}} \}$, где $u_s=\{ \frac{\partial x_1}{\partial s}, \ldots, \frac{\partial x_n}{\partial s} \}$. Нетрудно проверить, что этот набор является ортогональным. Следовательно, объем параллепипеда, который натянут на этот набор можно вычислить как произведение длин векторов набора.
+
+\begin{equation*}
+	J_u =|u_r||u_{\varphi}||u_{\theta}|\cdots|u_{\theta_{n-2}}| \quad
+		J_{\tilde{u}} =|u_{\varphi}||u_{\theta}|\cdots|u_{\theta_{n-2}}|
+\end{equation*}
+
+Вычислим длины этиъ векторов.
+
+\begin{align*}
+	& |u_r| =  1 \\
+	& |u_{\varphi}| = r \cos \theta_1 \cos \theta_2 \cdots \cos \theta_{n-2} \\
+	& |u_{\theta_1}| = r \cos \theta_2 \cdots \cos \theta_{n-2} \\
+ & 	\ldots\\
+	& |u_{\theta_{n-3}}|  = r \cos \theta_{n-2} \\
+	& |u_{\theta_{n-2}}| = r
+\end{align*}
+
+Из того, что $|u_r|=1$ следует, что $J_u = J_{\tilde{u}}$.
+
+Теперь мы можем записать конкретное выражение для $J_u$:
+
+\begin{equation*}
+	J_u = r^{n-1} \cos \theta_1 \cos^2 \theta_2 \cdots \cos^{n-2} \theta_{n-2}
+\end{equation*}
+
+Из этого следуют формулы объема шара и площади сферы:
+
+\begin{align*}
+	|B_R| = \int\limits_0^R dr \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_{n-2} = w_n R^n \\
+	S^{n-1}(S_r) = \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_{n-2}
+\end{align*}
+
+Так как $J_u = J_{\tilde{u}}$, можно получить другое выражение для объема шара:
+
+\begin{equation*}
+	|B_r|=\int\limits_{0}^{R} S^{n-2}(S_r) dr
+\end{equation*}
+
+То есть, чтобы найти объем шара нужно вычислить площади сфер, которые в нем содержаться. Так же площадь сферы можно представить ввиде объемов шаров:
+
+\begin{equation*}
+	S^{n-1}(S_r) = (w_n r^n)'_r=r w_n r^{n-1}
+\end{equation*}
+
+\subsection{Формула коплощади} 
+
+Пусть $\varphi : U \subseteq \mathbb{R}^n \to R$. Потребуем, чтобы $\nabla \varphi \not= 0$ (т. е. $\rank D \varphi = k$ - максимальный). 
+
+Уравнение $\varphi(x) = 0$ задает поверхность в $U$. Эту поверхность можно так же задать как $\varphi^{-1}(0)$. Из этого получаем:
+
+\begin{equation*}
+	\int\limits_{a}^{b} S^{n-1}(\varphi^{-1}(t)) dt = \int\limits_{U}^{} J_{\varphi} (x) dx = \int_U |\nabla \varphi| (x) dx
+\end{equation*}
+
+\begin{theorem}[Формула коплощади]
+	Пусть $\varphi : U \subset \mathbb{R}^n \to \mathbb{R}^k \in C^1$, такая, что $\rank (D \varphi) = k$, тогда верна формула коплощади
+	
+	\begin{equation*}
+		\int\limits_{U}^{} f(x) J_{\varphi}(x) dx = \int\limits_{\mathbb{R}^k}^{}dt \int\limits_{\varphi^{-1}(t)} f(\varphi(t)) dS^{k-1}
+	\end{equation*} 
+	
+	, где 
+	
+	\begin{equation*}
+		J_{\varphi(x)} = \sqrt{\det D \varphi (x) \det D \varphi^* (x)} = \sqrt{\det (\langle \nabla \varphi_i, \nabla \varphi_j \rangle)}
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	Пусть $x_0 \in U$. Мы знаем, что $\rank (\frac{\partial \varphi_i}{\partial x_j}) = k$ - максимальный. Следовательно, в матрице $D \varphi$ есть $k$ линейно-независимых столбоцов. Для простоты будем считать, что это $k$ последних столбцов.
+	
+	По теореме о выпрямлении, существует $C^1$-диффеоморфизм $\varPhi : V \to W$, где $V$ - окрестность $x_0$, $W$ - окрестность нуля, такая что:
+	
+	\begin{equation*}
+		\varPhi 
+		\begin{pmatrix}
+			x \\
+			z
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x \\
+			h(x, z)
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x \\
+			y
+		\end{pmatrix}
+	\end{equation*}
+	
+	Выполним замену переменных в интеграле и воспользуемся формулой Фубини:
+	
+	\begin{align*}
+		\int\limits_{U} f(x,y) J_{\varphi} (x, y) dx dy = \int\limits_{\varPhi^{-1}(U)} f(\varPhi (x, z)) J_{\varphi} (\varPhi (x, z)) J_{\varPhi(x, z)} dx dy = \\
+		\int\limits_{\mathbb{R}^k} dz \int\limits_{\varphi^{-1}(U) \cap \mathbb{R}^{n-k}} f(\varPhi (x, z)) J_{\varphi} (\varPhi (x, z)) J_{\varPhi(x, z)} dx
+	\end{align*}
+	
+	Заметим, что $\varPhi^{-1}_{z(x)} = \varPhi^{-1}(x, z)$ при фиксированом $z$ является поверхностью. Возьмем $s=\varPhi^{-1}_z(x)$, тогда
+	
+	\begin{equation*}
+		\int\limits_{U \cap \varphi^{-1}(z)} g(s) dS^{n-k} = \int\limits_{\varphi(U) \cap \mathbb{R}^{n-k}_z} g(\varPhi_z^{-1}(x)) J_{\varPhi^{-1}_z}(x) dx
+	\end{equation*}
+	
+	Теперь нужно подставить это в прошлое уравнение.
+	
+	\begin{equation*}
+	\int\limits_{\mathbb{R}^k} dz \int\limits_{\varphi^{-1}(U) \cap \mathbb{R}^{n-k}} f(\varPhi (x, z)) J_{\varphi} (\varPhi (x, z)) J_{\varPhi(x, z)} dx = \int\limits_{\mathbb{R}^k} dz \int\limits_{U \cap \varphi^{-1}(z)} f(s) \frac{J_{\varphi} J_{\varPhi}}{J_{\varPhi^{-1}_z}}
+	\end{equation*}
+	
+	Для того, чтобы закончить доказательство, нужно лишь доказать, что:
+	
+	\begin{equation*}
+		\frac{J_{\varphi} J_{\varPhi}}{J_{\varPhi^{-1}_z}} = 1
+	\end{equation*}
+	
+	(TODO: продолжение следует ...)
+\end{proof}
+
+\begin{corollary}
+	Если $P_r : \mathbb{R}^n \to \mathbb{R}^k$ - проекция, тогда 
+	
+	\begin{equation*}
+		\int\limits_{U}^{} f(x) dx = \int\limits_{\mathbb{R}^k}^{}dt \int\limits_{\mathbb{R}_t^{n-k}} f(y) dy
+	\end{equation*}
+	
+	, где $\mathbb{R}_t^{n-k} = \{(y, s) : s=t\}$ - $(n-k)$-мерная плоскость (TODO: а это точно следствие?).
+\end{corollary}
+
 \end{document}
 
