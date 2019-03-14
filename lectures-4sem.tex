@@ -1069,8 +1069,6 @@ D\varphi$. Если мы будем считать «в лоб»:
 	Вывод формулы: TODO. %TODO
 \end{example}
 
-
-
 \section{Криволинейные интегралы}
 \subsection{Криволинейные интегралы I-рода}
 
@@ -1146,7 +1144,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 		J_{\tilde{u}} =|u_{\varphi}||u_{\theta}|\cdots|u_{\theta_{n-2}}|
 \end{equation*}
 
-Вычислим длины этиъ векторов.
+Вычислим длины этих векторов.
 
 \begin{align*}
 	& |u_r| =  1 \\
@@ -1268,6 +1266,103 @@ D\varphi$. Если мы будем считать «в лоб»:
 	
 	, где $\mathbb{R}_t^{n-k} = \{(y, s) : s=t\}$ - $(n-k)$-мерная плоскость (TODO: а это точно следствие?).
 \end{corollary}
+
+\section{Введение в векторный анализ}
+\subsection{Дифференциальные формы}
+
+\begin{definition}	Векторным полем на многообразии $M$ называется функция
+	 $F : M \to F(x)$, такая что $F(x) \in T_{x}M$.
+\end{definition}
+
+Для того, чтобы выяснить, как замена переменных влияет на векторное поле, введем оператор переноса.
+
+\begin{definition}
+	Пусть $\varphi : U \to V$ - $C^1$-диффеоморфизм. Тогда оператором переноса  назовем $\varphi^{*}$ и определим результат его действия на функцию $f : V \to \mathbb{E}$ как фукнцию $\varphi^{*}f : U \to \mathbb{E}$, такую, что $\varphi^{*}f(x)=f(\varphi(x))=(f \circ \varphi)(x)$.
+\end{definition}
+
+Выясним как оператор переноса действует на векторное поле. Пусть $v : V \to TV$ - векторное поле, тогда $\varphi^{*}v : U \to TU$ и $\varphi^{*}v(x)=D\varphi_{\varphi(x)} \langle v(\varphi(x)) \rangle$.
+
+Свойства оператора переноса:
+\begin{enumerate}
+	\item 
+	линейность: $\forall \alpha, \beta \in \mathbb{R} \; \forall f,g$ - функции $\forall u,v$ - векторные поля.	
+	
+	\begin{equation*}
+		\varphi^{*}(\alpha f + \beta g)=\alpha\varphi^{*}f + \beta\varphi^{*}g \quad \varphi^{*}(\alpha u + \beta v) = \alpha \varphi^{*}u + \beta\varphi^{*}v
+	\end{equation*}
+	
+	\item 
+	мультипликативность: пусть $f : V \to \mathbb{R}$, $v : V \to TV$, $(f \circ v)(g)=f(g)\vec{v}(g)$. Тогда, если $\varphi : U \to V$ - $C^1$-диффеоморфизм, то $\varphi^{*}(f \vec{v})=\varphi^{*}f \cdot \varphi^{*}v$.
+	
+	\item перенос композиции является произведением переносов: пусть $\varphi : U \to V$, $\psi : U \to V$ - $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \psi^{*}$.
+	
+	\item перестановочность с дифференциалом: $\varphi^{*}d=d \varphi^{*}$.
+	
+\end{enumerate}
+
+Для доказательства последнего свойства, нам нужно ввести определение дифференциальной формы, а для этого нужно вспомнить некоторые свойства линейных отображений.
+
+Пусть $L : \mathbb{R}^n \to \mathbb{R}$ - линейное отображение. Рассмотрим действие $L$ на вектор $v$:
+
+\begin{equation*}
+	L\langle v \rangle = L \langle v_1 e_1 + \ldots + v_n e_n \rangle = v_1 L\langle e_1 \rangle + \ldots + v_n L\langle e_n \rangle = v_1 a_1 + \ldots v_n a_n
+\end{equation*}
+
+Из этого уравнения следует то, что всякая линейная функция это скалярное произведение аргумента с некоторым постоянным вектором: $L \langle v \rangle = a \cdot v$.
+
+Введем базис на пространстве линейных отображений $Lin(\mathbb{R}^n, \mathbb{R}) \simeq \mathbb{R}^n$. 
+
+Набор функций $dx_1, \ldots, dx_n : \mathbb{R}^n \to \mathbb{R}$, таких что $dx_j(v_1, \ldots, v_n)=v_j$, является базисом в $Lin(\mathbb{R}^n, \mathbb{R})$. Следовательно, $L \langle v \rangle = a_1 v_1 + \ldots + a_n v_n = a_1 dx_1 + \ldots + a_n dx_n$.
+
+Обозначим за $\Lambda^k(\mathbb{R}^n)$ пространство алгебраических форм степени $k$ над $\mathbb{R}^n$. В частности $\Lambda^0(\mathbb{R}^n)=\mathbb{R}$ и $\Lambda^1(\mathbb{R}^n)=Lin(\mathbb{R}^n, \mathbb{R})$.
+
+\begin{definition}
+	Дифференциальной формой степени $k$ (сокращенно $k$-формой) на $U \subseteq \mathbb{R}^n$ будем называть $w : U \to \Lambda^k(\mathbb{R}^k)$.
+\end{definition}
+
+\begin{lemma}
+	Существует так называемый дуализм между $1$-формами и векторными полями, так как каждая $1$-форма изоморфна некоторому векторному полю.
+\end{lemma}
+
+\begin{proof}
+	Рассмотрим некоторую $1$-форму $w(x)$, тогда $w(x)=a_1(x) dx_1 + \ldots a_n(x) dx_n$. Пусть $v(x) = (a_1(x), \ldots, a_n(x))$, тогда $w(x) \langle u \rangle = v(x) \cdot u$. 
+\end{proof}
+
+Дифференциал функции так же является $1$-формой. Так что стоит задасться вопросом: а не все ли $1$-формы являются дифференциалом некоторой функции? Пример ниже говорит, что ответ на этот вопрос - нет.
+
+\begin{example}
+	$w=xdy$ - $1$-форма, но не дифференциал.
+\end{example}
+
+\begin{proof}
+	Допустим, что $w=df=f_x dx + f_y dy$. Тогда $f_x = 0$ и $f_y = x$. Из курса мы знаем, что для любой функции $f_{xy}=f_{yx}$. Проверим, так ли это в нашем случае. Получаем $f_{xy} = 0 \not = 1 = f_{yx}$. Получили противоречие.
+\end{proof}
+
+Рассмотрим как перейти к полярным координатам в форме 	$w=xdy$. Пусть $x = r \cos\varphi$ и $y = r \sin\varphi$, тогда $\varphi^* w = r\cos\varphi d(r\sin\varphi) = r\cos\varphi(\sin\varphi dr + r\cos\varphi d\varphi)=r\sin\varphi\cos\varphi dr + r^2 \cos^2 \varphi d \varphi$.
+
+Опеределим теперь оператор переноса для $1$-форм.
+
+\begin{definition}
+	Пусть $w$ - $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ - $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ - $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
+\end{definition}
+
+Теперь мы можем доказать 4 свойство оператора переноса.
+
+\begin{lemma}[Четвертое свойство оператора переноса]
+	Пусть $\varphi : U \to V$ - $C^1$-диффеоморфизм, $f : V \to \mathbb{E} \in C^1$, тогда $\varphi^{*}(d \varphi) = d (\varphi^{*} f)$. Заметим так же, что слева от равенства стоит $1$-форма, а справа $0$-форма.
+\end{lemma}
+
+\begin{proof}
+	Утверждение следует из следующей цепочки равенств:
+	
+	\begin{align*}
+		\varphi^{*}(df)(x) \langle v \rangle  = df (\varphi (x)) \langle d\varphi(x) \langle v \rangle \rangle = df (\varphi (x)) \circ d \varphi(x) \langle v \rangle =\\ = d (f \circ \varphi )(x) \langle v \rangle = d(\varphi^{*}f)(x) \langle v \rangle
+	\end{align*}
+\end{proof}
+
+\begin{example}[Работа векторного поля вдоль кривой]
+	Рассмотри одно из физических приложений дифференциальных форм. Мы знаем, что работа силы вычисляется по формуле $A = \vec(F) \cdot \vec{l}$. То есть силу можно рассматривать как дифференциальную форму $A = w_g \langle l \rangle$. А теперь представим, что нам нужно посчитать работу вдоль кривой, где сила не постоянна на всех точках кривой. Получаем $A = \int\limits_{\gamma} \vec{g}(x) \cdot \vec{r}(x) d l(x)$.
+\end{example}
 
 \end{document}
 
