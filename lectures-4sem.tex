@@ -75,8 +75,8 @@
 
 \begin{definition}
 	\label{ManifoldNoBoundary}
-	Множество $M \in \mathbb{R}^n$ называется $C^r$-гладким $k$-мерным
-	многообразием  без края, если для каждого $x_0 \in M$ существует $U$ - окрестность 
+	Множество $M \subseteq \mathbb{R}^n$ называется $C^r$-гладким $k$-мерным
+	многообразием  без края, если для каждого $x_0 \in M$ существует $U$ - окрестность
 	$x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что 
 	$\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ - окрестность нуля в $R^n$.
 \end{definition}
@@ -151,11 +151,11 @@
 	
 \end{example}
 
-Теперь рассмотрим способы задания $k-$мерных многообразий.
+Теперь рассмотрим способы задания $k$-мерных многообразий.
 
 \begin{theorem}%[Об открытом множестве]% 
 	\label{OpenSetManifold}
-	Пусть $U \subseteq \mathbb{R}^n$ -- окрытое множество, тогда $U$ является 
+	Пусть $U \subseteq \mathbb{R}^n$ -- окрытое множество, тогда $U$ является
 	$n$-мерным многообразием.
 \end{theorem} 
 \begin{proof}
@@ -166,32 +166,32 @@
 
 \begin{theorem}[О графике]
 	Пусть $U \subset \mathbb{R}^n$ -- открытое множество, $f: U \to \mathbb{R}, f \in C^r$, тогда график этой функции $\Gamma_f = 
-	\{ (x, f(x))  \mid x \in U \}$ - $C^r$-гладкое $n$-мерное многообразие в $R^{n+1}$.
+	\{ (x, f(x))  \mid x \in U \}$ - $C^r$-гладкое $n$-мерное многообразие в $\mathbb{R}^{n+1}$.
 \end{theorem}
 
 \begin{proof}
 	Определим отображение $\Phi : U \times \mathbb{R} \to U \times \mathbb{R}$ следующим образом $\Phi(x, y) = (x, y - f(x))$, тогда:
-	
-	$\Phi(x_1, \ldots, x_n, y) = 
+\[
+\Phi(x_1, \ldots, x_n, y) =
 	\begin{pmatrix}
 	x_1 \\
 	\vdots \\
 	x_n \\
 	y - f(x_1, \ldots, x_n)
-	\end{pmatrix} \quad
+	\end{pmatrix},
+	\quad
 	\left| D \Phi \right|=
 	\begin{vmatrix}
 	E& 0 \\
 	-\frac{\partial f}{\partial x_i} & 1
 	\end{vmatrix}
-	= 1
-	$
-	
-	Отображение $\Phi$ является $C^r$-диффеоморфизмом и $\Phi(x,f(x)) = (x, 0)$, т.е. $\Phi(\Gamma_f) = U \times \{0\}$
+	= 1.
+\]
+	Отображение $\Phi$ является $C^r$-диффеоморфизмом и $\Phi(x,f(x)) = (x, 0)$, т.е. $\Phi(\Gamma_f) = U \times \{0\}$.
 \end{proof}
 
 \begin{theorem}[О локальном вложении]
-	Пусть $U \subset \mathbb{R}^k$ - открытое множество, $f: U \to \mathbb{R}^n, f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U и \rank Df(t^0)) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
+	Пусть $U \subset \mathbb{R}^k$ - открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
 \end{theorem}
 
 \begin{proof}
@@ -203,7 +203,7 @@
 	
 	$D \Phi = [ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k}\, v_{k+1}, \ldots, v_n]$, следовательно $\det D \Phi \not= 0$.
 	
-	По теореме об обратной функции существует $W$ - окрестность $(t_0, 0)$, такая что $\Phi : W \to \Phi(W) - C^r$-диффеоморфизм. Выберем $V \times (-h, h) \in W$, так что $V$ - окрестность $x_0$ в $\mathbb{R}^k$, тогда $\Phi^{-1}(f(V))=V\times{0}^{n-k}$.
+	По теореме об обратной функции существует $W$ - окрестность $(t_0, 0)$, такая что $\Phi : W \to \Phi(W)$ - $C^r$-диффеоморфизм. Выберем $V \times (-h, h) \in W$, так что $V$ - окрестность $x_0$ в $\mathbb{R}^k$, тогда $\Phi^{-1}(f(V))=V\times\{0\}^{n-k}$.
 	
 \end{proof}
 
@@ -212,11 +212,11 @@
 	
 	\begin{equation*}
 	\begin{cases}
-	f_1(x_1, \ldots, x_n) = a_1
+	f_1(x_1, \ldots, x_n) = a_1,
 	\\
 	\ldots
 	\\
-	f_k(x_1, \ldots, x_n) = a_k
+	f_k(x_1, \ldots, x_n) = a_k,
 	\end{cases}
 	\end{equation*}
 	тогда $x^0$ называется регулярным, если 
@@ -228,11 +228,11 @@
 	U \to \mathbb{R}$ и $f_i \in C^r \; \forall \, i \leq k$, тогда множество регулярных решений системы уравнений
 	\begin{equation*}
 	\begin{cases}
-	f_1(x_1, \ldots, x_n) = a_1
+	f_1(x_1, \ldots, x_n) = a_1,
 	\\
 	\ldots
 	\\
-	f_k(x_1, \ldots, x_n) = a_k
+	f_k(x_1, \ldots, x_n) = a_k,
 	\end{cases}
 	\end{equation*}
 	представляет собой $C^r$-гладкое $(n-k)$-мерное многообразие.
@@ -245,7 +245,7 @@
 	\frac{\partial f_1}{ \partial x_1}& \ldots& \frac{\partial f_1}{ \partial x_n} \\
 	\vdots& \quad& \vdots \\
 	\frac{\partial f_k}{ \partial x_1}& \ldots& \frac{\partial f_k}{ \partial x_n}
-	\end{pmatrix} (x^0)
+	\end{pmatrix} (x^0).
 	\end{equation*}
 	
 	Матрица состоит из $n$ столбцов, где $k$ из них линейно независимы.
@@ -254,33 +254,27 @@
 	
 	
 	В некоторой окрестности $x^0$:	
-	
-	$x_{n-k+1} = g_{n-k+1}(x_1, \ldots, x_{n-k})$
-	
-	$\ldots$
-	
-	$x+n = g_n(x_1, \ldots, x_{n-k})$
-	
+\begin{align*}
+	x_{n-k+1} &= g_{n-k+1}(x_1, \ldots, x_{n-k}), \\
+	& \ldots \\
+	x_n &= g_n(x_1, \ldots, x_{n-k}).
+\end{align*}
+
 	Множество решений по теореме о локальном вложении является многообразием:
-	
-	$x_1=x_1$
-	
-	$\ldots$
-	
-	$x_k=x_k$
-	
-	$x_{n-k+1} = g_{n-k+1}(x_1, \ldots, x_{n-k})$
-	
-	$\ldots$
-	
-	$x+n = g_n(x_1, \ldots, x_{n-k})$
-	
+\begin{align*}
+	x_1 &= x_1, \\
+	& \ldots \\
+	x_k &= x_k, \\
+	x_{n-k+1} & = g_{n-k+1}(x_1, \ldots, x_{n-k}), \\
+	& \ldots \\
+	x_n &= g_n(x_1, \ldots, x_{n-k}).
+\end{align*}
 \end{proof}
 
 \subsection{Многообразия с краем}
 
 \begin{definition}
-	$\mathbb{R}_+^k = \{(x_1, \ldots, x_k) : x_k > 0\}$ - верхнее полупространство ($\mathbb{R}_-^k = \{(x_1, \ldots, x_k) : x_k < 0\}$ - нижнее полупространство).
+	$\mathbb{R}_+^k = \{(x_1, \ldots, x_k) : x_k \ge 0\}$ - верхнее полупространство ($\mathbb{R}_-^k = \{(x_1, \ldots, x_k) : x_k \le 0\}$ - нижнее полупространство).
 \end{definition}
 
 \begin{definition}
