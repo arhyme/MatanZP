@@ -435,6 +435,96 @@
 \end{theorem}
 
 \begin{example}
+	Является ли многообразием множество решений системы:
+	
+	\begin{equation*}
+		\begin{cases}
+			x^2 - y^2 + z^2 \leq 16 \\
+			x^2 y^2 \geq 1 \\
+			z \geq 1
+		\end{cases}
+	\end{equation*}
+\end{example}
+\begin{proof}[Решение]
+	Проверим условия теоремы выше.
+	
+	\begin{equation*}
+		\frac{\partial f_i}{\partial x_j} = 
+		\begin{pmatrix}
+			2x & -2y & 2z \\
+			2xy^2 & 2x^y & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}
+	\end{equation*}
+	
+	Для того чтобы ранг этой матрицы был максимальным, достаточно, чтобы $\det \frac{\partial f_i}{\partial x_j} \not= 0$.
+	
+	\begin{equation*}
+		\det \frac{\partial f_i}{\partial x_j} (x_0) = 4xy(x^2 + y^2)
+	\end{equation*}
+	
+	Это выражение равно нулю, если $x=0$ или $y=0$. Подставив их в исходную систему, убедимся, что они не являются ее решением. Следовательно $\rank \, \det \frac{\partial f_i}{\partial x_j} (x) = 3$ и множество решений системы является кусочно-гладким многообразием с краем размерности $3$.
+	
+	Внутренностью этого многообразия является решение системы
+	
+	\begin{equation*}
+		\begin{cases}
+		x^2 - y^2 + z^2 < 16 \\
+		x^2 y^2 > 1 \\
+		z > 1
+		\end{cases} 
+	\end{equation*}
+	
+	Рассмотрим теперь что является краем этого многообразия. Набор систем, перечисленный ниже задает компоненты края.
+	
+	\begin{align*}
+		\begin{cases}
+		x^2 - y^2 + z^2 = 16 \\
+		x^2 y^2 = 1 \\
+		z = 1
+		\end{cases} 		
+		&	
+		\begin{cases}
+		x^2 - y^2 + z^2 < 16 \\
+		x^2 y^2 = 1 \\
+		z = 1
+		\end{cases}
+		&
+		\begin{cases}
+		x^2 - y^2 + z^2 = 16 \\
+		x^2 y^2 > 1 \\
+		z = 1
+		\end{cases}	
+		& \\
+		\begin{cases}
+		x^2 - y^2 + z^2 = 16 \\
+		x^2 y^2 = 1 \\
+		z > 1
+		\end{cases}	
+		&
+		\begin{cases}
+		x^2 - y^2 + z^2 < 16 \\
+		x^2 y^2 > 1 \\
+		z = 1
+		\end{cases}	
+		&
+		\begin{cases}
+		x^2 - y^2 + z^2 < 16 \\
+		x^2 y^2 = 1 \\
+		z > 1
+		\end{cases}	
+		& \\
+		\begin{cases}
+		x^2 - y^2 + z^2 = 16 \\
+		x^2 y^2 > 1 \\
+		z > 1
+		\end{cases}	
+	\end{align*}
+	
+	Край кусочно-гладкий, размерности компонент края в порядке по строкам: $0, 1, 1, 1, 2, 2, 2$ (каждая компонента - многообразие, размерность которых можно вычислить используя формулировки соотвествующих теорем о задании многообразий).
+\end{proof}
+
+\begin{example}
 	в $\mathbb{R}^3$. $x^2+y^2\leq 1, x\geq 0, z\geq 0, z\leq 1$
 	
 	\begin{center}
@@ -495,7 +585,11 @@
 \end{lemma}
 
 \begin{proof}
-	TODO
+	По условию, существует кривая $\gamma \subset M$, для которой $\vec{v}$ является вектором скорости. Зададим кривую $\tilde{\gamma}(t)=\gamma(\lambda t)$ и проверим, что вектор $\lambda \vec{v}$ явяляется ее вектором скорости. Действительно 
+	
+	\begin{equation*}
+		\tilde{\gamma}'(0) = \lambda \gamma'(0) = \lambda \vec{v}
+	\end{equation*}
 \end{proof}
 
 \begin{theorem}[О множестве касательных векторов]
@@ -600,7 +694,7 @@
 \subsection{Задача на условный экстремум}
 
 \begin{definition}
-	Пусть $M, N$ -- дифференцируемые многообразия, тогда $f : M \to N$ дифференцируема в точке $x_0$, если существует линейное отображение $L : T_{x_0}M \to T_{f(t_0)}N$, такое что для каждой кривой $\gamma : [0, \varepsilon] \to M$, такой что $\gamma \in C^1$, $\gamma(0)=x_0$, $\gamma'(0)=\vec{v} \in T_{x_0}M$, выполняется $f(\gamma(t)) = f(x_0) + tL(\vec{v}) + o(t)$.
+	Пусть $M, N$ -- дифференцируемые многообразия, тогда $f : M \to N$ дифференцируема в точке $x_0$, если существует линейное отображение $L : T_{x_0}M \to T_{f(x_0)}N$, такое что для каждой кривой $\gamma : [0, \varepsilon] \to M$, такой что $\gamma \in C^1$, $\gamma(0)=x_0$, $\gamma'(0)=\vec{v} \in T_{x_0}M$, выполняется $f(\gamma(t)) = f(x_0) + tL(\vec{v}) + o(t)$.
 \end{definition}
 
 \begin{theorem}[Необходимое условие экстремума]
