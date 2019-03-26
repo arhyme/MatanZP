@@ -85,7 +85,7 @@
 При $r = 0$ многообразие называется топологическим, при $r > 0$ многообразие называется дифференцируемым.
 
 
-Виды многообразий:
+Примеры многообразий:
 \begin{enumerate}	
 	\item
 	Набор изолированных точек $(k = 0)$.
@@ -192,17 +192,17 @@
 \end{proof}
 
 \begin{theorem}[О локальном вложении]
-	Пусть $U \subset \mathbb{R}^k$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
+	Пусть $U \subset \mathbb{R}^n$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
 \end{theorem}
 
 \begin{proof}
 	Так как $\rank Df(t^0) = k$, следовательно набор векторов $\{ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k}\}$  является линейно независимым, т.е. его можно дополнить до базиса $\mathbb{R}^n$.
 	
-	Пусть $\{ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k}\, v_{k+1}, \ldots, v_n\}$ --- базис в $\mathbb{R}^n$.
+	Пусть $\{ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k}, v_{k+1}, \ldots, v_n\}$ --- базис в $\mathbb{R}^n$.
 	
 	Определим $\Phi : U \times \mathbb{R}^{n-k} \to \mathbb{R}^n$ так, что $\Phi(t_1, \ldots, t_k, s_{k+1}, \ldots, s_n)=f(t_1, \ldots, t_k) +s_{k+1}v_{k+1} + \ldots + s_n v_n$.
 	
-	$D \Phi = [ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k}\, v_{k+1}, \ldots, v_n]$, следовательно $\det D \Phi \not= 0$.
+	$D \Phi = [ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k} , v_{k+1}, \ldots, v_n]$, следовательно $\det D \Phi \not= 0$.
 	
 	По теореме об обратной функции существует $W$ --- окрестность $(t_0, 0)$, такая что $\Phi : W \to \Phi(W)$ --- $C^r$-диффеоморфизм. Выберем $V \times (-h, h) \in W$, так что $V$ --- окрестность $x_0$ в $\mathbb{R}^k$, тогда $\Phi^{-1}(f(V))=V\times\{0\}^{n-k}$.
 \end{proof}
@@ -250,7 +250,8 @@
 	
 	Матрица состоит из $n$ столбцов, где $k$ из них линейно независимы.
 	
-	%$f(x,y) = 0$, $\det \frac{\partial f}{ \partial y} \not= 0 \implies в некоторой окрестности y=g(x)$.%
+	$f(x_1,\ldots,x_{n-k},x_{n - k +1}, \ldots x_{n}) = f(x,y) = 0$. Существует окрестность $V$ такая, что 
+	$\det \frac{\partial f}{\partial y} \ne 0$ тогда по теореме о неявной функции $y = g(x)$. 
 	
 	
 	В некоторой окрестности $x^0$:	
@@ -264,7 +265,7 @@
 \begin{align*}
 	x_1 &= x_1, \\
 	& \ldots \\
-	x_k &= x_k, \\
+	x_{n - k} &= x_{n - k}, \\
 	x_{n-k+1} & = g_{n-k+1}(x_1, \ldots, x_{n-k}), \\
 	& \ldots \\
 	x_n &= g_n(x_1, \ldots, x_{n-k}).
@@ -323,11 +324,11 @@
 \end{definition}
 
 \begin{theorem}[О крае]
-	Пусть $M$ --- $C^r$-гладкое $k$-мерное многообразие с краем, тогда множество его краевых точек $\partial M$ является $C^r$-гладким $k$-мерным многообразием без края ($\partial \partial M = \emptyset$).
+	Пусть $M$ --- $C^r$-гладкое $k$-мерное многообразие с краем, тогда множество его краевых точек $\partial M$ является $C^r$-гладким $(k-1)$-мерным многообразием без края ($\partial \partial M = \emptyset$).
 \end{theorem}
 
 \begin{proof}
-	Пусть $x \in \Phi(U \cap M)$, тогда $x=(x_1, \ldots, x_{k-1}, x_k, 0, \ldots, 0)$. Если $x_k = 0$, то $x \in \partial M$ --- краевая точка. Отображение $\Phi$ переводит все краевые точки $U \cap M$ в $(k-1)$-мерную плоскость (основание полупространства). Основание --- $(k-1)$-мерная окрестность нуля, следовательно $\Phi(U \cap \partial M) = W \times \{0\} \times \{0\}^{n-k}$ --- выполнено определение многообразия.
+	Пусть $x \in \Phi(U \cap M)$, тогда $x=(x_1, \ldots, x_{k-1}, x_k, \underbrace{0, \ldots, 0}_{n-k} )$. Если $x_k = 0$, то $x \in \partial M$ --- краевая точка. Отображение $\Phi$ переводит все краевые точки $U \cap M$ в $(k-1)$-мерную плоскость (основание полупространства). Основание --- $(k-1)$-мерная окрестность нуля, следовательно $\Phi(U \cap \partial M) = W \times \{0\} \times \{0\}^{n-k}$ --- выполнено определение многообразия.
 \end{proof}
 
 \begin{theorem}[О решении системы уравнений и неравенства]
@@ -365,7 +366,7 @@
 \end{proof}
 
 \begin{definition}
-	Множество $M \in \mathbb{R}^k$ называется $k$-мерным кусочно-гладким многообразием, если:
+	Множество $M \subset \mathbb{R}^k$ называется $k$-мерным кусочно-гладким многообразием, если:
 	\begin{enumerate}
 		\item $M$ --- $k$-мерное топологическое многообразие.
 		\item Существует разбиение $M = \tilde{M} \cup (\bigcup_{i=0}^{n} Z_i) $, такое что $\tilde{M}$ - гладкое $k$-мерное многообразие, а $Z_i$ - кусочно гладкие многообразия размерности $l \leq k - 1$.
@@ -469,9 +470,9 @@
 	
 	\begin{equation*}
 		\begin{cases}
-		x^2 - y^2 + z^2 < 16 \\
-		x^2 y^2 > 1 \\
-		z > 1
+		x^2 - y^2 + z^2 \leq 16 \\
+		x^2 y^2 \geq 1 \\
+		z \geq 1
 		\end{cases} 
 	\end{equation*}
 	
@@ -614,9 +615,9 @@
 	
 	$\gamma : [0, \varepsilon] \to M \implies \Gamma(t) = 
 	\Phi(\gamma(t)) = (x_1(t), \ldots, x_k(t), 0, \ldots, 0) 
-	\implies \Gamma'(t) = =(x'_1(t), \ldots, x'_k(t), 0, \ldots, 0)$.
+	\implies \Gamma'(t) =(x'_1(t), \ldots, x'_k(t), 0, \ldots, 0)$.
 	
-	$\Gamma'(t) = \Phi(\gamma(t)) = D \Phi_{\gamma(t)} \langle\gamma'(t)\rangle$ -
+	$\Gamma'(t) = (\Phi(\gamma(t)))' = D \Phi_{\gamma(t)} \langle\gamma'(t)\rangle$ -
 	линейное отображение, такое, что $\det D \Phi \not = 0$.
 	
 	$T_{x_0}M = D \Phi^{-1} (\mathbb{R}^k \times \{0\}^{n-k}) \implies T_{x_0}M$ - $k$-мерная плоскость (т.к. дифференциал переводит плоскость в плоскость). 
