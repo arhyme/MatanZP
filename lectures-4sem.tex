@@ -196,7 +196,15 @@
 \end{proof}
 
 \begin{theorem}[О локальном вложении]
+
 	Пусть $U \subset \mathbb{R}^n$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
+		\begin{equation*}
+	\begin{cases}
+	x_1 = f_1(t_1,\ldots,t_k), \\
+	\ldots \\
+	x_n = f_n(t_1,\ldots, t_k).
+	\end{cases}
+	\end{equation*}
 \end{theorem}
 
 \begin{proof}
@@ -614,7 +622,7 @@
 \end{theorem}
 
 \begin{proof}
-	По определению $k$-мерного многообразия, для каждого $x_0 \in M$ существует $U$ --- окрестность $x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что $\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ --- окрестность нуля в $R^n$.
+	По определению $k$-мерного многообразия, для каждого $x_0 \in M$ существует $U$ --- окрестность $x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что $\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ --- окрестность нуля в $\mathbb{R}^k$.
 	
 	Под действием $\Phi$ кривая перейдет в кривую.
 	
@@ -638,15 +646,25 @@
 \end{lemma}
 
 \begin{theorem}[О базисе касательного пространства]
-	Пусть $U \subset \mathbb{R}^k$ --- открытое множество, $f : U \to \mathbb{R}^k$, $f \in C^r$. Тогда, если $M = f(U)$ -- многообразие и $\rank Df = k$, то $\{\frac{\partial f}{\partial x_1} (t_0), \ldots, \frac{\partial f}{\partial x_k} (t_0) \}$ -- базис в $T_{f(t_0)}M$.
+	Пусть многообразие $M$ задано параметрически:
+	\begin{equation*}
+		\begin{cases}
+		x_1 = f_1(t_1,\ldots, t_k), \\
+		\ldots \\
+		x_n = f_n(t_1,\ldots, t_k).
+		\end{cases}
+	\end{equation*},
+	где $(t_1,\ldots,t_k) \in U$.
+	
+	Пусть $U \subseteq \mathbb{R}^k$ --- открытое множество, $f : U \to \mathbb{R}^n$, $f \in C^r$ и $t^0 \in U$. Тогда, если $M = f(U)$ -- многообразие и $\rank Df = k$, то $\{\frac{\partial f}{\partial t_1} (t^0), \ldots, \frac{\partial f}{\partial t_k} (t^0) \}$ -- базис в $T_{f(t^0)}M$.
 \end{theorem}
 
 \begin{proof}
-	Пусть $t_0 \in U$, определим $\Gamma_j = t_0 + t \cdot \vec{e_j}$, тогда 
+	Пусть $t^0 \in U$, определим $\Gamma_j = t^0 + t \cdot \vec{e_j}$, тогда 
 	$\gamma_j(t)=f(\Gamma_j(t))$ --- кривая на многообразии.
 	
-	Найдем её касательный вектор в точке $t_0$: $\gamma_j'(t_0) = 
-	\frac{d}{dt} f(t_0 + t \cdot \vec{e_j}) = \frac{\partial f}{\partial t_j}(t_0) \in T_{f(t_0)}M$.
+	Найдем её касательный вектор в точке $t^0$: $\gamma_j'(t^0) = 
+	\frac{d}{dt} f(t^0 + t \cdot \vec{e_j}) = \frac{\partial f}{\partial t_j}(t^0) \in T_{f(t^0)}M$.
 	
 	Набор векторов $\left\{\frac{\partial f}{\partial t_i}\right\}_{i=1}^{k}$ является линейно независимым и их количество равно размерности касательного пространства.
 \end{proof}
@@ -987,7 +1005,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \end{lemma}
 
 \begin{proof}
-	Рассмотрим $\psi^{-1} \circ \varphi$ - отображение между $U$ и $V$.
+	Рассмотрим $\psi^{-1} \circ \varphi$ --- отображение между $U$ и $V$.
 	
 	Очевидно, что $\psi^{-1} \circ \varphi$ является биекцией и $\det D \psi^{-1} \circ \varphi \not= 0$. Следовательно, $\psi^{-1} \circ \varphi$ -- $C^1$-диффеоморфизм.
 	
@@ -1285,7 +1303,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 \subsection{Формула коплощади} 
 
-Пусть $\varphi : U \subseteq \mathbb{R}^n \to R$. Потребуем, чтобы $\nabla \varphi \not= 0$ (т. е. $\rank D \varphi = k$ - максимальный). 
+Пусть $\varphi : U \subseteq \mathbb{R}^n \to \mathbb{R}$. Потребуем, чтобы $\nabla \varphi \not= 0$ (т. е. $\rank D \varphi = k$ - максимальный). 
 
 Уравнение $\varphi(x) = 0$ задает поверхность в $U$. Эту поверхность можно так же задать как $\varphi^{-1}(0)$. Из этого получаем:
 
