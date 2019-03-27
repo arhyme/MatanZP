@@ -62,6 +62,10 @@
 	\begin{abstract}
 		Записки создавались студентами Механико-математического факультета НГУ 
 		с лекций, прочитанных С. Г. Басалаевым.
+		\\
+	
+		\textcolor{blue}{~~~Внимание! Записки не подвергались редактуре, поэтому, возможно, содержат множество неточностей, опечаток и смысловых ошибок.} 
+		
 	\end{abstract}
 
 \clearpage
@@ -202,7 +206,7 @@
 	
 	Определим $\Phi : U \times \mathbb{R}^{n-k} \to \mathbb{R}^n$ так, что $\Phi(t_1, \ldots, t_k, s_{k+1}, \ldots, s_n)=f(t_1, \ldots, t_k) +s_{k+1}v_{k+1} + \ldots + s_n v_n$.
 	
-	$D \Phi = [ \frac{\partial f}{ \partial x_1}, \ldots, \frac{\partial f}{\partial x_k} , v_{k+1}, \ldots, v_n]$, следовательно $\det D \Phi \not= 0$.
+	$D \Phi = [ \frac{\partial f}{ \partial t_1}, \ldots, \frac{\partial f}{\partial t_k} , v_{k+1}, \ldots, v_n]$, следовательно $\det D \Phi \not= 0$.
 	
 	По теореме об обратной функции существует $W$ --- окрестность $(t_0, 0)$, такая что $\Phi : W \to \Phi(W)$ --- $C^r$-диффеоморфизм. Выберем $V \times (-h, h) \in W$, так что $V$ --- окрестность $x_0$ в $\mathbb{R}^k$, тогда $\Phi^{-1}(f(V))=V\times\{0\}^{n-k}$.
 \end{proof}
@@ -369,7 +373,8 @@
 	Множество $M \subset \mathbb{R}^k$ называется $k$-мерным кусочно-гладким многообразием, если:
 	\begin{enumerate}
 		\item $M$ --- $k$-мерное топологическое многообразие.
-		\item Существует разбиение $M = \tilde{M} \cup (\bigcup_{i=0}^{n} Z_i) $, такое что $\tilde{M}$ - гладкое $k$-мерное многообразие, а $Z_i$ - кусочно гладкие многообразия размерности $l \leq k - 1$.
+		\item Существует разбиение $M = \tilde{M} \cup (\bigcup_{i=0}^{n} Z_i) $, такое что $\tilde{M}$ ---4
+		 гладкое $k$-мерное многообразие, а $Z_i$ --- кусочно гладкие многообразия размерности $l \leq k - 1$.
 	\end{enumerate}
 \end{definition}
 
@@ -432,7 +437,7 @@
 	f_{k+l}(x_1, \ldots, x_n) \geq a_{k+l},
 	\end{cases}
 	\end{equation*}
-	представляет собой $C^r$-гладкое $(n-k)$-мерное многообразием с краем.
+	представляет собой $C^r$-кусочно-гладкое $(n-k)$-мерное многообразием с краем.
 \end{theorem}
 
 \begin{example}
@@ -453,7 +458,7 @@
 		\frac{\partial f_i}{\partial x_j} = 
 		\begin{pmatrix}
 			2x & -2y & 2z \\
-			2xy^2 & 2x^y & 0 \\
+			2xy^2 & 2x^{2}y & 0 \\
 			0 & 0 & 1
 		\end{pmatrix}
 	\end{equation*}
@@ -609,7 +614,7 @@
 \end{theorem}
 
 \begin{proof}
-	По определению $k$-мерного многообразия, для каждого $x_0 \in M$ существует $U$ - окрестность $x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что $\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ - окрестность нуля в $R^n$.
+	По определению $k$-мерного многообразия, для каждого $x_0 \in M$ существует $U$ --- окрестность $x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что $\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ --- окрестность нуля в $R^n$.
 	
 	Под действием $\Phi$ кривая перейдет в кривую.
 	
@@ -628,8 +633,8 @@
 \end{definition}
 
 \begin{lemma}
-	Пусть $M \subset \mathbb{R}^n$ и $x_0 \in M$, тогда $\dim M = k$, 
-	$\dim T_{x_0}M = k$, $\dim N_{x_0}M = n - k$.
+	Пусть $M \subset \mathbb{R}^n$ и $x_0 \in M$, тогда если $\dim M = k$ то,
+	$\dim T_{x_0}M = k$ и $\dim N_{x_0}M = n - k$.
 \end{lemma}
 
 \begin{theorem}[О базисе касательного пространства]
@@ -638,7 +643,7 @@
 
 \begin{proof}
 	Пусть $t_0 \in U$, определим $\Gamma_j = t_0 + t \cdot \vec{e_j}$, тогда 
-	$\gamma_j(t)=f(\Gamma_j(t))$ - кривая на многообразии.
+	$\gamma_j(t)=f(\Gamma_j(t))$ --- кривая на многообразии.
 	
 	Найдем её касательный вектор в точке $t_0$: $\gamma_j'(t_0) = 
 	\frac{d}{dt} f(t_0 + t \cdot \vec{e_j}) = \frac{\partial f}{\partial t_j}(t_0) \in T_{f(t_0)}M$.
@@ -650,21 +655,21 @@
 	Пусть многообразие $M$ задано системой уравнений:
 	\begin{equation*}
 	\begin{cases}
-	f_1(x_1, \ldots, x_n) = a_1
+	f_1(x_1, \ldots, x_n) = a_1,
 	\\
 	\ldots
 	\\
-	f_k(x_1, \ldots, x_n) = a_k
+	f_k(x_1, \ldots, x_n) = a_k.
 	\end{cases}
 	\end{equation*}
 	и $f_1, \ldots, f_k : U \to \mathbb{R}$, $f_i \in C^r \; \forall \, i \leq k$ , $U \subseteq \mathbb{R}^n$ -- открытое множество, а так же $\rank (\frac{\partial f_i}{\partial x_j})=k$, тогда система уравнений
 	\begin{equation*}
 	\begin{cases}
-	df_1(x_0)\langle\vec{v}\rangle = 0
+	df_1(x_0)\langle\vec{v}\rangle = 0,
 	\\
 	\ldots
 	\\
-	df_k(x_0)\langle\vec{v}\rangle = 0
+	df_k(x_0)\langle\vec{v}\rangle = 0.
 	\end{cases}
 	\end{equation*}
 	задает $T_{f(t_0)}M$, а $\{\nabla f_1(x_0), \ldots, \nabla f_k(x_0)\}$ базис в $N_{x_0}M$.
@@ -695,11 +700,11 @@
 \subsection{Задача на условный экстремум}
 
 \begin{definition}
-	Пусть $M, N$ -- дифференцируемые многообразия, тогда $f : M \to N$ дифференцируема в точке $x_0$, если существует линейное отображение $L : T_{x_0}M \to T_{f(x_0)}N$, такое что для каждой кривой $\gamma : [0, \varepsilon] \to M$, такой что $\gamma \in C^1$, $\gamma(0)=x_0$, $\gamma'(0)=\vec{v} \in T_{x_0}M$, выполняется $f(\gamma(t)) = f(x_0) + tL(\vec{v}) + o(t)$.
+	Пусть $M, N$ --- дифференцируемые многообразия, тогда $f : M \to N$ дифференцируема в точке $x_0$, если существует линейное отображение $L : T_{x_0}M \to T_{f(x_0)}N$, такое что для каждой кривой $\gamma : [0, \varepsilon] \to M$, такой что $\gamma \in C^1$, $\gamma(0)=x_0$, $\gamma'(0)=\vec{v} \in T_{x_0}M$, выполняется $f(\gamma(t)) = f(x_0) + tL(\vec{v}) + o(t)$.
 \end{definition}
 
 \begin{theorem}[Необходимое условие экстремума]
-	Пусть $f: M \to \mathbb{R}$ - дифференцируема и $x_0$ - её экстремум, тогда $df(x_0) = 0$.
+	Пусть $f: M \to \mathbb{R}$ --- дифференцируема и $x_0$ --- её экстремум, тогда $df(x_0) = 0$.
 \end{theorem}
 
 \begin{proof}
@@ -708,7 +713,7 @@
 	Для $f \mid_{\gamma} x_0$ - экстремум, следовательно $f(\gamma(t))'(0)=0=df_{x_0}\langle\vec{v}\rangle$.
 \end{proof}
 
-Пусть $f: U \to \mathbb{R}$, $U \subseteq \mathbb{R}^n$ -- открытое множество, $M \subseteq U$ - $k$-мерное многообразие. Ставится задача: найти экстремум на многообразии $f\mid_{M}$.
+Пусть $f: U \to \mathbb{R}$, $U \subseteq \mathbb{R}^n$ -- открытое множество, $M \subseteq U$ --- $k$-мерное многообразие. Ставится задача: найти экстремум на многообразии $f\mid_{M}$.
 
 \begin{theorem}[Необходимое условие условного экстремума]
 	Если $x_0 \in M$ -- точка экстремума $f$, то $df\mid_{T_{x_0}M} = 0 \Leftrightarrow \nabla f(x_0) \in N_{x_0}M$.
@@ -721,7 +726,7 @@
 \end{proof}
 
 \begin{theorem}[Метод множителей Лагранжа]
-	Пусть $f, \varphi_1, \ldots, \varphi_k : U \to \mathbb{R}$, $U \subseteq \mathbb{R}^n$. Тогда, если $x_0$ - условный экстремум при условиях $\varphi_1(\bar{x}) = 0, \ldots, \varphi_k(\bar{x})  = 0$, то $dL(x_0) = 0$, где $L(\bar{x}, \lambda_1, \ldots, \lambda_k)=f(\bar{x}) - \lambda_1\varphi_1(\bar{x}) - \ldots - \lambda_k\varphi_k(\bar{x})$ -- функция Лагранжа.
+	Пусть $f, \varphi_1, \ldots, \varphi_k : U \to \mathbb{R}$, $U \subseteq \mathbb{R}^n$. Тогда, если $x_0$ --- условный экстремум при условиях $\varphi_1(\bar{x}) = 0, \ldots, \varphi_k(\bar{x})  = 0$, то $dL(x_0) = 0$, где $L(\bar{x}, \lambda_1, \ldots, \lambda_k)=f(\bar{x}) - \lambda_1\varphi_1(\bar{x}) - \ldots - \lambda_k\varphi_k(\bar{x})$ -- функция Лагранжа.
 \end{theorem}
 
 \begin{proof}
