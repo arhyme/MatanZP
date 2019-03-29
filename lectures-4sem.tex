@@ -1665,5 +1665,170 @@ D\varphi$. Если мы будем считать «в лоб»:
 	Продолжение следует $;)$
 \end{proof}
 
+Тут должна быть лекция за 26.03.19 %TODO
+
+\subsection{Лекция 29.03.19} %Лекция 29.03.19
+
+\begin{example}
+	Вычислить
+	
+	\begin{equation*}
+		\oint\limits_{U} x^2 \arctan(x^2+\sin(x))dx + xdy
+	\end{equation*}
+	
+	где $U$ задано равенством $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$.
+\end{example}
+
+\begin{proof}[Решение]
+	Лайфхак от Сергея Геннадьевича: если вы видите задачу с <<безумной функцией>>, то эта задача на формулу Грина.
+	
+	Функция в задаче выглядит не очень, так что воспользуемся формулой Грина:
+	
+	\begin{equation*}
+	\oint\limits_{U} x^2 \arctan(x^2+\sin x)dx + xdy = -\iint\limits_{U} (1 - 0) dxdy = -\pi ab
+	\end{equation*}
+\end{proof}
+
+\begin{definition}
+	1-формами площади называются специальные 1-формы, интегралы от которых дают площадь.
+	
+	\begin{align*}
+		xdy \quad \quad -ydx \quad \quad \frac{xdy-ydx}{2}
+	\end{align*}
+\end{definition}
+
+Проинтегрировав любую из этих форм по области, вы получите площадь области:
+
+\begin{equation*}
+	\oint\limits_{\partial U}xdy = \iint\limits_{U} (1 - 0)dxdy = |U|
+\end{equation*}
+
+\begin{example}
+	Вычислите площадь ветки циклоиды, полученной движением круга радиуса $a$.
+	
+	\begin{equation*}
+		\begin{cases}
+			x = at-a\sin t \\
+			y = a - a\cos t
+		\end{cases}
+	\end{equation*}
+\end{example}
+
+\begin{proof}[Решение]
+	Из прошлого семеста, мы знаем, что площадь можно посчитать с помощью двойного интеграла. Для этого нам нужно найти пределы интегрирования. Переменная $x$ меняется от $0$ до $2\pi a$, однако, когда мы попытаемся найти пределы интегрирования по $y$, мы столкнемся с проблемой: $t$ нельзя выразить через $x$ в явном виде. Следовательно, старый способ вычисления площади тут не сработает.
+	
+	Воспользуемся 1-формами площади. Заметим, что область ветки ограничена кривой циклоиды и осью $Ox$. Обозначим за $C$ и $I$ циклоиду и ось $Ox$ соотвественно, по формуле Грина получим:
+	
+	\begin{equation*}
+		S = \oint\limits_{C + I}ydx =\int\limits_{C}ydx + \int\limits_{I}ydx
+	\end{equation*}
+
+	Так как $y = 0$ во втором интеграле, получаем:
+	
+	\begin{multline*}
+	\int\limits_{C}ydx = \int\limits_{0}^{2\pi}a(1+\cos t) d(at - a\sin t) = a^2 \int\limits_{0}^{2\pi} (1-\cos t)^2dt = \\= a^2 \frac{6x - 8 \sin x + \sin 2x}{4} \bigg|_0^{2\pi} = 3 \pi a^2
+	\end{multline*}
+\end{proof}
+
+У нас уже был критерий полного дифференциала, но он не годится для непосредственной проверки того, является ли 1-форма дифференциалом некоторой функции. Поставим перед собой задачу: по 1-форме определить полный дифференциал ли это и, если да, то какой функции?
+
+\begin{theorem}[Необходимое условие полного дифференциала]
+	Пусть $w = a_1 dx_1 + \ldots + a_n dx_n$ и $w \in C^1$. Тогда, если $w = df$, то 
+	
+	\begin{equation*}
+		\frac{\partial a_i}{\partial x_j} = \frac{\partial a_j}{\partial x_i}
+	\end{equation*}
+\end{theorem}
+
+\begin{proof}
+	Заметим, что, если $w = df$ и $w \in C^1$, то $f \in C^2$, т.е. существуют вторые частные производные функции $f$ и дифференциал $f$ можно записать в координатном представлении.
+	
+	\begin{equation*}
+		w = df = \frac{\partial f}{\partial x_1} dx_1 + \ldots + \frac{\partial f}{\partial x_n} dx_n
+	\end{equation*}
+	
+	Так как $a_i = \frac{\partial f}{\partial x_i}$, получаем, что
+	
+	\begin{equation*}
+		\frac{\partial a_i}{\partial x_j} = \frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial^2 f}{\partial x_j \partial x_i} = \frac{\partial a_j}{\partial x_i}
+	\end{equation*}
+\end{proof}
+
+Сейчас мы убедимся, что данное условие не является достаточным.
+
+\begin{definition}
+	Формой Гаусса $\Theta$ (в декартовых координатах) называется форма
+	
+	\begin{equation*}
+		\Theta = \frac{xdy - ydx}{x^2 + y^2} \quad dom \; \Theta = \mathbb{R}^2 \setminus \{0\}
+	\end{equation*}	
+\end{definition}
+
+Не сложно убедится в том, что для формы Гаусса выполняются необходимые условия полного дифференциала.
+
+\begin{equation*}
+	\frac{\partial}{\partial x} \frac{x}{x^2 + y^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2} = \frac{\partial}{\partial y} \frac{-y}{x^2 + y^2}
+\end{equation*}
+
+Однако, если мы возьмем за замкнутый контур еденичную окружность и вычислим интеграл по замкнутому контуру, мы получим
+
+\begin{equation*}
+	\int\limits_{0}^{2 \pi} \cos^2 t+ \sin^2 t dt = \int\limits_{0}^{2 \pi }dt = 2 \pi
+\end{equation*}
+
+То есть, критерий полного дифференциала не выполняется и форма Гаусса не является полным дифференциалом.
+
+Заметим так же, что если бы мы воспользовались формулой Грина для проверки критерия, мы бы получили другой ответ:
+
+\begin{equation*}
+	\oint\limits \Theta = \int 0 dx dy = 0
+\end{equation*}
+
+Но тут нет противоречия, ведь форма Гаусса не гладкая в нуле, следовательно, нельзя применять формулу Гаусса. 
+
+Рассмотрим представление формы Гаусса в полярныъ координатах
+
+\begin{equation*}
+	\Theta = d \varphi
+\end{equation*}
+
+\begin{lemma}
+	Пусть $\gamma$ --- кривая, не проходящая через 0, с началом в $p$ и концом в $q$. Тогда 
+	
+	\begin{equation*}
+		\int\limits_{\gamma} = \varphi(q) - \varphi(p)
+	\end{equation*}
+	
+	--- разность углов с осью $Ox$ радиус векторов в из начала координат в начальную и конечную точку.
+\end{lemma} 
+
+\begin{lemma}
+	$\Theta = d \varphi$ будет полным дифференциалом, если выколоть некоторый луч исходящий из нуля (т.к. никакая кривая не сможет полностью обойти $0$).
+\end{lemma}
+
+\begin{definition}
+	Две кривые $\gamma_0\, \gamma_1 : [a, b] \to \mathbb{R}^n$ называются гомотопными, если сущесвует функция $f : [a, b] \times [0, 1] \to \mathbb{R}^n$, такая, что $f$ --- непрерывная и $f(x, 0) = \gamma_0(x)$ и $f(x, 1) = \gamma_1(x)$
+\end{definition}
+
+\begin{definition}
+	Множество $M \subseteq \mathbb{R}^n$ называется односвязным, если всякий замкнутый контур $\gamma \subseteq M$ гомотопен точке.
+\end{definition}
+
+Примеры односвязных множеств
+
+\begin{enumerate}
+	\item $\mathbb{R}$, $\mathbb(R)^3 \setminus \{0\}$, сфера --- односвязные множества.
+	
+	\item $\mathbb{R}^2 \setminus \{0\}$, $\mathbb(R)^3 \setminus \{\text{прямая}\} прямая$, тор --- не являются односвязным множеством.
+\end{enumerate}
+
+\begin{theorem}[Гипотеза Пуанкаре]
+	Всякое $n$-мерное компактное односвязное многообразие без края гомеоморфно $n$-мерной сфере.
+\end{theorem}
+
+\begin{proof}
+	Очевидно
+\end{proof}
+
 \end{document}
 
