@@ -40,6 +40,7 @@
 \numberwithin{through}{section}
 \numberwithin{equation}{section}
 
+\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\rank}{rank}
 
@@ -83,7 +84,7 @@
 	Множество $M \subseteq \mathbb{R}^n$ называется $C^r$-гладким $k$-мерным
 	многообразием  без края, если для каждого $x_0 \in M$ существует $U$ --- окрестность
 	$x_0$ и существует $ C^r$-диффеоморфизм $\Phi : U \to \Phi (U)$, такой что 
-	$\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ --- окрестность нуля в $\mathbb{R}^n$.
+	$\Phi(x_0)=0$ и $\Phi(U \cap M) = V \times \{0\}^{n-k}$, где $V$ --- окрестность нуля в $\mathbb{R}^k$.
 \end{definition}
 
 При $r = 0$ многообразие называется топологическим, при $r > 0$ многообразие называется дифференцируемым.
@@ -197,7 +198,7 @@
 
 \begin{theorem}[О локальном вложении]
 
-	Пусть $U \subset \mathbb{R}^n$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $U$-окрестность $t^0$, такая что $f(U)$ является $C^r$-гладким $k$-мерным многообразием.
+	Пусть $U \subset \mathbb{R}^n$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $V$-окрестность $t^0$, такая что $f(V)$ является $C^r$-гладким $k$-мерным многообразием.
 		\begin{equation*}
 	\begin{cases}
 	x_1 = f_1(t_1,\ldots,t_k), \\
@@ -1303,7 +1304,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 \subsection{Формула коплощади} 
 
-Пусть $\varphi : U \subseteq \mathbb{R}^n \to \mathbb{R}$. Потребуем, чтобы $\nabla \varphi \not= 0$ (т. е. $\rank D \varphi = k$ - максимальный). 
+Пусть $\varphi : U \subseteq \mathbb{R}^n \to \mathbb{R}$. Потребуем, чтобы $\nabla \varphi \not= 0$ (т. е. $\rank D \varphi = k$ максимальный). 
 
 Уравнение $\varphi(x) = 0$ задает поверхность в $U$. Эту поверхность можно так же задать как $\varphi^{-1}(0)$. Из этого получаем:
 
@@ -1483,14 +1484,227 @@ D\varphi$. Если мы будем считать «в лоб»:
 	Рассмотри одно из физических приложений дифференциальных форм. Мы знаем, что работа силы вычисляется по формуле $A = \vec(F) \cdot \vec{l}$. То есть силу можно рассматривать как дифференциальную форму $A = w_g \langle l \rangle$. А теперь представим, что нам нужно посчитать работу вдоль кривой, где сила не постоянна на всех точках кривой. Получаем $A = \int\limits_{\gamma} \vec{g}(x) \cdot \vec{r}(x) d l(x)$.
 \end{example}
 
-\textbf{Тут должна быть лекция за 19.03.19} %Лекция 19.03.19
+\subsection{Ориентация} % Лекция от 19.03.2019
+
+\begin{definition}
+	Пусть $V$ --- конечномерное векторное пространство, в нем 
+	определены два базиса $u_1,\ldots,u_n$ и $v_1,\ldots,v_n$ связанные
+	между собой матрицей перехода $A$ такой, что $v_j = Au_j$ и $\det A \ne 0$.
+	Базисы назовем \textit{сориентированными} если $\det A > 0$, и \textit{противоположено ориентированными}
+	если $det A < 0$. 
+\end{definition}
+
+Ориентация --- класс сориентированных базисов.
+
+
+\begin{definition}
+	Пусть $\mathfrak{B}^n$ --- множество базисов в $\mathbb{R}^n$
+	\textit{ориентацией} на $\mathfrak{B}^n$ назовем функцию 
+	\[ \Theta: \mathfrak{B}^n \to \{-1, 1 \} \]
+	такую что:
+	\begin{enumerate}
+		\item 
+		$\Theta$ -- непрерывная,
+		
+		\item
+		$\Theta$ -- кососимметричная.
+		
+
+	\end{enumerate}
+		то есть, если $\sigma : \{ 1,\ldots, n \} \to \{ 1,\ldots, n \}$ -- перестановка, то 
+$\Theta(v_{\sigma_1},\ldots, v_{\sigma_n}) \to 
+\sgn \sigma \cdot\Theta(v_{1},\ldots, v_{n})$
+\end{definition}
+
+Теперь приведем примеры стандартных ориентаций. 
+Они существуют для пространств $\mathbb{R}^1, \mathbb{R}^2$ и $\mathbb{R}^3$.
+
+\begin{itemize}
+	\item
+	ориентация в $\mathbb{R}^1$
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (-2.5, 0) -- (2.5,0);
+			\draw[->] [blue] (0,0) -- (1, 0);
+			\draw [blue] (0,-0.07) -- (0,0.07);
+			\coordinate [label=right:\textcolor{blue}{$e_1$}]
+			(e) at (0.95, 0.13);
+			\coordinate [label=right:\textcolor{blue}{$\mathbb{R}$}]
+			(R) at (2.5, -0.2);
+		\end{tikzpicture}
+	\end{center}
+	т.е. стандартная ориентация направлена по возрастанию.
+	
+	\item 
+	ориентация в $\mathbb{R}^2$
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (-1,0) -- (2,0);
+			\draw[->] (0,-1) -- (0, 2);
+			\draw[->] [red] (0,0) -- (0,1);
+			\draw[->] [blue] (0,0) -- (1,0);
+			\draw[->] (0.5,0) arc(0:90:0.5 and 0.5);
+			
+			\coordinate [label=right:\textcolor{blue}{$e_1$}] (e1)
+			at (0.95,0.13);
+			
+			\coordinate [label=right:\textcolor{red}{$e_2$}] (e2)
+			at (0,1);
+		\end{tikzpicture}
+	\end{center}
+т.е. стандартная ориентация получается вращением от вектора $e_1$ к вектору 
+$e_2$ против часовой стрелки.
+
+\item
+ориентация в $\mathbb{R}^3$
+
+\begin{center}
+	\begin{tikzpicture}
+		\draw[->] (0,0,0) -- (2,0,0);
+		\draw[->] (0,0,0) -- (0,2,0);
+		\draw[->] (0,0,0) -- (0,0,2);
+		\draw[->] [red] (0,0) -- (0,1);
+		\draw[->] [blue] (0,0) -- (1,0);
+		\draw[->] [orange] (0,0,0) -- (0,0,1);
+		\draw[->] (0.5,0) arc(0:90:0.5 and 0.5);
+		
+		\coordinate [label=right:\textcolor{blue}{$e_1$}] (e1)
+		at (0.95,0.13);
+		
+		\coordinate [label=right:\textcolor{red}{$e_2$}] (e2)
+		at (0,1);
+		\coordinate [label=right:\textcolor{orange}{$e_3$}] (e3)
+		at (0,0,1);
+		
+	\end{tikzpicture}
+\end{center}
+т.е. если вектор $e_2$ получен вращением вектора $e_1$ против часовой стрелки, то 
+вектор $e_3$ должен смотреть «на нас».
+\end{itemize}
+
+Теперь определим ориентацию на многообразии.
+\begin{definition} \label{orient}
+	Пусть $M$ --- $k$-мерное многообразие и
+	$\mathfrak{B}M := \{ (x,v_1,\ldots,v_k): x \in M, v_1,\ldots,v_k \text{ -- базис } 
+	T_x M\}$
+\end{definition}
+ориентацией на многообразии $M$ назовем функцию 
+\[\Theta: \mathfrak{B}M \to \{-1,1\} \]
+такую что:
+\begin{enumerate}
+	\item
+	$\Theta$ -- непрерывная,
+	
+	\item
+	$\Theta$ -- кососимметричная.
+\end{enumerate}
+
+Оказывается, что не на всяком многообразии можно задать ориентацию. 
+Таким многообразием, к примеру, является лента Мёбиуса: 
+если мы возьмем стандартный базис $\mathbb{R}^2$ и «протащим» 
+его по ленте на один оборот, то он «зеркально отразится». 
+Таким образом, на ленте Мёбиуса не существует функции, удовлетворяющей определению
+\ref{orient}.
+
+\begin{definition}
+	Многообразие называется \textit{ориентируемым}, если на нем можно задать ориентацию.
+	В противном случае оно называется \textit{неориентируемым}.
+\end{definition}
+
+\begin{definition}
+	Ориентированное многообразие называется \textit{ориентированным},
+	если на нем задана ориентация.
+\end{definition}
+
+\begin{lemma}
+	Если многообразие задано параметрически, то оно ориентированно.
+\end{lemma}
+
+\begin{proof}
+	Пусть $U \subset \mathbb{R}^k, f: U \to \mathbb{R}^n$ при $k \leq n$.
+	\begin{equation*}
+		M = f(U) \iff
+		\begin{cases}
+		x_1 = f_1(t_1,\ldots,t_k), \\
+		\ldots \\
+		x_r = f_r(t_1,\ldots, t_k).
+		\end{cases}
+	\end{equation*}
+	
+	Поскольку в $U$ есть ориентация $k$-мерного пространства $\Theta (u_1,\ldots,u_k)$,
+	определим на $M$ ориентацию $\tilde{\Theta}(x,v_1,\ldots,v_k)$ следующим образом:
+	$x = f(t), v_1 =df_x \langle u_1 \rangle, \ldots df_x \langle u_k \rangle$.
+\end{proof}
+
+\begin{lemma}
+	Многообразие заданное системой уравнений всегда ориентируемо.
+\end{lemma}
+
+\begin{proof}
+Пусть $U \subseteq \mathbb{R}^n, \varphi: U \to \mathbb{R}^k \in C^1$ и $\rank D\varphi = k$ всюду для всякого $k \leq n$. 
+
+
+$x$ --- точка на многообразии $M$ тогда и только тогда, когда $\varphi(x) = 0$. 
+В свою очередь 
+\begin{equation*}
+	\varphi(x) = 0 \iff
+	\begin{cases}
+	\varphi_1(x_1,\ldots,x_n) = 0, \\
+	\ldots \\
+	\varphi_k(x_1,\ldots, x_n) = 0.
+	\end{cases}
+\end{equation*}	
+тогда $\nabla \varphi_1(x),\ldots,\nabla \varphi_k(x)$ --- нормали к
+многообразию $M$ в точке $x$.
+Определим ориентацию следующим образом:
+
+$x \in M, \tau_1,\ldots,\tau_{n-k} \in T_x M \implies $
+
+$\tilde{\Theta}(x,\tau_1,\ldots,\tau_{n-k}) = \Theta(\nabla\varphi_1(x),\ldots
+\nabla\varphi_k(x),\tau_1,\ldots,\tau_{n-k}).$
+\end{proof}
+
+Рассмотрим примеры ориентируемых многообразий и ориентаций на них.
+
+\begin{itemize}
+	\item
+	$k = 0$. $0$-мерное многообразие --- набор точек.
+	\begin{center}
+
+		\begin{tikzpicture}
+		\filldraw [black] (0,0.5) circle (2pt);
+		\coordinate [label=right:\textcolor{blue}{$-1$}] (e1)
+		at (0, 0.5);
+		\filldraw [black] (0.2,-0.4) circle (2pt);
+		\coordinate [label=right:\textcolor{blue}{$-1$}] (e2)
+		at (0.2,-0.4);
+		\filldraw [black] (-0.48,0.26) circle (2pt);
+		\coordinate [label=left:\textcolor{blue}{$+1$}] (e3)
+		at (-0.48,0.26);
+		\filldraw [black] (1,0.6) circle (2pt);
+		\coordinate [label=right:\textcolor{blue}{$+1$}] (e4)
+		at (1,0.6);
+		\filldraw [black] (0,0) circle (2pt);
+		\coordinate [label=right:\textcolor{blue}{$+1$}] (e5)
+		at (0,0);	
+		\end{tikzpicture}	
+	\end{center}
+-- просто приписываем $\{-1,+1\}$ к точкам.
+
+\item
+$k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
+
+Ориентация задается нормалью. 
+\end{itemize}
+
+
 
 \subsection{Интеграл 1-формы по кривой} %Лекция 21.03.19
 
 Пусть $\gamma - C^1$-гладкая ориентированная кривая. Рассмотрим две регулярные параметризации. Тогда $\psi^{-1} \circ \varphi : [a, b] \to [c, d] \in C^1$ и $\psi^{-1} \circ \varphi \not= 0$.
 
 \begin{definition}
-	Две параметризации $\varphi, \psi$ называются сориентироваными (противоположно ориентированными), если $(\psi^{-1} \circ \varphi)' > 0 \; ((\psi^{-1} \circ \varphi)' < 0)$.
+	Две параметризации $\varphi, \psi$ называются сориентированными (противоположно ориентированными), если $(\psi^{-1} \circ \varphi)' > 0 \; ((\psi^{-1} \circ \varphi)' < 0)$.
 \end{definition}
 
 \begin{definition}
@@ -1552,7 +1766,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 		\end{equation*} 
 	\end{proof}
 
-	\item Антисимметричность
+	\item антисимметричность
 	
 	Пусть $\gamma$ - ориентированная кривая, тогда $-\gamma$ та же кривая, только с противоположной ориентацией. 
 	
@@ -1715,7 +1929,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \end{example}
 
 \begin{proof}[Решение]
-	Из прошлого семеста, мы знаем, что площадь можно посчитать с помощью двойного интеграла. Для этого нам нужно найти пределы интегрирования. Переменная $x$ меняется от $0$ до $2\pi a$, однако, когда мы попытаемся найти пределы интегрирования по $y$, мы столкнемся с проблемой: $t$ нельзя выразить через $x$ в явном виде. Следовательно, старый способ вычисления площади тут не сработает.
+	Из прошлого семестра, мы знаем, что площадь можно посчитать с помощью двойного интеграла. Для этого нам нужно найти пределы интегрирования. Переменная $x$ меняется от $0$ до $2\pi a$, однако, когда мы попытаемся найти пределы интегрирования по $y$, мы столкнемся с проблемой: $t$ нельзя выразить через $x$ в явном виде. Следовательно, старый способ вычисления площади тут не сработает.
 	
 	Воспользуемся 1-формами площади. Заметим, что область ветки ограничена кривой циклоиды и осью $Ox$. Обозначим за $C$ и $I$ циклоиду и ось $Ox$ соотвественно, по формуле Грина получим:
 	
@@ -1770,7 +1984,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 	\frac{\partial}{\partial x} \frac{x}{x^2 + y^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2} = \frac{\partial}{\partial y} \frac{-y}{x^2 + y^2}
 \end{equation*}
 
-Однако, если мы возьмем за замкнутый контур еденичную окружность и вычислим интеграл по замкнутому контуру, мы получим
+Однако, если мы возьмем за замкнутый контур единичную окружность и вычислим интеграл по замкнутому контуру, мы получим
 
 \begin{equation*}
 	\int\limits_{0}^{2 \pi} \cos^2 t+ \sin^2 t dt = \int\limits_{0}^{2 \pi }dt = 2 \pi
@@ -1807,7 +2021,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \end{lemma}
 
 \begin{definition}
-	Две кривые $\gamma_0\, \gamma_1 : [a, b] \to \mathbb{R}^n$ называются гомотопными, если сущесвует функция $f : [a, b] \times [0, 1] \to \mathbb{R}^n$, такая, что $f$ --- непрерывная и $f(x, 0) = \gamma_0(x)$ и $f(x, 1) = \gamma_1(x)$
+	Две кривые $\gamma_0, \gamma_1 : [a, b] \to \mathbb{R}^n$ называются гомотопными, если существует функция $f : [a, b] \times [0, 1] \to \mathbb{R}^n$, такая, что $f$ --- непрерывная и $f(x, 0) = \gamma_0(x)$ и $f(x, 1) = \gamma_1(x)$
 \end{definition}
 
 \begin{definition}
