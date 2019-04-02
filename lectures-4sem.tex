@@ -1033,13 +1033,13 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \begin{enumerate}
 	\item Счетная аддитивность. 
 	
-	Пусть $\{M_i\}_{i \in N}$ -- не более чем счетный дизъюнктивный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
+	Пусть $\{M_i\}_{i \in N}$ -- не более чем счетный дизъюнктный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
 	
 	\item Меру можно доопределить для кусочно-гладкого многообразия, так как мера множества размерности меньше $k$ равна нулю в мере $S^k$.
 \end{enumerate}
 
 \begin{example}
-	Вывести формулу длины кривой $\gamma : [a, b] \to \mathbb{R}^n$ с помощью меры $S^k$ и формулы Бине-Коши. 
+	Вывести формулу длины кривой $\gamma : [a, b] \to \mathbb{R}^n$ с помощью меры $S^k$.
 \end{example}
 
 \begin{proof}[Решение]
@@ -1072,7 +1072,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 % Лекция 01.03.19
 
 \begin{definition}
-	Мера угла -- длина дуги окружности с центром в начале угла.
+	Мера угла -- длина дуги единичной окружности с центром в начале угла.
 \end{definition}
 
 
@@ -1236,7 +1236,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 \subsection{Объем шара и площадь сферы} %07.03.19
 
-Введем сферическую систему координат в $\mathbb{R}^k$:
+Введем сферическую систему координат в $\mathbb{R}^n$:
 
 \begin{equation*}
 	u = 
@@ -1286,14 +1286,14 @@ D\varphi$. Если мы будем считать «в лоб»:
 Из этого следуют формулы объема шара и площади сферы:
 
 \begin{align*}
-	|B_R| = \int\limits_0^R dr \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_{n-2} = w_n R^n \\
-	S^{n-1}(S_r) = \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_{n-2}
+	|B_R| = \int\limits_0^R dr \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} J_u d \theta_{n-2} = w_n R^n \\
+	S^{n-1}(S_r) = \int\limits_{0}^{2\pi} d \varphi \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} d \theta_1 \cdots \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} J_{\tilde{u}} d \theta_{n-2}
 \end{align*}
 
 Так как $J_u = J_{\tilde{u}}$, можно получить другое выражение для объема шара:
 
 \begin{equation*}
-	|B_r|=\int\limits_{0}^{R} S^{n-2}(S_r) dr
+	|B_r|=\int\limits_{0}^{R} S^{n-1}(S_r) dr
 \end{equation*}
 
 То есть, чтобы найти объем шара нужно вычислить площади сфер, которые в нем содержаться. Так же площадь сферы можно представить ввиде объемов шаров:
@@ -1377,15 +1377,24 @@ D\varphi$. Если мы будем считать «в лоб»:
 	(TODO: продолжение следует)
 \end{proof}
 
-\begin{corollary}
-	Если $P_r : \mathbb{R}^n \to \mathbb{R}^k$ - проекция, тогда 
+%\begin{corollary}
+%	Если $P_r : \mathbb{R}^n \to \mathbb{R}^k$ - проекция, тогда 
+%	
+%	\begin{equation*}
+%		\int\limits_{U}^{} f(x) dx = \int\limits_{\mathbb{R}^k}^{}dt \int\limits_{\mathbb{R}_t^{n-k}} f(y) dy
+%	\end{equation*}
 	
-	\begin{equation*}
+%	, где $\mathbb{R}_t^{n-k} = \{(y, s) : s=t\}$ - $(n-k)$-мерная плоскость (TODO: а это точно следствие?).
+%\end{corollary}%
+
+Для проекции $P_r : \mathbb{R}^n \to \mathbb{R}^k$ формула коплощади превращается в формулу Фубини:
+
+\begin{equation*}
 		\int\limits_{U}^{} f(x) dx = \int\limits_{\mathbb{R}^k}^{}dt \int\limits_{\mathbb{R}_t^{n-k}} f(y) dy
-	\end{equation*}
-	
-	, где $\mathbb{R}_t^{n-k} = \{(y, s) : s=t\}$ - $(n-k)$-мерная плоскость (TODO: а это точно следствие?).
-\end{corollary}
+\end{equation*}
+
+где $\mathbb{R}_t^{n-k} = \{(y, s) : s=t\}$ - $(n-k)$-мерная плоскость.
+
 
 \section{Введение в векторный анализ}
 \subsection{Дифференциальные формы}
@@ -1617,7 +1626,7 @@ $e_2$ против часовой стрелки.
 \end{definition}
 
 \begin{lemma}
-	Если многообразие задано параметрически, то оно ориентированно.
+	Если многообразие задано параметрически, то оно ориентируемое.
 \end{lemma}
 
 \begin{proof}
@@ -1637,7 +1646,7 @@ $e_2$ против часовой стрелки.
 \end{proof}
 
 \begin{lemma}
-	Многообразие заданное системой уравнений всегда ориентируемо.
+	Многообразие заданное системой уравнений всегда ориентируемое.
 \end{lemma}
 
 \begin{proof}
