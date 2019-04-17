@@ -41,7 +41,7 @@
 \numberwithin{equation}{section}
 
 \DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\rot}{rot}
 \DeclareMathOperator{\rank}{rank}
 
 \hypersetup{
@@ -57,7 +57,8 @@
 	
 	\title{Лекции \\
 	по математическому анализу:\\
-	многообразия, дифференциальные формы}
+	многообразия, криволинейные и поверхностные интегралы, \\
+	введение в векторный анализ.}
 	\maketitle
 	
 	\begin{abstract}
@@ -1889,8 +1890,38 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{proof}
 
 Тут должна быть лекция за 26.03.19 %TODO
+%Лекция 29.03.19
 
-\subsection{Лекция 29.03.19} %Лекция 29.03.19
+\begin{definition}
+	Непрерывная дифференциальная форма $w$ называется \textit{точной}, если существует
+	$f \in C^1$ такая, что $ w = df$.
+\end{definition}
+
+\begin{definition}
+	Векторное поле $\vec{v}$ называется \textit{потенциальным}, если существует функция $f \in C^1$ 
+	такая, что $\vec{v} = \nabla f$. В таком случае говорят, что $f$ является \textit{потенциалом}
+	$\vec{v}$.
+\end{definition}
+
+%cюда дописать
+
+\begin{theorem}[Формула Грина]
+	Пусть $U \subseteq \mathbb{R}^n$ --- компактная область с кусочной-гладкой границей,
+	пусть $w: U \to \Lambda^1(\mathbb{R}^2)$ --- $C^1$-гладкая $1$-форма $w = P(x,y)dx + Q(x,y)dy$. Тогда 
+	\[ \oint\limits_{\partial U} P(x,y)dx + Q(x,y)dy = \int\limits_{U} 
+	\begin{vmatrix}
+	\frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
+	P(x,y) & Q(x,y)
+	\end{vmatrix} 
+	= \int\limits_{U} \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right)dxdy \]
+\end{theorem}
+
+\begin{proof}
+	Доказательство проведем для криволинейной трапеции.
+	
+	Пусть $f,g :[a,b] \to \mathbb{R}$ и $f\leq g$
+\end{proof}
+%Лекция 29.03.19 конец
 
 \begin{example}
 	Вычислить
@@ -1915,9 +1946,9 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \begin{definition}
 	1-формами площади называются специальные 1-формы, интегралы от которых дают площадь.
 	
-	\begin{align*}
-		xdy \quad \quad -ydx \quad \quad \frac{xdy-ydx}{2}
-	\end{align*}
+	\[
+		xdy, \quad \quad -ydx, \quad \quad \frac{xdy-ydx}{2}
+	\]
 \end{definition}
 
 Проинтегрировав любую из этих форм по области, вы получите площадь области:
@@ -2053,5 +2084,173 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Очевидно.
 \end{proof}
 
-\end{document}
+% Лекия от 04.04.2019
 
+\begin{theorem}[Достаточное условие полного дифференциала]
+	
+	Пусть $U \subseteq \mathbb{R}^n$ --- открытое и односвязное множество, 
+	$w: U \to \Lambda^1(\mathbb{R}^2) \in C^1$, $w = a_1 dx_1 + \ldots + a_n dx_n $ 
+	и $\frac{\partial a_i}{\partial x_j} = \frac{\partial a_j}{\partial x_i}$
+	для всех $i, j = 1, \ldots n$, тогда существует функция $f: U \to \mathbb{R} \in C^2$ 
+	такая, что $w = df$.
+	
+\end{theorem}
+
+\begin{proof}
+	Проведем для $\mathbb{R}^2$.
+	
+	Пусть $w = adx + bdy, \frac{\partial b}{\partial x}$ = $\frac{\partial a}{\partial y}$ и
+	пусть $\gamma \subseteq U$ --- кусочно гладкий контур, $\gamma \subseteq \partial D$
+	где $D \subseteq U$. Тогда по формуле Грина:
+	\[ \oint\limits_\gamma w = \pm \int\limits_D \left( \frac{\partial b}{\partial x} -
+	\frac{\partial a}{\partial y} \right) dxdy \]
+	следовательно, выполнен критерий полного дифференциала, тогда существует функция 
+	$f \in C^1$ такая, что $w = df \in C^1 \Rightarrow f \in C^2$.
+\end{proof}
+
+Допустим, нам дана $1$-форма $w$ и известно, что $w = df$. Возникает естественный вопрос: 
+как найти такую функцию $f$?
+\begin{itemize}
+	\item
+	выберем $x_0 \in U$ и определим, что $f(x_0) := C$.
+	
+	\item
+	возьмем $x \in U$ такую, что $x \ne x_0$ и выберем путь $\gamma \subseteq U$ из $ x_0 $ в $x$
+	тогда \[ f(x) := f(x_0) + \int\limits_\gamma w. \]
+\end{itemize}
+
+Сейчас рассмотрим восстановление функции по $1$-форме в случае, если она является полным дифференциалом некоторой функции.
+
+\begin{example}
+	Рассмотрим дифференциальную форму $ w = \frac{xdy - ydx}{x^2 + y^2}$.
+	
+	\begin{center}
+		\begin{tikzpicture}
+		\draw[->] (0,-1.7) -- (0,1.7);
+		\coordinate [label=right:\textcolor{blue}{$y$}] (y)
+		at (0,1.7);
+		\draw[->] (-1.7,0) -- (1.7,0);
+		\coordinate [label=right:\textcolor{blue}{$x$}] (x)
+		at (1.7, 0);
+		\draw [domain=0:25.1327,variable=\t,smooth,samples=75]
+		plot ({\t r}: {0.002*\t*\t});
+		\draw (0,0) -- (1.41,1.41);
+		
+		\end{tikzpicture}
+	\end{center}
+	
+	--- плоскость без луча. Если область не односвязная, ее надо сделать односвязной добавлением <<связей>>, 
+	линий, соединяющих элементы области.
+	
+	Восстановим функцию в $\mathbb{R}^2 \backslash \{ x \leq 0, y = 0 \}$.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[->] (0,-1) -- (0,2);
+			\coordinate [label=right:\textcolor{blue}{$y$}] (y)
+			at (0,2);
+			\draw[->] (-1,0) -- (2,0);
+			\coordinate [label=right:\textcolor{blue}{$x$}] (x)
+			at (2, 0);
+			\filldraw [black] (1, 0) circle (2pt);
+			\coordinate [label=right:\textcolor{blue}{$(1, 0)$}] (a)
+			at (0.8, -0.25);
+			\filldraw [black] (1, 1.5) circle (2pt);
+			\coordinate [label=right:\textcolor{blue}{$(2, y_0)$}] (b)
+			at (1, 1.5);
+			\filldraw [black] (-0.5, 1.5) circle (2pt);
+			\coordinate [label=left:\textcolor{blue}{$(x_0, y_0)$}] (c)
+			at (-0.5, 1.5);
+			\draw[dashed] (1,0) -- (b);
+			\draw[dashed] (b) -- (c);
+			\draw (1,0) -- (c);
+		\end{tikzpicture}
+	\end{center}
+
+	Выберем точку в области определения. Пусть $f(1,0) = C$.
+	
+	\begin{equation*}
+		\int\limits_{(1, 0)}^{(2, y_0)} \frac{xdy - ydx}{x^2 + y^2} = \int\limits_{0}^{y_0} \frac{dy}{1+y^2}= \arctan y_0,
+	\end{equation*}
+	
+	\begin{equation*}
+		\int\limits_{(1, y_0)}^{(x_0, y_0)} \frac{xdy - ydx}{x^2 + y^2} = \int\limits_{1}^{x_0} -\frac{y_0 dy}{x^2 +y_0^2}= 
+		\begin{cases}
+		y_0 = 0: 0, \\
+		y_0 \ne 0: -\frac{1}{y} \int\limits_1^{x_0} \frac{dx}{\left(\frac{x}{y_0}\right)^2 + 1}
+		\end{cases}
+	\end{equation*}
+	
+	\begin{equation*}
+		\int\limits_1^{x_0} \frac{dx}{\left(\frac{x}{y_0}\right)^2 + 1} = \left[ t = \frac{x}{y_0}, dt = \frac{1}{y_0}dx \right]
+		\Rightarrow \int\limits_{\frac{1}{y_0}}^{\frac{x_0}{y_0}} \frac{dt}{1 + t^2} = \arctan \frac{1}{y_0} - \arctan \frac{x_0}{y_0}
+	\end{equation*}
+	
+	Таким образом:
+	\begin{equation*}
+		f(x, y) = f(1, 0) +
+		 \begin{cases}
+		\frac{\pi}{2} - \arctan \frac{x}{y}, & y > 0,\\
+		- \frac{\pi}{2} - \arctan \frac{x}{y}, & y < 0,\\
+		0, & y = 0.
+		\end{cases}
+	\end{equation*}
+	--- где $f(1, 0)$ -- задается.
+\end{example}
+
+\subsection{Ротация векторного поля}
+\begin{definition}
+Пусть $\bar{v}$ --- векторное поле в плоскости. 
+Ротация (вихрь) векторного поля $\bar{v}$ в точке $(x_0, y_0)$ 
+\[\rot_{x, y} \bar{v} (x_0, y_0) = 
+\lim\limits_{r \to 0} \oint\limits_{C} \bar{v}d\bar{r}, \text{ где } C: (x-x_0)^2 + (y - y_0)^2 = r^2 \]
+\end{definition}
+\begin{lemma}
+	Для $C^1$-гладкого векторного поля $\bar{v}(x,y) = 
+	\begin{pmatrix}
+	a(x,y) \\
+	b(x,y)
+	\end{pmatrix}$ верно, что 
+	\[ \rot_{x, y} \bar{v}(x_0, y_0) = \frac{\partial b}{\partial x}(x_0, y_0) - \frac{\partial a}{\partial y}(x_0, y_0) \]
+\end{lemma}
+\begin{proof}
+	Пусть $C := (x-x_0)^2 + (y - y_0)^2 = r^2, S:=(x-x_0)^2 + (y - y_0)^2 \leq r^2 $. 
+	\begin{equation*}
+		\oint\limits_C \bar{v}d\bar{r} = \oint\limits_C (a, b)(dx, dy) = \oint\limits_C adx + bdy = 
+	\end{equation*}
+	воспользуемся формулой Грина
+	\begin{eqnarray}
+		= \iint\limits_S \left( \frac{\partial b}{\partial x}(x, y) - \frac{\partial a}{\partial y}(x, y) \right)dxdy = \nonumber\\
+		= \iint\limits_S \left[ \left( \frac{\partial b}{\partial x}(x_0, y_0) - \frac{\partial a}{\partial y}(x_0, y_0) \right) + o(1) \right]
+		dxdy = \nonumber \\
+		= \left( \frac{\partial b}{\partial x} - \frac{\partial a}{\partial y} \right)(x_0, y_0) \pi r^2 + \iint\limits_B o(1)dxdy
+		\nonumber
+	\end{eqnarray}  
+	
+	\begin{definition}[формула Грина]
+		\begin{equation*}
+			\oint\limits_{\partial U} \bar{v} d\bar{r} = \iint\limits_U \rot_{x,y} \bar{v} dxdy.
+		\end{equation*}
+	\end{definition}
+\end{proof}
+
+Свойства ротации:
+\begin{enumerate}
+	\item 
+	линейность: пусть $\alpha, \beta \in \mathbb{R}$, $\bar{u}, \bar{v}$ --- векторные поля в плоскости,
+	
+	тогда
+	 $\rot_{x, y} (\alpha\bar{u} + \beta\bar{v}) = \alpha\rot_{x,y} \bar{u} + \beta\rot_{x, y} \bar{v}$.
+	
+	\item 
+	антисимметричность: пусть $\bar{v}$ --- векторное поле в плоскости,
+	
+	тогда $\rot_{x,y} \bar{v} = - \rot_{y, x} \bar{v}$.
+	
+\end{enumerate}
+
+
+%Лекция 09.04.19
+
+
+\end{document}
