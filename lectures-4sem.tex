@@ -2650,7 +2650,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Форма $w$ называется коточной, если сущесвует форма $\theta$, такая что $w = I \theta$.
 \end{definition}
 
-\begin{theorem}
+\begin{theorem} \label{thwstar}
 	Для всякой $C^1$-гладкой $k$-формы $w$ на звездной области выполнено
 	
 	\begin{equation*}
@@ -2687,5 +2687,184 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 \begin{corollary}[Вторая теорема Пуанкаре]
 	В звездной области всякая замкнутая форма точна.
 \end{corollary}
+
+% Лекция 02.04.19
+
+\subsection{Дивергенция векторного поля}
+
+Пусть в $\mathbb{R}^n$ задана $(n-1)$-мерная ориентированная поверхность $M$. Тогда поток векторного поля $\vec{v}$ через поверхность $M$ вычисляется как
+
+\begin{equation*}
+	\Phi = \int\limits_{M} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1} 
+\end{equation*}
+
+где $\vec{n}$ --- единичный вектор нормали к $M$ в точке $x$, согласованный с ориентацией.
+
+Эту задачу можно решить используя дифференциальные формы. Для начала, рассмотрим для примера случай в $\mathbb{R}^3$. Как известно, $\mathbb{R}^3 \simeq \Lambda^2 (\mathbb{R}^3)$. 
+
+\begin{align*}
+	& e_1 \simeq dy \wedge dz \\
+	& e_2 \simeq dz \wedge dx \\
+	& e_3 \simeq dx \wedge dy \\
+\end{align*}
+
+Пусть $\vec{v}(x, y, z)$ --- векторное поле, такое, что
+
+\begin{equation*}
+	\vec{v}(x, y, z) = 
+	\begin{pmatrix}
+		a(x, y, z) \\
+		b(x, y, z) \\ 
+		c(x, y, z)
+	\end{pmatrix}
+\end{equation*}
+
+Тогда
+
+\begin{equation*}
+	\Phi = \int\limits_{M} ady \wedge dz + b dz \wedge dx + c dx \wedge dy
+\end{equation*}
+
+Убедимся, что это выражение совпадает с исходным. Пусть $\varphi: U \to M$ --- параметризация поверхности $M$, такая что
+
+\begin{equation*}
+	\begin{cases}
+		x = x(t, s) \\
+		y = y(t, s) \\
+		z = z(t, s)
+	\end{cases}
+\end{equation*} 
+
+Пусть $\varphi_1, \varphi_2$ --- касательные векторы, тогда
+
+\begin{align*}
+	\int\limits_{M} ady \wedge dz + b dz \wedge dx + c dx \wedge dy = \int\limits_{U} (ady \wedge dz + b dz \wedge dx + c dx \wedge dy) \langle \varphi_1, \varphi_2 \rangle = \\ = \int\limits_{U} \det 
+	\begin{pmatrix}
+		a & x_1 & x_2 \\
+		b & y_1 & y_2 \\
+		c & z_1 & z_2 \\
+	\end{pmatrix} dtds = \int\limits_{U} (a, b, c) \cdot \vec{n} \cdot J_{\varphi}(t, s) dt \wedge ds
+\end{align*}
+
+Проведя обратную замену, получим, что
+
+\begin{equation*}
+	\int\limits_{M} ady \wedge dz + b dz \wedge dx + c dx \wedge dy = \int\limits_{U} (a, b, c) \cdot \vec{n} d S^2
+\end{equation*}
+
+В пространстве $\mathbb{R}^n$, $e_j \simeq (-1)^{j-1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n$. Из этого получаем выражение в общем случае при $\vec{v}=(a_1, \ldots, a_n)$
+
+\begin{equation*}
+	\int\limits_{M} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1}  = \int\limits_{M} \sum\limits_{j = 1}^{n} (-1)^{j-1} a_j dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n.
+\end{equation*}
+
+Напомним, что через $S_r$ и $B_r$ мы обозначаем сферу и шар радиуса $r$ соотвественно.
+
+\begin{definition}
+	Дивергения векторного поля $\vec{v}$ в точке $x$ определяется как
+	
+	\begin{equation*}
+		div \; \vec{v}(x) = \lim\limits_{r \to 0} \frac{1}{|B_r|} \int\limits_{S_r} \vec{v} \cdot \vec{n} \; dS^{n-1}
+	\end{equation*}
+	
+	где, при вычислении потока $\vec{v}$ через сферу $S_r$, интеграл берется по внешней стороне сферы.
+\end{definition}
+
+\begin{lemma}[Оператор дивергенции в декартовых координатах]
+	Для $C^1$-гладкого векторного поля $v$ имеет место формула
+	
+	\begin{equation*}
+		div \; \vec{v}(x) = \sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}(x)
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	По формуле Стокса имеем
+	
+	\begin{align*}
+		\int\limits_{S_r} \vec{v} \cdot \vec{n} \; dS^{n-1} = \int\limits_{S_r} \sum\limits_{j=1}^{n} (-1)^{j-1} a_j dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ = \int\limits_{B_r} \sum\limits_{j=1}^{n} (-1)^{j-1} da_j \wedge dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ = \int\limits_{B_r} \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j} dx_1 \wedge \ldots \wedge dx_n = \int\limits_{B_r} \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j} dx_1 \ldots dx_n
+	\end{align*}
+	
+	Отсюда
+	
+	\begin{align*}
+		\lim\limits_{r \to 0} \frac{1}{|B_r|} \int\limits_{S_r} \vec{v} \cdot \vec{n} \; dS^{n-1} = \lim\limits_{r \to 0} \frac{1}{|B_r|} \int\limits_{B_r} \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j} dx_1 \ldots dx_n =  \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j}
+	\end{align*}
+\end{proof}
+
+\begin{theorem}[Формула Гаусса-Остроградского]
+	Пусть $V$ --- тело ($n$-мерное компактное многообразие в $\mathbb{R}^n$), тогда 
+	
+	\begin{equation*}
+		\int\limits_{\partial v} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1} = \int\limits_{V} div \; \vec{x}(x) dx 
+	\end{equation*}
+\end{theorem}
+
+\begin{definition}
+	Векторное поле $\vec{v}$ называется \textit{бездивергентным}, если $div \; \vec{v} = 0$.
+\end{definition}
+
+Имееют место следующие соответствия, где соответствующие члены двух цепей изоморфны между собой:
+
+\begin{align*}
+	&Scal (\mathbb{R}^3) \xrightarrow[]{grad} Vec (\mathbb{R}^3) \xrightarrow[]{rot} Vec (\mathbb{R}^3) \xrightarrow[]{grad} Scal (\mathbb{R}^3) \\
+	&\{U \to \Lambda^0\} \xrightarrow[]{d} \{U \to \Lambda^1\} \xrightarrow[]{d} \{U \to \Lambda^2\} \xrightarrow[]{d} \{U \to \Lambda^3\}
+\end{align*}
+
+То есть, на языке дифференциальных форма, каждой операции векторного анализа соотвествует дифференциал. 
+
+В плоском случае можно получить следующие выражения:
+
+\begin{align*}
+	& rot (a, b) \simeq d (adx + bdy) = (\frac{\partial a}{\partial x} - \frac{\partial a}{\partial y})  dx \wedge dy = \bigtriangledown \wedge (a, b) =
+	\begin{vmatrix}
+		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
+		a & b
+	\end{vmatrix} \\
+	&div (a, b) \simeq d(adx + bdy) = (\frac{\partial a}{\partial x} + \frac{\partial a}{\partial y})  dx \wedge dy = \bigtriangledown \cdot (a, b)
+\end{align*}
+
+\begin{definition}
+	Пусть $\vec{v}$ --- векторное поле в $\mathbb{R}^3$. Тогда $\vec{v}$ называют \textit{вихревым}, если существует $\vec{u}$ --- векторное поле такое, что $\vec{v} = rot \; \vec{u}$. В этом случае, $\vec{u}$ называют векторным потенциалом векторного поля $\vec{v}$.
+\end{definition}
+
+Леммы ниже являются следствиями первой и второй теоремы Пуанкаре соотвественно.
+
+\begin{lemma}
+	Вихревое векторное поле всегда бездивергентно, т.е. $div \; rot \vec{v} = 0$.
+\end{lemma}
+
+\begin{lemma}
+	Если векторное поле $\vec{v}$ в звездной области в $\mathbb{R}^3$ бездиверегентно, то она вихревое.
+\end{lemma}
+
+\begin{theorem}
+	В звездной области всякое трехмерное векторное поле $\vec{v}$ раскладывается в сумму вихревого и потенциального.
+\end{theorem}
+
+\begin{proof}
+	Следует из теоремы \ref{thwstar}.
+\end{proof}
+
+\begin{definition}
+	Оператором Лапласа называется оператор $\bigtriangleup : Scal \to Scal$, такой, что 
+	
+	\begin{equation*}
+		\bigtriangleup = \bigtriangledown^2 = div \; grad
+	\end{equation*}
+\end{definition}
+
+В декартовых координатах оператор Лапласа имеет вид
+
+\begin{equation*}
+\bigtriangleup f = div (\frac{\partial f}{\partial x_1}, \ldots, \frac{\partial f}{\partial x_n}) = \frac{\partial^2 f}{\partial x_1^2} + \ldots + \frac{\partial^2 f}{\partial x_n^2}
+\end{equation*}
+
+Если $\bigtriangleup f > 0$, то $f(x)$ больше своего среднего значения на маленькой сфере с центром в точке $x$.
+
+Если $\bigtriangleup f < 0$, то $f(x)$ меньше своего среднего значения на маленькой сфере с центром в точке $x$.
+
+Если $\bigtriangleup f = 0$, то $f(x)$ приблизительно равна своему среднему значению на маленькой сфере с центром в точке $x$.
+
 
 \end{document}
