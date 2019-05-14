@@ -9,6 +9,7 @@
 \usepackage{enumitem} 
 \usepackage{euscript}
 \usepackage{icomma}
+\usepackage{tikz-cd}
 
 
 \newlist{enum}{enumerate}{10}
@@ -42,7 +43,9 @@
 
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diver}{div}
 
 \hypersetup{
   pdftitle={lecture-4sem},
@@ -1320,7 +1323,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 		\int\limits_{U}^{} f(x) J_{\varphi}(x) dx = \int\limits_{\mathbb{R}^k}^{}dt \int\limits_{\varphi^{-1}(t)} f(\varphi(t)) dS^{k-1}
 	\end{equation*} 
 	
-	, где 
+	где 
 	
 	\begin{equation*}
 		J_{\varphi(x)} = \sqrt{\det D \varphi (x) \det D \varphi^* (x)} = \sqrt{\det (\langle \nabla \varphi_i, \nabla \varphi_j \rangle)}
@@ -1412,23 +1415,37 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 Выясним как оператор переноса действует на векторное поле. Пусть $v : V \to TV$ - векторное поле, тогда $\varphi^{*}v : U \to TU$ и $\varphi^{*}v(x)=D\varphi_{\varphi(x)} \langle v(\varphi(x)) \rangle$.
 
-Свойства оператора переноса:
-\begin{enumerate}
-	\item 
-	линейность: $\forall \alpha, \beta \in \mathbb{R} \; \forall f,g$ - функции $\forall u,v$ - векторные поля.	
-	
+
+{\bf Свойства оператора переноса:}
+
+\medskip
+{\bf Свойство} $\mathbf{1^\circ.}$
+{\textsc{Линейность}}
+
+ $\forall \alpha, \beta \in \mathbb{R} \; \forall f, g$ - функции $\forall u, v$ -- векторные поля.	
 	\begin{equation*}
 		\varphi^{*}(\alpha f + \beta g)=\alpha\varphi^{*}f + \beta\varphi^{*}g \quad \varphi^{*}(\alpha u + \beta v) = \alpha \varphi^{*}u + \beta\varphi^{*}v
 	\end{equation*}
 	
-	\item 
-	мультипликативность: пусть $f : V \to \mathbb{R}$, $v : V \to TV$, $(f \circ v)(g)=f(g)\vec{v}(g)$. Тогда, если $\varphi : U \to V$ - $C^1$-диффеоморфизм, то $\varphi^{*}(f \vec{v})=\varphi^{*}f \cdot \varphi^{*}v$.
+\medskip
+{\bf Свойство} $\mathbf{2^\circ.}$
+{\textsc{мультипликативность}}
+
+ пусть $f : V \to \mathbb{R}$, $v : V \to TV$, $(f \circ v)(g)=f(g)\vec{v}(g)$. Тогда, если $\varphi : U \to V$ - $C^1$-диффеоморфизм, то $\varphi^{*}(f \vec{v})=\varphi^{*}f \cdot \varphi^{*}v$.
 	
-	\item перенос композиции является произведением переносов: пусть $\varphi : U \to V$, $\psi : U \to V$ - $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \psi^{*}$.
+\medskip
+{\bf Свойство} $\mathbf{3^\circ.}$
+{\textsc{перенос композиции является произведением переносов}}
+
+	пусть $\varphi : U \to V$, $\psi : U \to V$ - $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \psi^{*}$.
 	
-	\item перестановочность с дифференциалом: $\varphi^{*}d=d \varphi^{*}$.
+	\medskip
+	{\bf Свойство} $\mathbf{4^\circ.}$
+	{\textsc{перестановочность с дифференциалом}}
 	
-\end{enumerate}
+	$\varphi^{*}d=d \varphi^{*}$.
+	
+
 
 Для доказательства последнего свойства, нам нужно ввести определение дифференциальной формы, а для этого нужно вспомнить некоторые свойства линейных отображений.
 
@@ -1622,7 +1639,7 @@ $e_2$ против часовой стрелки.
 \end{definition}
 
 \begin{definition}
-	Ориентированное многообразие называется \textit{ориентированным},
+	Ориентируемое многообразие называется \textit{ориентированным},
 	если на нем задана ориентация.
 \end{definition}
 
@@ -1751,8 +1768,11 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 
 Свойства интеграла 1-формы
 
-\begin{enumerate}
-	\item Определение не зависит от параметризации, согласованной с ориентацией
+
+	{\bf Свойство} $\mathbf{1^\circ.}$
+	{\textsc{Корректность}}
+	
+	Определение не зависит от параметризации, согласованной с ориентацией
 	
 	\begin{proof}
 		Пусть $\varphi : [a, b] \to \gamma, \psi : [c, d] \to \gamma \in C^1$ - параметризации, согласованные с ориентацией, следовательно они сориентированы. То есть  $(\psi^{-1} \circ \varphi)' > 0$ и $(\psi^{-1} \circ \varphi)$ - монотонно возрастает, следовательно $(\psi^{-1} \circ \varphi)(a) = c$ и $(\psi^{-1} \circ \varphi)(b) = d$.
@@ -1776,7 +1796,8 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		\end{equation*} 
 	\end{proof}
 
-	\item антисимметричность
+	{\bf Свойство} $\mathbf{2^\circ.}$
+	{\textsc{Антисимметричность}}
 	
 	Пусть $\gamma$ - ориентированная кривая, тогда $-\gamma$ та же кривая, только с противоположной ориентацией. 
 	
@@ -1800,7 +1821,8 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		\end{multline*}
 	\end{proof}
 
-	\item Линейность
+	{\bf Свойство} $\mathbf{3^\circ.}$
+	{\textsc{Линейность}}
 	
 	$\forall w_1, w_2$ - формы, $\forall \alpha, \beta \in \mathbb{R}$.
 	
@@ -1808,21 +1830,22 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		\int\limits_{\gamma} (\alpha w_1 + \beta w_2) = \alpha \int\limits_{\gamma} w_1 + \beta \int\limits_{\gamma} w_2
 	\end{equation*}
 	
-	\item Аддитивность
+	{\bf Свойство} $\mathbf{4^\circ.}$
+	{\textsc{Аддитивность}}
 	
 	Пусть $\varphi : [p, q] \to \gamma$ - параметризация кривой $\gamma$, возьмем $r \in [p, q]$ и определим $\varphi_{pr} : [p, r] \to \gamma_{pr}$ и $\varphi_{pr} : [r, q] \to \gamma_{rq}$, тогда
 	
 	\begin{equation*}
 		\int\limits_{\gamma} w = \int\limits_{\gamma_{pr}} + \int\limits_{\gamma_{rq}}
 	\end{equation*}
-\end{enumerate}
+
 
 \begin{remark}
 	Если кривая замкнута, тогда вместо $\int\limits_{\gamma} w$ используют обозначение $\oint\limits_{\gamma} w$, чтобы подчеркнуть, что интеграл берется по замкнутому контуру.
 \end{remark}
 
 \begin{example}[Работа векторного поля вдоль ориентированной кривой]
-	Пусть $\vec{v}$ - векторное поле, $\gamma$ - ориентированая кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ - касательный вектор к кривой)
+	Пусть $\vec{v}$ - векторное поле, $\gamma$ - ориентированная кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ - касательный вектор к кривой)
 	
 	\begin{equation*}
 		\int\limits_{\gamma} v_1 dx_1 + \ldots + v_n dx_n = \int\limits_{\gamma} \vec{v} \cdot \vec{\tau} dl
@@ -2293,7 +2316,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	dw(x) \langle u, v \rangle = \sum_{i,j = 1}^{n} \frac{\partial a_i}{\partial x_j} u_i v_j = (\frac{\partial a_i}{\partial x_j}) \vec{u} \cdot \vec{v} = \vec{v}^T (\frac{\partial a_i}{\partial x_j}) \vec{u}
 \end{equation*}
 
-То есть, всяка билинейная форма есть сумма симметричной и кососимметричной (первое и второе слагаемые соотвественно), где $l^T \langle u, v \rangle = l \langle v, u \rangle$:
+То есть, всякая билинейная форма есть сумма симметричной и кососимметричной (первое и второе слагаемые соответственно), где $l^T \langle u, v \rangle = l \langle v, u \rangle$:
 
 \begin{equation*}
 	l = \frac{l + l^T}{2} + \frac{l - l^T}{2}
@@ -2313,7 +2336,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Если $w = \sum\limits_{i=1}^{n} a_i dx_i$, то 
 	
 	\begin{equation*}
-		dw = \sum_{i=1}^{n} da_i \wedge dx_i = \sum_{i=1}^{n} (\sum_{j=1}^{n} \frac{\partial a_i}{\partial x_j} dx_j) \wedge dx_i
+		dw = \sum_{i=1}^{n} da_i \wedge dx_i = \sum_{i=1}^{n} \left(\sum_{j=1}^{n} \frac{\partial a_i}{\partial x_j} dx_j\right) \wedge dx_i
 	\end{equation*}
 \end{lemma}
 
@@ -2363,27 +2386,253 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	\end{definition}
 \end{proof}
 
-Свойства ротации:
-\begin{enumerate}
-	\item 
-	линейность: пусть $\alpha, \beta \in \mathbb{R}$, $\bar{u}, \bar{v}$ --- векторные поля в плоскости,
-	
+{\bf Свойства ротации.}
+
+\medskip
+{\bf Свойство} $\mathbf{1^\circ.}$
+{\textsc{Линейность}}
+
+ пусть $\alpha, \beta \in \mathbb{R}$, $\bar{u}, \bar{v}$ --- векторные поля в плоскости,
 	тогда
 	$\rot_{x, y} (\alpha\bar{u} + \beta\bar{v}) = \alpha\rot_{x,y} \bar{u} + \beta\rot_{x, y} \bar{v}$.
 	
-	\item 
-	антисимметричность: пусть $\bar{v}$ --- векторное поле в плоскости,
-	
+\medskip
+{\bf Свойство} $\mathbf{2^\circ.}$
+{\textsc{Антисимметричность}}
+
+	пусть $\bar{v}$ --- векторное поле в плоскости,
 	тогда $\rot_{x,y} \bar{v} = - \rot_{y, x} \bar{v}$.
 	
-\end{enumerate}
 
-%Лекция 16.04.19 TODO
+%Лекция 11.04.19
+
+%TODO
+
+\begin{example}
+	Пусть $w = f(x, y) dx\wedge dy$.
+	\[ \varphi:
+	\begin{cases}
+	x = x(t, s), \\
+	y = y(t, s).
+	\end{cases} \]
+	$\varphi^* w(t, s) = (f \circ \varphi)(x_tdt + x_sds) \wedge (y_tdt \wedge y_sds) = 
+	(f \circ \varphi)(t, s) \det 
+	\begin{pmatrix}
+	x_t & x_s \\
+	y_t & y_s
+	\end{pmatrix}
+	ds \wedge dt$
+\end{example}
+
+\begin{definition}
+	Пусть $U \subseteq \mathbb{R}^2$ -- открытое множество, $w: U \to \Lambda^2(\mathbb{R}^2)$ -- непрерывная. Тогда
+	\[ \int\limits_U w = \iint\limits_U f(x, y) dx \wedge dy := \underbrace{\Theta(e_x, e_y)}_{\pm 1} \int\limits_U f(x, y) dxdy \]
+\end{definition}
+
+\begin{definition}[Интеграл $2$-формы по поверхности]
+	Пусть $M \subseteq \mathbb{R}^n$ -- двумерное $C^1$-гладкое ориентированное многообразие,
+	$w: M \to \Lambda^2(\mathbb{R}^n)$ -- непрерывная $2$-форма.
+	
+	Если $\varphi : U \subset \mathbb{R}^2 \to M$ -- параметризация, то 
+	\[ \int\limits_U w := \int\limits_U \varphi^* w = 
+	\int\limits_U w(\varphi(t,s)) \langle \varphi_t (t,s), \varphi_s (t,s) \rangle dt \wedge ds \]
+\end{definition}
+
+\begin{definition}
+	Внешний дифференциал $1$-формы --- это кососимметрическая часть полного дифференциала
+	\[ d: C^{r+1}(U \to \Lambda^1(\mathbb{R}^n)) \to  C^{r}(U \to \Lambda^2(\mathbb{R}^n)) \]
+	т.е. если $w = \sum\limits_{ i =1 }^{n} a_i dx_i$ -- $1$-форма, то $dw = 
+	\sum\limits_{ i =1 }^{n} da_i\wedge dx_i = \sum\limits_{ i =1 }^{n} 
+	\left(\sum\limits_{ j =1 }^{n} \frac{\partial a_i}{\partial x_j}  dx_j \right) dx_i $
+\end{definition}
+
+\medskip
+
+Теперь рассмотрим запись формулы Грина и формулы Ньютона-Лейбница в терминах внешнего дифференциала.
+
+формула Грина:
+пусть $U \subseteq{R}^2$ -- область с кусочно гладкой границей, $w \in C^1(U \to \Lambda^1(\mathbb{R}^2)).$ Тогда
+\[ \oint\limits_{\partial U} w = \int\limits_U dw \]
+
+формула Ньютона-Лейбница:
+\[\int\limits_{\partial \gamma} f = f(q) - f(p) = \int\limits_{\gamma} df \]
+%Лекция 11.04.19 конец
+
+%Лекция 16.04.19
+
+\subsection{Внешние формы высших порядков}
+
+\begin{definition}
+	Внешней алгебраической формой порядка $k \in \mathbb{N}$ над $\mathbb{R}^k$ называется функция 
+	$l : \mathbb{R}^n \times \ldots \times \mathbb{R}^n \to \mathbb{R}$ такая, что 
+	\begin{itemize}
+		\item[1.]
+		$l$ --- $k$-линейная функция (т.е. линейна по каждому из $k$ аргументов),
+		
+		\item[2.]
+		$l$ --- кососимметричная функция, т.е. если $\sigma: \{ 1,\ldots,k \} \to \{ 1,\ldots,k \}$ -- перестановка, то
+		$l\langle u_{\sigma_1},\ldots, u_{\sigma_k} \rangle = \sgn \sigma\cdot l\langle u_1, \ldots u_k \rangle$
+	\end{itemize}
+\end{definition}
+
+
+	Пространство алгебраических форм порядка $k$ над $\mathbb{R}^n$ будем обозначать как $\Lambda^k(\mathbb{R}^n)$.
+
+
+\begin{definition}
+	Пусть даны $k$ штук $1$-форм $l_1,\ldots,l_k \in \Lambda^1(\mathbb{R}^n)$ результат их внешнего произведение будет являться $k$-формой
+	\begin{equation*}
+		(l_1 \wedge l_2 \wedge \ldots \wedge l_k)\langle u_1, u_2,\ldots, u_k\rangle = \det 
+		\begin{pmatrix}
+		l_1\langle u_1 \rangle & l_1 \langle u_2 \rangle & \ldots &  l_1\langle u_k \rangle \\
+		l_2\langle u_1 \rangle & l_2 \langle u_2 \rangle & \ldots &  l_2\langle u_k \rangle \\
+		\vdots & \vdots & \ddots & \vdots \\ 
+		l_k\langle u_1 \rangle & l_k \langle u_2 \rangle & \ldots &  l_k\langle u_k \rangle \\
+		\end{pmatrix}
+	\end{equation*}
+\end{definition}
+
+На пространстве $k$-форм над $\mathbb{R}^n$ $\Lambda^k(\mathbb{R}^n)$ можно ввести базис: $\{
+dx_{i_1} \wedge dx_{i_2} \wedge\ldots\wedge dx_{i_k} \}, 1\leq i_1 < i_2 < \ldots < i_k \leq k$.
+
+Размерность пространства $\Lambda^k(\mathbb{R}^n)$ это число перестановок из $n$ по $k$: $\dim \Lambda^k(\mathbb{R}^n) = 
+C_n^k$.
+
+Для упрощение записи введем специальной обозначение 
+
+\begin{definition}
+	<<Шапкой-невидимкой>> называется операция $\ \widehat{ } \ $ определенная как
+	\[ dx_1 \wedge\ldots\wedge\widehat{dx_j}\wedge\ldots\wedge dx_n = dx_1 
+	\wedge\ldots\wedge dx_{j-1}\wedge dx_{j+1}\wedge\ldots\wedge dx_n. \]
+	
+\end{definition}
+
+
+
+Стандартный базис $\Lambda^{n-1}(\mathbb{R}^n)$ это 
+$\{ (-1)^{j+1} dx_1\wedge\ldots\wedge \widehat{ dx_j } \wedge\ldots\wedge dx_n \}_{j = 1,\ldots,n}$
+-- базис для $(n-1)$-форм.
+
+К примеру для $\Lambda^2(\mathbb{R}^3)$ базисом будет набор $\{ dy\wedge dz, dz\wedge dx, dx\wedge dy \}$.
+
+\medskip
+
+\textbf{Мультииндексные обозначения}
+
+Для упрощения записей будем использовать мультииндексные обозначения.
+Определим $M(n,k) := \{ (i_1,\ldots,i_k): 1\leq i_1 < i_2 < \ldots < i_k \leq n \}$, число элементов
+$M(n,k)$ равняется $C_n^k$.
+
+Тогда $k$-форма $l$ будет записываться как $l = \sum\limits_{I \in M(n,k)} a_I dx_I$,
+где $dx_I = dx_{i_{1}} \wedge dx_{i_{2}} \wedge\ldots\wedge dx_{i_{k}}$.
+
+С помощью мультииндексных обозначений доопределим
+внешнее произведение внешних форм
+\[ \wedge : \Lambda^k(\mathbb{R}^n) \times 
+\Lambda^l(\mathbb{R}^n) \to \Lambda^{k+l}(\mathbb{R}^n) \]
+
+Пусть $w^k = \sum\limits_{I \in M(n,k)} a_I dx_I$ и 
+$w^l = \sum\limits_{J \in M(n,l)} b_J dx_J$. Тогда
+$ w^k \wedge w^l = \sum\limits_{I,J} a_Ib_J dx_I \wedge dx_J$.
+
+\begin{example}
+	Пусть даны две формы 
+	$2dx+3dy+4dz$ и $5dz\wedge dx + 6dx\wedge dy$. 
+	
+	Тогда
+	\begin{eqnarray}\nonumber
+		(2dx+3dy+4dz)\wedge (5dz\wedge dx + 6dx\wedge dy) =
+		\\\nonumber 0 + 0 + 16dy \wedge dz \wedge dx + 0 + 0 + 24dz \wedge dx \wedge dy  = 
+		\\\nonumber 39dx \wedge dy \wedge dz 
+	\end{eqnarray} т.к.
+	$ dy \wedge dz \wedge dx = - dy \wedge dx \wedge dz = dx \wedge dy \wedge dz$.
+\end{example}
+
+{\bf Свойства внешнего произведения $\wedge$.}
+
+\medskip
+{\bf Свойство} $\mathbf{1^\circ.}$
+{\textsc{Линейность}}
+
+\medskip
+{\bf Свойство} $\mathbf{2^\circ.}$
+{\textsc{Кососимметричность}}
+
+Для любых $w^k, w^l$ выполнено $w^k \wedge w^l = 
+(-1)^{kl} \cdot w^l \wedge w^k$.
+
+\begin{definition}
+	Пусть $U \subseteq \mathbb{R}^n$, функция
+	$w^k: U \to \Lambda^k(\mathbb{R}^n)$ называется внешней дифференциальной формой порядка $k$ ($k$-формой).
+\end{definition}
+
+\subsubsection{Замена переменной в $k$-форме}
+\begin{definition}
+	Пусть $w: V \to \Lambda^k, U, V \subseteq \mathbb{R}^n$ -- открытое множество, 
+	$\varphi: U \to V$ -- $C^1$-диффеоморфизм, тогда \textit{операция переноса} 
+	\[ \varphi^*: (V \to \Lambda^k) \to (U \to \Lambda^k) \]
+	определяется следующим образом:
+	\[ (\varphi^*w)(x)\langle u_1,\ldots,u_k\rangle = w(\varphi(x))\langle D\varphi_x \langle u_1 \rangle,
+	\ldots, D\varphi_x\langle u_n \rangle \rangle  \]
+	то есть 
+	\[ w(y) = \sum\limits_{ (i_1,\ldots,i_k) \in M(n,k) } a_I(y) dy_{i_1}\wedge dy_{i_2} \wedge \ldots \wedge dy_{i_k} \]
+	замена $y = \varphi(x)$
+	\[ \varphi^*(w)(x) = \sum\limits_{I \in M(n,k)} a_I(\varphi(x)) dx\varphi_{i_1}(x) \wedge\ldots\wedge d\varphi_{i_k}(x) \]
+\end{definition}
+
+{\bf Свойства операции переноса $\varphi^*$.}
+
+\medskip
+{\bf Свойство} $\mathbf{1^\circ.}$
+{\textsc{Линейность}}
+для любых форм $w_1, w_2$ и любых $\alpha, \beta \in \mathbb{R}$ верно, что
+$\varphi^*(\alpha_1w_1 + \beta w_2) = \alpha_1\varphi^*w_1 + \beta \varphi^* w_2$
+
+\medskip
+{\bf Свойство} $\mathbf{2^\circ.}$
+
+пусть $\psi^*$ и $\varphi^*$ --- операции переноса. Тогда
+$\psi^*\varphi^* = (\varphi \circ \psi)^*$
+
+{\bf Свойства внешнего произведения $\wedge$.}
+
+\medskip
+{\bf Свойство} $\mathbf{3^\circ.}$
+
+пусть $\varphi^*$ -- операция переноса, $w^k, w^l$ -- формы. Тогда
+$\varphi^* (w^k \wedge w^l) = \varphi^* w^k \wedge \varphi^* w^l$.
+
+Рассмотрим $n$-форму над $\mathbb{R}^n$ $w^n = f(y_1,\ldots,y_n)dy_1 \wedge dy_2 \wedge\ldots \wedge dy_n$, пусть $y=\varphi(x)$.
+Тогда $\varphi^*w^n = f(\varphi(x)) \det D\varphi(x) dx_1\wedge\ldots\wedge dx_n$.
+
+\medskip
+Теперь выясним, как интегрировать $n$-форму по области в $\mathbb{R}^n$.
+
+Пусть $U \subseteq \mathbb{R}^n$ -- открытое множество, $\Theta$ -- ориентация в $\mathbb{R}^n$, $w : U \to \Lambda^2(\mathbb{R}^n)$ -- непрерывна, $w(x) = f(x) dx_1 \wedge\ldots\wedge dx_n$. Положим
+\[ \int\limits_U w = \int\limits_U f(x)dx_1\wedge \ldots \wedge dx_n := 
+\Theta(l_1,\ldots, l_n) \int\limits_U f(x)dx_1\ldots dx_n \]
+
+\subsubsection{Интеграл $k$-формы по ориентированному $k$-мерному многообразию}
+%TODO дописать
+
+TODO
+%Лекция 16.04.19 конец
 
 %Лекция 18.04.19
-
-%TODO Баяр опоздал на лекцию
-
+\begin{definition}
+	Пусть $w : U \to \Lambda^k(\mathbb{R}^n) \in C^1$ и $w(x) = \sum\limits_{I \in H(n, k)} a_I (x) dx_I$
+	внешним дифференциалом $k$-формы $w$ назовем дифференциальную $(k+1)$-форму $dw : U \to \Lambda^{k+1}(\mathbb{R}^n)$
+	определяемую следующим образом:
+	\begin{itemize}
+		\item
+		при $k = 0$ это дифференциал функции ($1$-форма),
+		
+		\item 
+		при $k > 0$ определим покоординатно
+		\[ dw(x) = d \left( \sum_I a_I(x)dx_I \right) := \sum_I da_I \wedge dx_I.  \]
+	\end{itemize}
+\end{definition}
+%дописать
 {\bf Свойства внешнего дифференциала.}
 
 \medskip
@@ -2478,66 +2727,160 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Пусть $M$ --- кусочно-гладкое $k$-мерное компактное ориентированное многообразие, $w$ --- $C^1$-гладкая $(k-1)$-форма на $M$, тогда
 	
 	\begin{equation*}
-		\oint\limits_{\partial M} w = \int\limits_{M} dw
+	\oint\limits_{\partial M} w = \int\limits_{M} dw
 	\end{equation*}
 \end{theorem}
 
-\begin{proof}
-	Проведем доказательство для куба в $\mathbb{R}^n$. Зададим куб как $[-a, a]^n$ и заметим, что он является $n$-мерным многообразием в $\mathbb{R}^n$ и у него есть $2n$ $(n-1)$-мерных граней
+\begin{proof} Разобьем доказательство данной формулы на два шага. Для начала докажем ее для случая куба в
+	$\mathbb{R}^n$, потом, имея доказательство для куба, обобщим его на случай произвольного многообразия.
+	
+	\textsc{Шаг 1.} Проведем доказательство для куба в $\mathbb{R}^n$. Зададим куб как $[-a, a]^n$ и заметим, что он является $n$-мерным многообразием в $\mathbb{R}^n$ и у него есть $2n$ $(n-1)$-мерных граней
 	
 	\begin{equation*}
-		\begin{cases}
-			-a \leq x_1 \leq a \\
-			-a \leq x_2 \leq a \\
-			\ldots \\
-			-a \leq x_n \leq a
-		\end{cases}
+	\begin{cases}
+	-a \leq x_1 \leq a \\
+	-a \leq x_2 \leq a \\
+	\ldots \\
+	-a \leq x_n \leq a
+	\end{cases}
 	\end{equation*}
 	
 	Пусть $w$ --- $(n-1)$-форма, заданная на кубе, тогда
 	
 	\begin{equation*}
-		w(x) = \sum\limits_{j = 1}^{n} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n
+	w(x) = \sum\limits_{j = 1}^{n} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n
 	\end{equation*}
 	
 	Дифференциал этой формы равен
 	
 	\begin{align*}
-		dw(x) = \sum\limits_{j=1}^{n} da_j(x) (-1)^{j + 1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ =\sum\limits_{j=1}^{n} (\frac{\partial a_j}{\partial x_1} dx_1 + \ldots + \frac{\partial a_j}{\partial x_n} dx_n) \wedge (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ = \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j} (-1)^{j+1} dx_j \wedge dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = (\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}) dx_1 \wedge \ldots \wedge dx_n
+	dw(x) = \sum\limits_{j=1}^{n} da_j(x) (-1)^{j + 1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ =\sum\limits_{j=1}^{n} \left(\frac{\partial a_j}{\partial x_1} dx_1 + \ldots + \frac{\partial a_j}{\partial x_n} dx_n\right) \wedge (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ = \sum\limits_{j=1}^{n} \frac{\partial a_j}{\partial x_j} (-1)^{j+1} dx_j \wedge dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = (\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}) dx_1 \wedge \ldots \wedge dx_n
 	\end{align*} 
 	
 	Вычислим интеграл от $dw$ по кубу
 	
 	\begin{equation*}
-		\int\limits_{[-a, a]^k} dw = \int\limits_{[-a, a]^k} (\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}) dx_1 \wedge \ldots \wedge dx_n = \int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} (\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}) dx_1 \wedge \ldots \wedge dx_n
+	\int\limits_{[-a, a]^k} dw = \int\limits_{[-a, a]^k} \left(\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}\right) dx_1 \wedge \ldots \wedge dx_n = \int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} \left(\sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}\right) dx_1 \wedge \ldots \wedge dx_n
 	\end{equation*}
 	
 	С другой стороны
 	
 	\begin{multline*}
-		\int\limits_{x_j = a} w = \int\limits_{x_j = a} \sum\limits_{j = 1}^{n} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n
+	\int\limits_{x_j = a} w = \int\limits_{x_j = a} \sum\limits_{j = 1}^{n} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n
 	\end{multline*}
 	
 	Что равно
 	
 	\begin{multline*}
-		\int\limits_{x_j=a} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ =\int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} a_j(x1, \ldots, x_{j-1}, a, x_{j+1}, \ldots, x_n) dx_1 \ldots \widehat{dx_j}\ldots dx_n = \\ = -\int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} a_j(x1, \ldots, x_{j-1}, -a, x_{j+1}, \ldots, x_n) dx_1 \ldots \widehat{dx_j}\ldots dx_n
+	\int\limits_{x_j=a} a_j(x) (-1)^{j+1} dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n = \\ =\int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} a_j(x1, \ldots, x_{j-1}, a, x_{j+1}, \ldots, x_n) dx_1 \ldots \widehat{dx_j}\ldots dx_n = \\ = -\int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} a_j(x1, \ldots, x_{j-1}, -a, x_{j+1}, \ldots, x_n) dx_1 \ldots \widehat{dx_j}\ldots dx_n
 	\end{multline*}
 	
 	Отсюда
 	
 	\begin{equation*}
-		\int\limits_{x_j = a} w + \int\limits_{x_j = -a} w = \int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} (a_j \bigg|_{x_j = a} - a_j \bigg|_{x_j = -a}) \ldots \widehat{dx_j}\ldots dx_n
+	\int\limits_{x_j = a} w + \int\limits_{x_j = -a} w = \int\limits_{-a}^{a} \ldots \int\limits_{-a}^{a} \left(a_j \bigg|_{x_j = a} - a_j \bigg|_{x_j = -a}\right)dx_1 \ldots \widehat{dx_j}\ldots dx_n
 	\end{equation*}
 	
 	Следовательно
 	
 	\begin{equation*}
-		a_j \bigg|_{x_j = a} - a_j \bigg|_{x_j = -a} = \int\limits_{-a}^{a} \frac{\partial a_j}{\partial x_j} (x) dx_j
+	a_j \bigg|_{x_j = a} - a_j \bigg|_{x_j = -a} = \int\limits_{-a}^{a} \frac{\partial a_j}{\partial x_j} (x) dx_j
 	\end{equation*}
 	
-	%TODO Тут какая то ересь написана
-\end{proof}
+	\textsc{Шаг 2.} Пусть $x \in M$ тогда существует $U_x$ -- окрестность точки $x$ и
+	существует $C^1$-диффеоморфизм $\varphi_x: U_x \to \varphi_x(U_x)$ на окрестность нуля 
+	в $\mathbb{R}^n$, такой что $\varphi_x(x)=0$ и 
+	\[\varphi_x(U \cap M) =
+	\begin{cases}
+	\varphi_x (U) \cap (\mathbb{R}^n \times \{0\}^{n-k}), \\
+	\varphi_x (U) \cap (\mathbb{R}^n_+ \times \{0\}^{n-k}).
+	\end{cases}\]
+	
+	Причем $U_x$ мы выберем квадратной, так как если существует какая-либо окрестность точки,
+	то в нее всегда можно вписать квадрат.
+	
+	
+	Пусть $Q_x \subset \varphi(U_x)$ -- открытый $k$-мерный куб с центром в нуле. 
+	Для любого такого куба формула уже доказана в силу 1 шага. 
+	Все многообразие $M$ покрывается $\varphi_x^{-1} (Q_x)$, т.е. образами кубов.
+	Следовательно, существует конечный набор $Q_1,\ldots, Q_m$ соответствующий $x_1,\ldots, x_m$, такой что
+	$\varphi_1^{-1}(Q_1),\ldots, \varphi_m^{-1}(Q_m)$ -- покрывает $M$.
+	
+	Используем <<разбиение единицы>>. Пусть существует набор гладких функций $\psi_1,\ldots, \psi_m : M \to \mathbb{R}$,
+	таких что $\psi_j(x) > 0$ тогда и только тогда, 
+	когда $x \in \varphi_j(Q_j)$ и $\sum\limits_{j=1}^m \psi_j(x) \equiv 1$.
+	Такой набор всегда существует, потому что мы можем его построить.
+	
+	Построим <<разбиение единицы>>:
+	
+	Существует функция $\chi: \mathbb{R} \to \mathbb{R} \in C^\infty$ определенная как 
+	\[ \chi(x) = 
+	\begin{cases}
+	\chi(x)> 0, & |x|<a, \\
+	\chi(x) = 0, &|x| \geq a.
+	\end{cases} 
+	\]
+	
+	Тогда $\chi^k:\mathbb{R}^k \to \mathbb{R}$ это $\chi^k(x_1,\ldots, x_k) = 
+	\chi(x_1)\cdot\chi(x_2)\cdot\ldots\cdot\chi(x_k)$
+	Имеем
+	\[ \chi^k(x) =
+	\begin{cases}
+	\chi^k(x) >0, & |x|_\infty < a,\\
+	\chi^k(x) = 0, & |x|_\infty \geq a.
+	\end{cases} \]
+	
+	Переносом системы координат получим эту функцию, заданную на многообразии:
+	$\varphi^*_j \chi^k: M \to \mathbb{R}$ при этом $\chi^k(x) > 0 \iff x \in \varphi^{-1}_j(Q_j)$.
+	Получаем, что сумма $\varphi_j$ неотрицательна, осталось нормировать.
+	
+	\[ \psi_j(x) = \frac{\varphi^*_j \chi^k(x)}{\sum_{i=1}^m \varphi_i^* \chi^k(x)} \]
+	$\varphi_j: \varphi_j^{-1}(Q_j) \to Q_j$ --- перенос образа куба в куб.
+	
+	\begin{eqnarray}\nonumber
+	\int_M dw = \int_M 1dw = \int_M \sum_{j=1}^m \psi_j(x)dw(x) = \sum_{j=1}^m \int\limits_{\varphi_j^{-1}(Q_j)} \psi_j(x)dw(x) =\\\nonumber 
+	\sum_{j=1}^m \int_{Q_j} \varphi^*_j (\psi_jdw).
+	\end{eqnarray}
+	Используем доказанную ранее формулу Стокса для случая куба:
+	
+	\begin{eqnarray}\nonumber
+	\int\limits_{\varphi_j^{-1}(\partial Q_j)} \psi_j w = \int\limits_{\partial Q_j} \varphi^*_j (\psi_j w) = \int\limits_{Q_j} d\varphi^*_j(\psi_j w) = \int\limits_{Q_j} \psi^*_jd(\psi_j w) = \\\nonumber
+	\int\limits_{Q_j} \varphi^*_j \left( d\psi_j \wedge w + \psi_jdw \right)
+	= \int\limits_{Q_j} \psi_j^*(d\psi_j \wedge w) + \int\limits_{Q_j} \varphi^*_j (\psi_jdw) =\\\nonumber
+	\int\limits_{\varphi^{-1}_j(Q_j)} d\psi_j \wedge w + \int\limits_{\varphi^{-1}_j(Q_j)} \psi_j dw
+	\end{eqnarray}
+	
+	\begin{eqnarray}\nonumber
+	\sum_{j = 1}^m \int\limits_{\varphi_j^{-1}(\partial Q_j)} \psi_j w = 
+	\sum_{j = 1}^m \int\limits_{\varphi_j^{-1}(Q_j)}  d\psi_j \wedge w + 
+	\sum_{j=1}^m \int\limits_{\varphi_j^{-1}(Q_j)} \psi_j dw
+	\end{eqnarray}
+	
+	При этом левая часть этого выражения равна
+	\begin{equation*}
+	\sum_{j = 1}^m \int\limits_{\varphi_j^{-1}(\partial Q_j)} \psi_j w 
+	= \sum_{j = 1}^m \int\limits_{\partial\varphi_j^{-1}( Q_j)} \psi_j w
+	= \int\limits_{\partial M} w
+	\end{equation*} 
+	
+	Первое слагаемое в правой части равно
+	\begin{equation*}
+	\sum_{j = 1}^m \int\limits_{\varphi_j^{-1}(Q_j)}  d\psi_j \wedge w
+	= \sum_{j = 1}^m \int\limits_{M}  d\psi_j \wedge w 
+	= \int\limits_M d1 \wedge w \equiv 0
+	\end{equation*}
+	
+	Второе слагаемое в правой части равно
+	
+	\begin{equation*}
+	\sum_{j=1}^m \int\limits_{\varphi_j^{-1}(Q_j)} \psi_j dw 
+	= \sum_{j=1}^m \int\limits_{M} \psi_j dw
+	= \int\limits_M dw
+	\end{equation*}
+	
+	Следовательно, 
+	\[ \int\limits_{\partial M} w = \int\limits_M dw \]
+\end{proof}		
 
 Частные случаи формулы Стокса-Пуанкаре:
 
@@ -2553,7 +2896,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 
 
 %Лекция 23.04.19 TODO
-
+	
 
 %Лекция 25.04.19
 
@@ -2647,12 +2990,11 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 \end{definition}
 
 \begin{definition}
-	Форма $w$ называется коточной, если сущесвует форма $\theta$, такая что $w = I \theta$.
+	Форма $w$ называется коточной, если существует форма $\theta$, такая что $w = I \theta$.
 \end{definition}
 
 \begin{theorem} \label{thwstar}
 	Для всякой $C^1$-гладкой $k$-формы $w$ на звездной области выполнено
-	
 	\begin{equation*}
 		w = d Iw + I dw
 	\end{equation*}
@@ -2688,7 +3030,13 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	В звездной области всякая замкнутая форма точна.
 \end{corollary}
 
-% Лекция 02.04.19
+% Лекция 30.04.2019
+
+
+
+
+
+% Лекция 02.05.19
 
 \subsection{Дивергенция векторного поля}
 
@@ -2758,13 +3106,12 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	\int\limits_{M} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1}  = \int\limits_{M} \sum\limits_{j = 1}^{n} (-1)^{j-1} a_j dx_1 \wedge \ldots \wedge \widehat{dx_j} \wedge \ldots \wedge dx_n.
 \end{equation*}
 
-Напомним, что через $S_r$ и $B_r$ мы обозначаем сферу и шар радиуса $r$ соотвественно.
+Напомним, что через $S_r$ и $B_r$ мы обозначаем сферу и шар радиуса $r$ соответственно.
 
 \begin{definition}
-	Дивергения векторного поля $\vec{v}$ в точке $x$ определяется как
-	
+	Дивергенция векторного поля $\vec{v}$ в точке $x$ определяется как
 	\begin{equation*}
-		div \; \vec{v}(x) = \lim\limits_{r \to 0} \frac{1}{|B_r|} \int\limits_{S_r} \vec{v} \cdot \vec{n} \; dS^{n-1}
+		\diver \vec{v}(x) = \lim\limits_{r \to 0} \frac{1}{|B_r|} \int\limits_{S_r} \vec{v} \cdot \vec{n} \; dS^{n-1}
 	\end{equation*}
 	
 	где, при вычислении потока $\vec{v}$ через сферу $S_r$, интеграл берется по внешней стороне сферы.
@@ -2774,7 +3121,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Для $C^1$-гладкого векторного поля $v$ имеет место формула
 	
 	\begin{equation*}
-		div \; \vec{v}(x) = \sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}(x)
+		\diver \vec{v}(x) = \sum\limits_{j = 1}^{n} \frac{\partial a_j}{\partial x_j}(x)
 	\end{equation*}
 \end{lemma}
 
@@ -2796,46 +3143,56 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Пусть $V$ --- тело ($n$-мерное компактное многообразие в $\mathbb{R}^n$), тогда 
 	
 	\begin{equation*}
-		\int\limits_{\partial v} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1} = \int\limits_{V} div \; \vec{x}(x) dx 
+		\int\limits_{\partial v} \vec{v}(x) \cdot \vec{n}(x) d S^{n-1} = \int\limits_{V} \diver \vec{x}(x) dx 
 	\end{equation*}
 \end{theorem}
 
 \begin{definition}
-	Векторное поле $\vec{v}$ называется \textit{бездивергентным}, если $div \; \vec{v} = 0$.
+	Векторное поле $\vec{v}$ называется \textit{бездивергентным}, если $\diver \; \vec{v} = 0$.
 \end{definition}
 
-Имееют место следующие соответствия, где соответствующие члены двух цепей изоморфны между собой:
 
-\begin{align*}
-	&Scal (\mathbb{R}^3) \xrightarrow[]{grad} Vec (\mathbb{R}^3) \xrightarrow[]{rot} Vec (\mathbb{R}^3) \xrightarrow[]{grad} Scal (\mathbb{R}^3) \\
-	&\{U \to \Lambda^0\} \xrightarrow[]{d} \{U \to \Lambda^1\} \xrightarrow[]{d} \{U \to \Lambda^2\} \xrightarrow[]{d} \{U \to \Lambda^3\}
-\end{align*}
+Имеют место следующие соответствия, где соответствующие члены двух цепей изоморфны между собой:
+\begin{center}
+	\begin{tikzcd}
+	Scal (\mathbb{R}^3)  \arrow[dash]{d}{\simeq} \arrow{r}{\grad}
+	&  Vec (\mathbb{R}^3) \arrow[dash]{d}{\simeq} \arrow{r}{\rot} 
+	& Vec (\mathbb{R}^3)  \arrow[dash]{d}{\simeq} \arrow{r}{\grad} 
+	& Scal \arrow[dash]{d}{\simeq} (\mathbb{R}^3) \\
+	\{U \to \Lambda^0\} \arrow{r}{d}
+	& \{U \to \Lambda^1\} \arrow{r}{d} & \{U \to \Lambda^2\} \arrow{r}{d} & \{U \to \Lambda^3\}
+	\end{tikzcd}
+\end{center}
 
-То есть, на языке дифференциальных форма, каждой операции векторного анализа соотвествует дифференциал. 
+
+Имеют место следующие соответствия, где соответствующие члены двух цепей изоморфны между собой:
+
+
+То есть, на языке дифференциальных форма, каждой операции векторного анализа соответствует дифференциал. 
 
 В плоском случае можно получить следующие выражения:
 
 \begin{align*}
-	& rot (a, b) \simeq d (adx + bdy) = (\frac{\partial a}{\partial x} - \frac{\partial a}{\partial y})  dx \wedge dy = \bigtriangledown \wedge (a, b) =
+	& \rot (a, b) \simeq d (adx + bdy) = \left(\frac{\partial a}{\partial x} - \frac{\partial a}{\partial y}\right)  dx \wedge dy = \nabla \wedge (a, b) =
 	\begin{vmatrix}
 		\frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
 		a & b
 	\end{vmatrix} \\
-	&div (a, b) \simeq d(adx + bdy) = (\frac{\partial a}{\partial x} + \frac{\partial a}{\partial y})  dx \wedge dy = \bigtriangledown \cdot (a, b)
+	&\diver (a, b) \simeq d(adx + bdy) = \left(\frac{\partial a}{\partial x} + \frac{\partial a}{\partial y}\right)  dx \wedge dy = \nabla \cdot (a, b)
 \end{align*}
 
 \begin{definition}
-	Пусть $\vec{v}$ --- векторное поле в $\mathbb{R}^3$. Тогда $\vec{v}$ называют \textit{вихревым}, если существует $\vec{u}$ --- векторное поле такое, что $\vec{v} = rot \; \vec{u}$. В этом случае, $\vec{u}$ называют векторным потенциалом векторного поля $\vec{v}$.
+	Пусть $\vec{v}$ --- векторное поле в $\mathbb{R}^3$. Тогда $\vec{v}$ называют \textit{вихревым}, если существует $\vec{u}$ --- векторное поле такое, что $\vec{v} = \rot \vec{u}$. В этом случае, $\vec{u}$ называют векторным потенциалом векторного поля $\vec{v}$.
 \end{definition}
 
-Леммы ниже являются следствиями первой и второй теоремы Пуанкаре соотвественно.
+Леммы ниже являются следствиями первой и второй теоремы Пуанкаре соответственно.
 
 \begin{lemma}
-	Вихревое векторное поле всегда бездивергентно, т.е. $div \; rot \vec{v} = 0$.
+	Вихревое векторное поле всегда бездивергентно, т.е. $\diver \; \rot \vec{v} = 0$.
 \end{lemma}
 
 \begin{lemma}
-	Если векторное поле $\vec{v}$ в звездной области в $\mathbb{R}^3$ бездиверегентно, то она вихревое.
+	Если векторное поле $\vec{v}$ в звездной области в $\mathbb{R}^3$ бездивергентно, то она вихревое.
 \end{lemma}
 
 \begin{theorem}
@@ -2847,24 +3204,23 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 \end{proof}
 
 \begin{definition}
-	Оператором Лапласа называется оператор $\bigtriangleup : Scal \to Scal$, такой, что 
-	
+	Оператором Лапласа называется оператор $\Delta : Scal \to Scal$ такой, что 
 	\begin{equation*}
-		\bigtriangleup = \bigtriangledown^2 = div \; grad
+		\Delta = \nabla^2 = \diver \grad
 	\end{equation*}
 \end{definition}
 
 В декартовых координатах оператор Лапласа имеет вид
 
 \begin{equation*}
-\bigtriangleup f = div (\frac{\partial f}{\partial x_1}, \ldots, \frac{\partial f}{\partial x_n}) = \frac{\partial^2 f}{\partial x_1^2} + \ldots + \frac{\partial^2 f}{\partial x_n^2}
+\Delta f = \mathrm{div} \left(\frac{\partial f}{\partial x_1}, \ldots, \frac{\partial f}{\partial x_n}\right) = \frac{\partial^2 f}{\partial x_1^2} + \ldots + \frac{\partial^2 f}{\partial x_n^2}
 \end{equation*}
 
-Если $\bigtriangleup f > 0$, то $f(x)$ больше своего среднего значения на маленькой сфере с центром в точке $x$.
+Если $\Delta f > 0$, то $f(x)$ больше своего среднего значения на маленькой сфере с центром в точке $x$.
 
-Если $\bigtriangleup f < 0$, то $f(x)$ меньше своего среднего значения на маленькой сфере с центром в точке $x$.
+Если $\Delta f < 0$, то $f(x)$ меньше своего среднего значения на маленькой сфере с центром в точке $x$.
 
-Если $\bigtriangleup f = 0$, то $f(x)$ приблизительно равна своему среднему значению на маленькой сфере с центром в точке $x$.
+Если $\Delta f = 0$, то $f(x)$ приблизительно равна своему среднему значению на маленькой сфере с центром в точке $x$.
 
 
 \end{document}
