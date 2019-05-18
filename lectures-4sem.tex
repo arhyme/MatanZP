@@ -1422,7 +1422,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 {\bf Свойство} $\mathbf{1^\circ.}$
 {\textsc{Линейность}}
 
- $\forall \alpha, \beta \in \mathbb{R} \; \forall f, g$ - функции $\forall u, v$ -- векторные поля.	
+ $\forall \alpha, \beta \in \mathbb{R} \; \forall f, g$ --- функции $\forall u, v$ -- векторные поля.	
 	\begin{equation*}
 		\varphi^{*}(\alpha f + \beta g)=\alpha\varphi^{*}f + \beta\varphi^{*}g \quad \varphi^{*}(\alpha u + \beta v) = \alpha \varphi^{*}u + \beta\varphi^{*}v
 	\end{equation*}
@@ -1431,13 +1431,13 @@ D\varphi$. Если мы будем считать «в лоб»:
 {\bf Свойство} $\mathbf{2^\circ.}$
 {\textsc{мультипликативность}}
 
- пусть $f : V \to \mathbb{R}$, $v : V \to TV$, $(f \circ v)(g)=f(g)\vec{v}(g)$. Тогда, если $\varphi : U \to V$ - $C^1$-диффеоморфизм, то $\varphi^{*}(f \vec{v})=\varphi^{*}f \cdot \varphi^{*}v$.
+ пусть $f : V \to \mathbb{R}$, $v : V \to TV$, $(f \circ v)(g)=f(g)\vec{v}(g)$. Тогда, если $\varphi : U \to V$ --- $C^1$-диффеоморфизм, то $\varphi^{*}(f \vec{v})=\varphi^{*}f \cdot \varphi^{*}v$.
 	
 \medskip
 {\bf Свойство} $\mathbf{3^\circ.}$
-{\textsc{перенос композиции является произведением переносов}}
+{\textsc{перенос композиции является композицией переносов}}
 
-	пусть $\varphi : U \to V$, $\psi : U \to V$ - $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \psi^{*}$.
+	пусть $\varphi : U \to V$, $\psi : V \to W$ --- $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \circ\psi^{*}$.
 	
 	\medskip
 	{\bf Свойство} $\mathbf{4^\circ.}$
@@ -1449,10 +1449,9 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 Для доказательства последнего свойства, нам нужно ввести определение дифференциальной формы, а для этого нужно вспомнить некоторые свойства линейных отображений.
 
-Пусть $L : \mathbb{R}^n \to \mathbb{R}$ - линейное отображение. Рассмотрим действие $L$ на вектор $v$:
-
+Пусть $L : \mathbb{R}^n \to \mathbb{R}$ --- линейное отображение. Рассмотрим действие $L$ на вектор $v$:
 \begin{equation*}
-	L\langle v \rangle = L \langle v_1 e_1 + \ldots + v_n e_n \rangle = v_1 L\langle e_1 \rangle + \ldots + v_n L\langle e_n \rangle = v_1 a_1 + \ldots v_n a_n
+	L\langle v \rangle = L \langle v_1 e_1 + \ldots + v_n e_n \rangle = v_1 L\langle e_1 \rangle + \ldots + v_n L\langle e_n \rangle = v_1 a_1 + \ldots + v_n a_n
 \end{equation*}
 
 Из этого уравнения следует то, что всякая линейная функция это скалярное произведение аргумента с некоторым постоянным вектором: $L \langle v \rangle = a \cdot v$.
@@ -1475,10 +1474,10 @@ D\varphi$. Если мы будем считать «в лоб»:
 	Рассмотрим некоторую $1$-форму $w(x)$, тогда $w(x)=a_1(x) dx_1 + \ldots a_n(x) dx_n$. Пусть $v(x) = (a_1(x), \ldots, a_n(x))$, тогда $w(x) \langle u \rangle = v(x) \cdot u$. 
 \end{proof}
 
-Дифференциал функции так же является $1$-формой. Так что стоит задасться вопросом: а не все ли $1$-формы являются дифференциалом некоторой функции? Пример ниже говорит, что ответ на этот вопрос - нет.
+Дифференциал функции так же является $1$-формой. Так что стоит задаться вопросом: а не все ли $1$-формы являются дифференциалом некоторой функции? Пример ниже говорит, что ответ на этот вопрос - нет.
 
 \begin{example}
-	$w=xdy$ - $1$-форма, но не дифференциал.
+	$w=xdy$ -- $1$-форма, но не дифференциал.
 \end{example}
 
 \begin{proof}
@@ -1490,13 +1489,13 @@ D\varphi$. Если мы будем считать «в лоб»:
 Определим теперь оператор переноса для $1$-форм.
 
 \begin{definition}
-	Пусть $w$ - $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ - $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ - $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
+	Пусть $w$ -- $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ --- $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ - $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
 \end{definition}
 
 Теперь мы можем доказать 4 свойство оператора переноса.
 
 \begin{lemma}[Четвертое свойство оператора переноса]
-	Пусть $\varphi : U \to V$ - $C^1$-диффеоморфизм, $f : V \to \mathbb{E} \in C^1$, тогда $\varphi^{*}(d \varphi) = d (\varphi^{*} f)$. Заметим так же, что слева от равенства стоит $1$-форма, а справа $0$-форма.
+	Пусть $\varphi : U \to V$ - $C^1$-диффеоморфизм, $f : V \to \mathbb{E} \in C^1$, тогда $\varphi^{*}(d f) = d (\varphi^{*} f)$. Заметим так же, что слева от равенства стоит $1$-форма, а справа $0$-форма.
 \end{lemma}
 
 \begin{proof}
@@ -1654,13 +1653,13 @@ $e_2$ против часовой стрелки.
 		\begin{cases}
 		x_1 = f_1(t_1,\ldots,t_k), \\
 		\ldots \\
-		x_r = f_r(t_1,\ldots, t_k).
+		x_n = f_n(t_1,\ldots, t_k).
 		\end{cases}
 	\end{equation*}
 	
 	Поскольку в $U$ есть ориентация $k$-мерного пространства $\Theta (u_1,\ldots,u_k)$,
 	определим на $M$ ориентацию $\tilde{\Theta}(x,v_1,\ldots,v_k)$ следующим образом:
-	$x = f(t), v_1 =df_x \langle u_1 \rangle, \ldots df_x \langle u_k \rangle$.
+	$x = f(t), v_1 =df_x \langle u_1 \rangle, \ldots, v_k =  df_x \langle u_k \rangle$.
 \end{proof}
 
 \begin{lemma}
@@ -1728,7 +1727,8 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 
 \subsection{Интеграл 1-формы по кривой} %Лекция 21.03.19
 
-Пусть $\gamma - C^1$-гладкая ориентированная кривая. Рассмотрим две регулярные параметризации. Тогда $\psi^{-1} \circ \varphi : [a, b] \to [c, d] \in C^1$ и $\psi^{-1} \circ \varphi \not= 0$.
+Пусть $\gamma - C^1$-гладкая ориентированная кривая. Рассмотрим две регулярные параметризации $\varphi:
+[a, b] \to \gamma$ и $\psi: [c, d] \to \gamma$. Тогда $\psi^{-1} \circ \varphi : [a, b] \to [c, d] \in C^1$ и $\psi^{-1} \circ \varphi \not= 0$.
 
 \begin{definition}
 	Две параметризации $\varphi, \psi$ называются сориентированными (противоположно ориентированными), если $(\psi^{-1} \circ \varphi)' > 0 \; ((\psi^{-1} \circ \varphi)' < 0)$.
@@ -2256,10 +2256,10 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{definition}
 
 \begin{definition}
-	Пусть $M \subseteq \mathbb{R}^n$ - двумерное $C^1$-гладкое ориентированное многообразие и $w : M \to \Lambda^2 (\mathbb{R}^2)$ --- непрерываня 2-форма. Тогда, если $\varphi : U \subseteq \mathbb{R}^2 \to M$ --- параметризация, то 
+	Пусть $M \subseteq \mathbb{R}^n$ - двумерное $C^1$-гладкое ориентированное многообразие и $w : M \to \Lambda^2 (\mathbb{R}^2)$ --- непрерывная 2-форма. Тогда, если $\varphi : U \subseteq \mathbb{R}^2 \to M$ --- параметризация, то 
 	
 	\begin{equation*}
-		\int\limits_{M} := \int\limits_{U} \varphi^* w = \int\limits_{U} w(\varphi (t, s)) \langle \varphi_t (t, s), \varphi_s (t, s) \rangle dt \wedge ds
+		\int\limits_{M} w := \int\limits_{U} \varphi^* w = \int\limits_{U} w(\varphi (t, s)) \langle \varphi_t (t, s), \varphi_s (t, s) \rangle dt \wedge ds
 	\end{equation*}
 	будем называть \textit{интегралом 2-формы по поверхности}.
 \end{definition}
@@ -2285,12 +2285,15 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{definition}
 
 \begin{lemma}
-	В сфеерических координатах форма Гаусса имеет вид
+	В сферических координатах форма Гаусса имеет вид
 	
 	\begin{equation*}
 	\Theta = d\theta \wedge d\varphi.
 	\end{equation*}
 \end{lemma}
+\begin{proof}
+	Проверяется непосредственной подстановкой сферической замены и остается в качестве упражнения читателю.
+\end{proof}
 
 Геометрическая интерпретация формы Гаусса $\int\limits_{M} \Theta$ --- телесный угол под которым видна поверхность из начала координат.
 
@@ -2340,6 +2343,11 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	\end{equation*}
 \end{lemma}
 
+
+\medskip
+
+Теперь рассмотрим запись формулы Грина и формулы Ньютона-Лейбница в терминах внешнего дифференциала.
+
 \begin{theorem}[Формула Грина в терминах внешнего дифференциала]
 	Пусть $U \subseteq \mathbb{R}^2$ --- область с кусочно-гладкой границей и $w \in C^1 (U \to \Lambda^1(\mathbb{R}^2))$. Тогда верна формула Грина
 	
@@ -2347,6 +2355,10 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 		\oint\limits_{\partial U} w = \int\limits_{U} d_{\text{внешний}}w
 	\end{equation*}
 \end{theorem}
+
+
+формула Ньютона-Лейбница:
+\[\int\limits_{\partial \gamma} f = f(q) - f(p) = \int\limits_{\gamma} df \]
 
 %TODO это к чему вообще?
 
@@ -2408,54 +2420,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 
 %TODO
 
-\begin{example}
-	Пусть $w = f(x, y) dx\wedge dy$.
-	\[ \varphi:
-	\begin{cases}
-	x = x(t, s), \\
-	y = y(t, s).
-	\end{cases} \]
-	$\varphi^* w(t, s) = (f \circ \varphi)(x_tdt + x_sds) \wedge (y_tdt \wedge y_sds) = 
-	(f \circ \varphi)(t, s) \det 
-	\begin{pmatrix}
-	x_t & x_s \\
-	y_t & y_s
-	\end{pmatrix}
-	ds \wedge dt$
-\end{example}
 
-\begin{definition}
-	Пусть $U \subseteq \mathbb{R}^2$ -- открытое множество, $w: U \to \Lambda^2(\mathbb{R}^2)$ -- непрерывная. Тогда
-	\[ \int\limits_U w = \iint\limits_U f(x, y) dx \wedge dy := \underbrace{\Theta(e_x, e_y)}_{\pm 1} \int\limits_U f(x, y) dxdy \]
-\end{definition}
-
-\begin{definition}[Интеграл $2$-формы по поверхности]
-	Пусть $M \subseteq \mathbb{R}^n$ -- двумерное $C^1$-гладкое ориентированное многообразие,
-	$w: M \to \Lambda^2(\mathbb{R}^n)$ -- непрерывная $2$-форма.
-	
-	Если $\varphi : U \subset \mathbb{R}^2 \to M$ -- параметризация, то 
-	\[ \int\limits_U w := \int\limits_U \varphi^* w = 
-	\int\limits_U w(\varphi(t,s)) \langle \varphi_t (t,s), \varphi_s (t,s) \rangle dt \wedge ds \]
-\end{definition}
-
-\begin{definition}
-	Внешний дифференциал $1$-формы --- это кососимметрическая часть полного дифференциала
-	\[ d: C^{r+1}(U \to \Lambda^1(\mathbb{R}^n)) \to  C^{r}(U \to \Lambda^2(\mathbb{R}^n)) \]
-	т.е. если $w = \sum\limits_{ i =1 }^{n} a_i dx_i$ -- $1$-форма, то $dw = 
-	\sum\limits_{ i =1 }^{n} da_i\wedge dx_i = \sum\limits_{ i =1 }^{n} 
-	\left(\sum\limits_{ j =1 }^{n} \frac{\partial a_i}{\partial x_j}  dx_j \right) dx_i $
-\end{definition}
-
-\medskip
-
-Теперь рассмотрим запись формулы Грина и формулы Ньютона-Лейбница в терминах внешнего дифференциала.
-
-формула Грина:
-пусть $U \subseteq{R}^2$ -- область с кусочно гладкой границей, $w \in C^1(U \to \Lambda^1(\mathbb{R}^2)).$ Тогда
-\[ \oint\limits_{\partial U} w = \int\limits_U dw \]
-
-формула Ньютона-Лейбница:
-\[\int\limits_{\partial \gamma} f = f(q) - f(p) = \int\limits_{\gamma} df \]
 %Лекция 11.04.19 конец
 
 %Лекция 16.04.19
