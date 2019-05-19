@@ -1852,7 +1852,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		По определению интеграла 1-формы имеем:
 		
 		\begin{equation*}
-		\int\limits_{\gamma} w = \int\limits_{0}^{T} w(\varphi(t)) \langle \varphi'(t) \rangle 
+		\int\limits_{\gamma} w = \int\limits_{0}^{T} w(\varphi(t)) \langle \varphi'(t) \rangle dt
 		\end{equation*}
 		
 		Проведем замену переменных $t = (\varphi^{-1} \circ \psi)(s)$. Тогда $\psi(0)=T$ и $\psi(T)=0$.
@@ -1871,14 +1871,38 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		\int\limits_{\gamma} (\alpha w_1 + \beta w_2) = \alpha \int\limits_{\gamma} w_1 + \beta \int\limits_{\gamma} w_2
 	\end{equation*}
 	
+	\begin{proof}
+		Пусть $\varphi: [a, b] \to \gamma$ --- параметризация согласованная с ориентацией. Тогда
+		\begin{eqnarray}\nonumber
+			\int\limits_{\gamma} (\alpha w_1 + \beta w_2) = \int\limits_a^b (\alpha w_1 + \beta w_2)
+			(\varphi(x))\langle\varphi'(x)\rangle dx 
+			= \\\nonumber
+			\int\limits_a^b \left(\alpha w_1(\varphi(x))\langle\varphi'(x)\rangle + \beta w_2(\varphi(x))\langle\varphi'(x)\rangle\right) dx 
+			= \\\nonumber
+			\alpha\int\limits_a^b  w_1(\varphi(x))\langle\varphi'(x)\rangle dx 
+			+ \beta\int\limits_a^b  w_2(\varphi(x))\langle\varphi'(x)\rangle dx
+			= \\\nonumber
+			\alpha \int\limits_{\gamma} w_1 + \beta \int\limits_{\gamma} w_2.
+		\end{eqnarray}  
+	\end{proof}
+	
 	{\bf Свойство} $\mathbf{4^\circ.}$
 	{\textsc{Аддитивность}}
 	
 	Пусть $\varphi : [p, q] \to \gamma$ --- параметризация кривой $\gamma$, возьмем $r \in [p, q]$ и определим $\varphi_{pr} : [p, r] \to \gamma_{pr}$ и $\varphi_{pr} : [r, q] \to \gamma_{rq}$, тогда
 	
 	\begin{equation*}
-		\int\limits_{\gamma} w = \int\limits_{\gamma_{pr}} + \int\limits_{\gamma_{rq}}
+		\int\limits_{\gamma} w = \int\limits_{\gamma_{pr}} w + \int\limits_{\gamma_{rq}} w
 	\end{equation*}
+	
+	\begin{proof}
+			\begin{eqnarray} \nonumber
+				\int\limits_{\gamma} w = \int\limits_p^q w(\varphi(x))\langle \varphi'(x) \rangle dx = \\\nonumber
+				\int\limits_p^r w(\varphi_{pr}(x))\langle \varphi_{pr}'(x) \rangle dx + \int\limits_r^q w(\varphi_{rq}(x))\langle \varphi_{rq}'(x) \rangle dx
+				= \\\nonumber
+				\int\limits_{\gamma_{pr}} w + \int\limits_{\gamma_{rq}} w
+			\end{eqnarray}
+	\end{proof}
 
 
 \begin{remark}
@@ -1945,10 +1969,17 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Если $\gamma_1$ и $\gamma_2$ --- две кривые из $x_0$ в $x$, то $\gamma_1 - \gamma_2$ - замкнутый контур и 
 	
 	\begin{equation*}
-		0 = \int\limits_{\gamma_1 - \gamma_2}w = \int\limits_{\gamma_1} w - \int\limits_{\gamma_2} w
+		0 = \oint\limits_{\gamma_1 - \gamma_2}w = \int\limits_{\gamma_1} w + \int\limits_{-\gamma_2} w = \int\limits_{\gamma_1} w - \int\limits_{\gamma_2} w
 	\end{equation*}
 	
-	Следовательно интегралы по разным кривым совпадают независимо от пути.
+	Следовательно интегралы по разным кривым совпадают независимо от пути. Таким образом, построим
+	функцию $f: U \to \mathbb{R}$ с точностью до константы.
+	
+	Если кривая начинается в $x_1$ и заканчивается в $x_2$, то
+	\begin{eqnarray}\nonumber
+		\int\limits_{\gamma_{x_1x_2}} w = \int\limits_{\gamma_{x_1x_0}} w + \int\limits_{\gamma_{x_0x_2}} w 
+		= f(x_2)  - f(x_0) + f(x_0) - f(x_1)= f(x_2) - f(x_1)
+	\end{eqnarray}
 	
 	Продолжение следует $;)$
 \end{proof}
@@ -1970,7 +2001,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 %cюда дописать
 
 \begin{theorem}[Формула Грина]
-	Пусть $U \subseteq \mathbb{R}^n$ --- компактная область с кусочной-гладкой границей,
+	Пусть $U \subseteq \mathbb{R}^n$ --- компактная область с кусочно-гладкой границей,
 	пусть $w: U \to \Lambda^1(\mathbb{R}^2)$ --- $C^1$-гладкая $1$-форма $w = P(x,y)dx + Q(x,y)dy$. Тогда 
 	\[ \oint\limits_{\partial U} P(x,y)dx + Q(x,y)dy = \int\limits_{U} 
 	\begin{vmatrix}
@@ -1983,7 +2014,81 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \begin{proof}
 	Доказательство проведем для криволинейной трапеции.
 	
-	Пусть $f,g :[a,b] \to \mathbb{R}$ и $f\leq g$
+	Пусть $f,g :[a,b] \to \mathbb{R}$ и $f\leq g$. Рассмотрим криволинейную трапецию, ограниченную графиками функций $f$ и $g$, и параметризуем ее стороны
+	
+	\begin{equation*}
+	L: 
+	\begin{cases}
+	x = x, \\
+	y = f(x), \\
+	x \in [a, b],
+	\end{cases}
+	\quad
+	B: 
+	\begin{cases}
+	x = b, \\
+	y = y, \\
+	y \in [f(b), g(b)],
+	\end{cases}
+	\end{equation*}
+	\begin{equation*}
+		H: 
+		\begin{cases}
+		x = x, \\
+		y = g(x), \\
+		y \in [b, a],
+		\end{cases}
+		\quad
+		A: 
+		\begin{cases}
+		x = a, \\
+		y = f(x), \\
+		y \in [g(b), f(b)].
+		\end{cases}
+	\end{equation*}
+	
+	Распишем исходный интеграл как сумму интегралов и вычислим отдельно слагаемые
+	
+	\begin{equation*}
+	\oint\limits_{\partial U} Pdx + Qdy = \oint\limits_{\partial U} Pdx + \oint\limits_{\partial U} Qdy
+	\end{equation*}
+	
+	Первое слагаемое равно приращению функции $P$.
+	
+	\begin{align*}
+	\oint\limits_{\partial U} Pdx = \oint\limits_{L} Pdx + \oint\limits_{B} Pdx + \oint\limits_{H} Pdx + \oint\limits_{A} Pdx = \\ =\int\limits_{a}^{b} P(x, f(x))dx + 0 + \int\limits_{b}^{a} P(x, g(x))dx + 0 = \int\limits_{a}^{b} \bigg[P(x, f(x)) - P(x, g(x))\bigg] dx
+	\end{align*}
+	
+	По формуле Ньютона-Лейбница, приращение функции --- интеграл ее производной
+	
+	\begin{equation*}
+	\int\limits_{a}^{b} \bigg[P(x, f(x)) - P(x, g(x))\bigg] dx = \int\limits_{a}^{b} dx \int\limits_{g(x)}^{f(x)} \frac{\partial P}{\partial y} (x, y) dy
+	\end{equation*}
+	
+	Из чего по формуле Фубини получаем,
+	
+	\begin{equation*}
+	\int\limits_{a}^{b} dx \int\limits_{g(x)}^{f(x)} \frac{\partial P}{\partial y} (x, y) dy = - \int\limits_{a}^{b} dx \int\limits_{f(x)}^{g(x)} \frac{\partial P}{\partial y} (x, y) dy = \iint\limits_{U} \frac{\partial P}{\partial y} (x, y) dxdy
+	\end{equation*}
+	
+	
+	Второе слагаемое, в свою очередь
+	
+	\begin{align*}
+	\oint\limits_{\partial U} Qdy = \oint\limits_{L} Qdy + \oint\limits_{B} Qdy + \oint\limits_{H} Qdy + \oint\limits_{A} Qdy = \\ = \int\limits_{a}^{b} Q(x, f(x)) f'(x) dx + \int\limits_{f(b)}^{g(b)} Q(b, y)dy + \int\limits_{b}^{a} Q(x, g(x)) g'(x) dx + \int\limits_{g(a)}^{f(a)} Q(b, y)dy =\\ =
+	\int\limits_{a}^{b} \bigg[ Q(x, f(x)) f'(x) - Q(x, g(x)) g'(x) \bigg] dx + \int\limits_{f(b)}^{g(b)} Q(b, y)dy - \int\limits_{f(a)}^{g(a)} Q(b, y)dy
+	\end{align*}
+	
+	Из того, что по формуле Ньютона-Лейбница
+	
+	\begin{equation*}
+	\frac{d}{dx} \int\limits_{f(x)}^{g(x)} Q(x, y) dy = Q(x, f(x)) f'(x) - Q(x, g(x)) g'(x),
+	\end{equation*}
+	
+	получаем
+	\begin{align*}
+	\int\limits_{a}^{b} \bigg[ Q(x, f(x)) f'(x) - Q(x, g(x)) g'(x) \bigg] dx + \int\limits_{f(b)}^{g(b)} Q(b, y)dy - \int\limits_{f(a)}^{g(a)} Q(b, y)dy = \\ = \int\limits_{a}^{b} \bigg[ \int\limits_{f(x)}^{g(x)} \frac{\partial Q}{\partial x} (x, y) - \frac{d}{dx} \int\limits_{f(x)}^{g(x)} Q(x, y) dy\bigg]  + \int\limits_{f(b)}^{g(b)} Q(b, y)dy - \int\limits_{f(a)}^{g(a)} Q(b, y)dy = \\ = \int\limits_{a}^{b}  \int\limits_{f(x)}^{g(x)} \frac{\partial Q}{\partial x} (x, y) dy \mp \bigg( \int\limits_{f(x)}^{g(x)} Q(x, y) dy\bigg) \bigg|_{a}^{b} = \iint\limits_{U} \frac{\partial Q}{\partial x} (x, y) dxdy
+	\end{align*}
 \end{proof}
 %Лекция 29.03.19 конец
 
