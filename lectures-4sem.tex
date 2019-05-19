@@ -42,7 +42,7 @@
 \numberwithin{equation}{section}
 
 \DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\rot}{\textbf{rot}}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\diver}{div}
@@ -939,7 +939,6 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 	\end{equation*}
 	
 	Заметим, что $L_1$ и $L_2$ линейны по каждому аргументу, следовательно, чтобы доказать, что $L_1=L_2$ достаточно доказать что они одинаково действуют на базис (TODO: ????).
-	
 	\begin{equation*}
 	L_1 \langle e_{i1}, \ldots, e_{ik}, e_{j1}, \ldots, e_{jk} \rangle = \delta_{IJ} = L_2 \langle e_{i1}, \ldots, e_{ik}, e_{j1}, \ldots, e_{jk} \rangle
 	\end{equation*}
@@ -1006,7 +1005,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 Внимательный читатель задастся вопросом: а не зависит ли наша мера от параметризации многообразия?
 
 \begin{lemma}
-	Пусть  $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ и  $\psi : V \subseteq \mathbb{R}^k \to \mathbb{R}^n$ - различные параметризации многообразия, такие что $\rank D \varphi = \rank D \psi = k$. Тогда $\int\limits_{U} J_{\varphi}(t)dt = \int\limits_{V} J_{\psi}(t)dt$.
+	Пусть  $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ и  $\psi : V \subseteq \mathbb{R}^k \to \mathbb{R}^n$ --- различные параметризации многообразия, такие что $\rank D \varphi = \rank D \psi = k$. Тогда $\int\limits_{U} J_{\varphi}(t)dt = \int\limits_{V} J_{\psi}(t)dt$.
 \end{lemma}
 
 \begin{proof}
@@ -1130,7 +1129,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 + f_{x_n}^2 = 1 + |\nabla f|^2\]
 Отсюда получаем, что 
 \begin{equation*} \label{SkFormulas}
-	S^k(\Gamma_f) = \int_U \sqrt{1 + |\nabla f(x) |^2}\ dx 
+	S^k(\Gamma_f) = \int\limits_U \sqrt{1 + |\nabla f(x) |^2}\ dx 
 \end{equation*}
 
 Свойство формулы \ref{SkFormulas}:
@@ -1138,7 +1137,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 	 \item 
 	 $S^k(\lambda M) = \lambda^k S^k(M)$
 	 \begin{proof}
-	 TODO %TODO
+		 $S^k(\lambda M) = $
 	 \end{proof}
 	 
 \end{itemize}
@@ -1199,7 +1198,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \begin{definition}
 	Пусть $M$ -- $n$-мерное дифференцируемое многообразие, задана функция
 	$f: M \to \mathbb{E}$ -- измеримая по $S^k$. Тогда интегралом по поверхности назовем 
-	\[ \int_M f\ dS^k \]
+	\[ \int\limits_M f\ dS^k \]
 \end{definition}
 
 Чтобы взять интеграл по поверхности нам нужно: 
@@ -1255,7 +1254,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 	\end{cases}
 \end{equation*}
 
-Заметим, что $u(r, \varphi, \theta_1, \ldots, \theta_{n-2})$ - параметризация шара, а $\tilde{u}(\varphi, \theta_1, \ldots, \theta_{n-2})=u|_{r=const}$ - параметризация сферы.
+Заметим, что $u(r, \varphi, \theta_1, \ldots, \theta_{n-2})$ - параметризация шара, а $\tilde{u}(\varphi, \theta_1, \ldots, \theta_{n-2})=u|_{r=const}$ --- параметризация сферы.
 
 Обозначим $n$-мерный шар радиуса $r$ как $B_r$. Соответственно $S_r$ - $(n-1)$-мерная сфера радиуса $r$.
 
@@ -1331,7 +1330,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \end{theorem}
 
 \begin{proof}
-	Пусть $x_0 \in U$. Мы знаем, что $\rank (\frac{\partial \varphi_i}{\partial x_j}) = k$ - максимальный. Следовательно, в матрице $D \varphi$ есть $k$ линейно-независимых столбцов. Для простоты будем считать, что это $k$ последних столбцов.
+	Пусть $x_0 \in U$. Мы знаем, что $\rank (\frac{\partial \varphi_i}{\partial x_j}) = k$ --- максимальный. Следовательно, в матрице $D \varphi$ есть $k$ линейно-независимых столбцов. Для простоты будем считать, что это $k$ последних столбцов.
 	
 	По теореме о выпрямлении, существует $C^1$-диффеоморфизм $\varPhi : V \to W$, где $V$ - окрестность $x_0$, $W$ - окрестность нуля, такая что:
 	
@@ -1495,7 +1494,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 Теперь мы можем доказать 4 свойство оператора переноса.
 
 \begin{lemma}[Четвертое свойство оператора переноса]
-	Пусть $\varphi : U \to V$ - $C^1$-диффеоморфизм, $f : V \to \mathbb{E} \in C^1$, тогда $\varphi^{*}(d f) = d (\varphi^{*} f)$. Заметим так же, что слева от равенства стоит $1$-форма, а справа $0$-форма.
+	Пусть $\varphi : U \to V$ --- $C^1$-диффеоморфизм, $f : V \to \mathbb{E} \in C^1$, тогда $\varphi^{*}(d f) = d (\varphi^{*} f)$. Заметим так же, что слева от равенства стоит $1$-форма, а справа $0$-форма.
 \end{lemma}
 
 \begin{proof}
@@ -1729,10 +1728,10 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 
 \begin{definition}
 	Пусть $M$ --- ориентированное многообразие с краем, $\Theta_M$ --- ориентация на этом многообразии, т.е. 
-	$ \Theta_M(x, v_1,\ldots, v_k) = \pm 1$, где $v_1,\ldots, v_k \in T_x M$
-	определим \textit{ориентацию края} $\Theta_{\partial M}$ следующим образом:
+	$ \Theta_M(x, v_1,\ldots, v_k) = \pm 1$, где $v_1,\ldots, v_k \in T_x M$.
+	Определим \textit{ориентацию края} $\Theta_{\partial M}$ следующим образом:
 	
-	Пусть $x \in \partial M$ и $v_1,\ldots v_{k-1} in T_xM$. Выберем вектор $w \in T_x M \backslash T_x \partial M$ так, чтобы он
+	Пусть $x \in \partial M$ и $v_1,\ldots v_{k-1} \in T_xM$. Выберем вектор $w \in T_x M \backslash T_x \partial M$ так, чтобы он
 	<<смотрел наружу>>. 
 	
 	Тогда $\Theta_{\partial M}(x, v_1,\ldots, v_{k-1}) := \Theta_M(x, w, v_1,\ldots, v_{k-1})$.
@@ -1781,7 +1780,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{definition}
 
 \begin{definition}
-	Пусть $w : U \subseteq \mathbb{R}^n \to \Lambda^1(\mathbb{R}^n)$ - непрерывная 1-форма и $\gamma \subset U$ - $C^1$-гладкая кривая с заданной ориентацией. Тогда интегралом 1-формы по ориентированной кривой называется $\int\limits_{\gamma} w = \int\limits_{a}^{b} w(\varphi(t)) \langle \varphi'(t) \rangle dt$, где $\varphi : [a, b] \to \gamma$ - параметризация, согласованная с ориентацией.
+	Пусть $w : U \subseteq \mathbb{R}^n \to \Lambda^1(\mathbb{R}^n)$ --- непрерывная 1-форма и $\gamma \subset U$ --- $C^1$-гладкая кривая с заданной ориентацией. Тогда интегралом 1-формы по ориентированной кривой называется \[\int\limits_{\gamma} w = \int\limits_{a}^{b} w(\varphi(t)) \langle \varphi'(t) \rangle dt\] где $\varphi : [a, b] \to \gamma$ --- параметризация, согласованная с ориентацией.
 \end{definition}
 
 Рассмотрим как использовать эту формулу на примере.
@@ -1795,9 +1794,9 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	
 	\begin{equation*}
 		\begin{cases}
-			x = 1 - t\\
-			y = 4 - (1 - t)^2 \\
-			t \in [0, 1]
+			x = 1 - t,\\
+			y = 4 - (1 - t)^2, \\
+			t \in [0, 1].
 		\end{cases}
 	\end{equation*}
 	
@@ -1817,7 +1816,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Определение не зависит от параметризации, согласованной с ориентацией
 	
 	\begin{proof}
-		Пусть $\varphi : [a, b] \to \gamma, \psi : [c, d] \to \gamma \in C^1$ - параметризации, согласованные с ориентацией, следовательно они сориентированы. То есть  $(\psi^{-1} \circ \varphi)' > 0$ и $(\psi^{-1} \circ \varphi)$ - монотонно возрастает, следовательно $(\psi^{-1} \circ \varphi)(a) = c$ и $(\psi^{-1} \circ \varphi)(b) = d$.
+		Пусть $\varphi : [a, b] \to \gamma, \psi : [c, d] \to \gamma \in C^1$ --- параметризации, согласованные с ориентацией, следовательно они сориентированы. То есть  $(\psi^{-1} \circ \varphi)' > 0$ и $(\psi^{-1} \circ \varphi)$ --- монотонно возрастает, следовательно $(\psi^{-1} \circ \varphi)(a) = c$ и $(\psi^{-1} \circ \varphi)(b) = d$.
 		
 		По определению интеграла 1-формы имеем:
 		
@@ -1831,7 +1830,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 			\int\limits_{c}^{d} w(\psi(t)) \langle \psi'(t) \rangle = \int\limits_{a}^{b} w(\psi(\psi^{-1}(\varphi(s)))) \langle \psi'(\psi^{-1}(\varphi(s))) \rangle (\psi^{-1} \circ \varphi)'(s) ds
 		\end{equation*}
 		
-		Так как $w(\psi(s))$ - линейный оператор, можем внести $(\psi^{-1} \circ \varphi)'(s)$ как множитель аргумента. Имеем $\psi'(\psi^{-1}(\varphi(s)))(\psi^{-1} \circ \varphi)'(s) = (\psi \circ \psi^{-1} \circ \varphi)(s)= \varphi(s)$ как производную композиции.
+		Так как $w(\psi(s))$ --- линейный оператор, можем внести $(\psi^{-1} \circ \varphi)'(s)$ как множитель аргумента. Имеем $\psi'(\psi^{-1}(\varphi(s)))(\psi^{-1} \circ \varphi)'(s) = (\psi \circ \psi^{-1} \circ \varphi)(s)= \varphi(s)$ как производную композиции.
 		
 		\begin{equation*}
 			 \int\limits_{a}^{b} w(\psi(\psi^{-1}(\varphi(s)))) \langle \psi'(\psi^{-1}(\varphi(s))) \rangle (\psi^{-1} \circ \varphi)'(s) ds = \int\limits_{a}^{b} w(\varphi(s)) \langle \varphi^{-1}(s) \rangle ds
@@ -1841,14 +1840,14 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	{\bf Свойство} $\mathbf{2^\circ.}$
 	{\textsc{Антисимметричность}}
 	
-	Пусть $\gamma$ - ориентированная кривая, тогда $-\gamma$ та же кривая, только с противоположной ориентацией. 
+	Пусть $\gamma$ --- ориентированная кривая, тогда $-\gamma$ та же кривая, только с противоположной ориентацией. 
 	
 	\begin{equation*}
 		\int\limits_{-\gamma} w = -\int\limits_{\gamma} w
 	\end{equation*}
 	
 	\begin{proof}
-		Пусть $\varphi : [0, T] \to \gamma$ - параметризация кривой $\gamma$, согласованная с ориентацией, тогда $\psi(t)=\varphi(T-t)$ - параметризация кривой $-\gamma$, согласованная с ориентацией. 
+		Пусть $\varphi : [0, T] \to \gamma$ --- параметризация кривой $\gamma$, согласованная с ориентацией, тогда $\psi(t)=\varphi(T-t)$ --- параметризация кривой $-\gamma$, согласованная с ориентацией. 
 		
 		По определению интеграла 1-формы имеем:
 		
@@ -1866,7 +1865,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	{\bf Свойство} $\mathbf{3^\circ.}$
 	{\textsc{Линейность}}
 	
-	$\forall w_1, w_2$ - формы, $\forall \alpha, \beta \in \mathbb{R}$.
+	$\forall w_1, w_2$ --- формы, $\forall \alpha, \beta \in \mathbb{R}$.
 	
 	\begin{equation*}
 		\int\limits_{\gamma} (\alpha w_1 + \beta w_2) = \alpha \int\limits_{\gamma} w_1 + \beta \int\limits_{\gamma} w_2
@@ -1887,7 +1886,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{remark}
 
 \begin{example}[Работа векторного поля вдоль ориентированной кривой]
-	Пусть $\vec{v}$ --- векторное поле, $\gamma$ - ориентированная кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ --- касательный вектор к кривой)
+	Пусть $\vec{v}$ --- векторное поле, $\gamma$ --- ориентированная кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ --- касательный вектор к кривой)
 	
 	\begin{equation*}
 		\int\limits_{\gamma} v_1 dx_1 + \ldots + v_n dx_n = \int\limits_{\gamma} \vec{v} \cdot \vec{\tau} dl
@@ -2418,7 +2417,9 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	a(x,y) \\
 	b(x,y)
 	\end{pmatrix}$ верно, что 
-	\[ \rot_{x, y} \bar{v}(x_0, y_0) = \frac{\partial b}{\partial x}(x_0, y_0) - \frac{\partial a}{\partial y}(x_0, y_0) \]
+	\begin{equation*}
+		\rot_{x, y} \bar{v}(x_0, y_0) = \frac{\partial b}{\partial x}(x_0, y_0) - \frac{\partial a}{\partial y}(x_0, y_0)
+	\end{equation*} 
 \end{lemma}
 \begin{proof}
 	Пусть $C := (x-x_0)^2 + (y - y_0)^2 = r^2, S:=(x-x_0)^2 + (y - y_0)^2 \leq r^2 $. 
@@ -2711,7 +2712,7 @@ TODO
 	С другой стороны
 	
 	\begin{multline*}
-		d(\varphi^* w^{k+1}) = d(\varphi^* (a(y) dy_i \wedge dy_J)) = d(\varphi^* (a(y) dy_i) \wedge \varphi^* dy_J) = \\ = d\varphi^* (a(y) dy_i) \wedge \varphi^* dy_J - \varphi^* (a(y) dy_J) \wedge d(\varphi^* dy_J)
+		d(\varphi^* w^{k+1}) = d(\varphi^* (a(y) dy_i \wedge dy_J)) = d(\varphi^* (a(y) dy_i) \wedge \varphi^* dy_J) = \\ = d\varphi^* (a(y) dy_i) \wedge \varphi^* dy_J - \varphi^* (a(y) dy_i) \wedge d(\varphi^* dy_J)
 	\end{multline*}
 	
 	Применив предположение индукции, получим
@@ -3165,7 +3166,7 @@ TODO
 	\begin{tikzcd}
 	Scal (\mathbb{R}^3)  \arrow[dash]{d}{\simeq} \arrow{r}{\grad}
 	&  Vec (\mathbb{R}^3) \arrow[dash]{d}{\simeq} \arrow{r}{\rot} 
-	& Vec (\mathbb{R}^3)  \arrow[dash]{d}{\simeq} \arrow{r}{\grad} 
+	& Vec (\mathbb{R}^3)  \arrow[dash]{d}{\simeq} \arrow{r}{\diver} 
 	& Scal \arrow[dash]{d}{\simeq} (\mathbb{R}^3) \\
 	\{U \to \Lambda^0\} \arrow{r}{d}
 	& \{U \to \Lambda^1\} \arrow{r}{d} & \{U \to \Lambda^2\} \arrow{r}{d} & \{U \to \Lambda^3\}
