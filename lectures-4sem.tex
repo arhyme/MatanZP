@@ -1471,7 +1471,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \end{lemma}
 
 \begin{proof}
-	Рассмотрим некоторую $1$-форму $w(x)$, тогда $w(x)=a_1(x) dx_1 + \ldots a_n(x) dx_n$. Пусть $v(x) = (a_1(x), \ldots, a_n(x))$, тогда $w(x) \langle u \rangle = v(x) \cdot u$. 
+	Рассмотрим некоторую $1$-форму $w(x)$, тогда $w(x)=a_1(x) dx_1 + \ldots + a_n(x) dx_n$. Пусть $v(x) = (a_1(x), \ldots, a_n(x))$, тогда $w(x) \langle u \rangle = v(x) \cdot u$. 
 \end{proof}
 
 Дифференциал функции так же является $1$-формой. Так что стоит задаться вопросом: а не все ли $1$-формы являются дифференциалом некоторой функции? Пример ниже говорит, что ответ на этот вопрос - нет.
@@ -1481,7 +1481,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 \end{example}
 
 \begin{proof}
-	Допустим, что $w=df=f_x dx + f_y dy$. Тогда $f_x = 0$ и $f_y = x$. Из курса мы знаем, что для любой функции $f_{xy}=f_{yx}$. Проверим, так ли это в нашем случае. Получаем $f_{xy} = 0 \not = 1 = f_{yx}$. Получили противоречие.
+	От противного. Допустим, что $w=df=f_x dx + f_y dy$. Тогда $f_x = 0$ и $f_y = x$. Из курса мы знаем, что для любой функции $f_{xy}=f_{yx}$. Проверим, так ли это в нашем случае. Получаем $f_{xy} = 0 \not = 1 = f_{yx}$. Получили противоречие.
 \end{proof}
 
 Рассмотрим как перейти к полярным координатам в форме 	$w=xdy$. Пусть $x = r \cos\varphi$ и $y = r \sin\varphi$, тогда $\varphi^* w = r\cos\varphi d(r\sin\varphi) = r\cos\varphi(\sin\varphi dr + r\cos\varphi d\varphi)=r\sin\varphi\cos\varphi dr + r^2 \cos^2 \varphi d \varphi$.
@@ -1489,7 +1489,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 Определим теперь оператор переноса для $1$-форм.
 
 \begin{definition}
-	Пусть $w$ -- $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ --- $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ - $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
+	Пусть $w$ -- $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ --- $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ --- $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
 \end{definition}
 
 Теперь мы можем доказать 4 свойство оператора переноса.
@@ -1723,6 +1723,48 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 Ориентация задается нормалью. 
 \end{itemize}
 
+\medskip
+
+\textbf{Индуцированная ориентация края}
+
+\begin{definition}
+	Пусть $M$ --- ориентированное многообразие с краем, $\Theta_M$ --- ориентация на этом многообразии, т.е. 
+	$ \Theta_M(x, v_1,\ldots, v_k) = \pm 1$, где $v_1,\ldots, v_k \in T_x M$
+	определим \textit{ориентацию края} $\Theta_{\partial M}$ следующим образом:
+	
+	Пусть $x \in \partial M$ и $v_1,\ldots v_{k-1} in T_xM$. Выберем вектор $w \in T_x M \backslash T_x \partial M$ так, чтобы он
+	<<смотрел наружу>>. 
+	
+	Тогда $\Theta_{\partial M}(x, v_1,\ldots, v_{k-1}) := \Theta_M(x, w, v_1,\ldots, v_{k-1})$.
+\end{definition}
+
+\begin{example}
+	Рассмотрим случай при $k = 1$ --- кривая. Пусть $\gamma$ --- ориентированная кривая, край кривой --- две точки: начальная и конечная.
+	Обозначим их как $p$ и $q$ соответственно.
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[thick,black] (0,0) to[out=-70,in=-180] (1,0.5) 
+			to [out=0,in=-180,looseness=0.4] (2.8,-0.3) to[out=-20,in=-120,looseness=0.5] (4,0);
+			\coordinate [label=left:\textcolor{blue}{$p$}] (p)
+			at (0,0); 
+			\coordinate [label=right:\textcolor{blue}{$q$}] (q)
+			at (4,0); 
+			\filldraw [black] (0,0) circle (2pt);
+			\filldraw [black] (4,0) circle (2pt);
+			\coordinate [label=right:\textcolor{blue}{$-1$}] (a)
+			at (-0.2,-0.3);
+			\coordinate [label=left:\textcolor{blue}{$+1$}] (b)
+			at (4.2,-0.3);
+			
+		\end{tikzpicture}
+	\end{center}  
+	
+	Тогда $\partial \gamma = \{ -p, q \}$ и верна формула Ньютона-Лейбница
+	\[ \int\limits_{\gamma} df = f(q) - f(p) = \int\limits_{\partial \gamma} f. \]
+\end{example}
+
+
 
 
 \subsection{Интеграл 1-формы по кривой} %Лекция 21.03.19
@@ -1833,7 +1875,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	{\bf Свойство} $\mathbf{4^\circ.}$
 	{\textsc{Аддитивность}}
 	
-	Пусть $\varphi : [p, q] \to \gamma$ - параметризация кривой $\gamma$, возьмем $r \in [p, q]$ и определим $\varphi_{pr} : [p, r] \to \gamma_{pr}$ и $\varphi_{pr} : [r, q] \to \gamma_{rq}$, тогда
+	Пусть $\varphi : [p, q] \to \gamma$ --- параметризация кривой $\gamma$, возьмем $r \in [p, q]$ и определим $\varphi_{pr} : [p, r] \to \gamma_{pr}$ и $\varphi_{pr} : [r, q] \to \gamma_{rq}$, тогда
 	
 	\begin{equation*}
 		\int\limits_{\gamma} w = \int\limits_{\gamma_{pr}} + \int\limits_{\gamma_{rq}}
@@ -1845,7 +1887,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{remark}
 
 \begin{example}[Работа векторного поля вдоль ориентированной кривой]
-	Пусть $\vec{v}$ - векторное поле, $\gamma$ - ориентированная кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ - касательный вектор к кривой)
+	Пусть $\vec{v}$ --- векторное поле, $\gamma$ - ориентированная кривая, тогда работа векторного поля вдоль кривой $\gamma$ вычисляется как ($\vec{\tau}$ --- касательный вектор к кривой)
 	
 	\begin{equation*}
 		\int\limits_{\gamma} v_1 dx_1 + \ldots + v_n dx_n = \int\limits_{\gamma} \vec{v} \cdot \vec{\tau} dl
@@ -1853,7 +1895,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{example}
 
 \begin{theorem}[Формула Ньютона-Лейбница]
-	Пусть $w=df$ - полный дифференциал, $\gamma$ - ориентированная кривая с начальной точной $p$ и конечной точкой $q$, тогда справедлива формула
+	Пусть $w=df$ --- полный дифференциал, $\gamma$ --- ориентированная кривая с начальной точной $p$ и конечной точкой $q$, тогда справедлива формула
 	
 	\begin{equation*}
 		\int\limits_{\gamma} df = f(q) - f(p)
@@ -1861,10 +1903,10 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{theorem}
 
 \begin{proof}
-	Пусть $\varphi : [a, b] \to \gamma$ - параметризация кривой, согласованная с ориентацией. Тогда $\varphi(a) = p$ - начальная точка кривой и $\varphi(b) = q$ - конечная точка кривой.
+	Пусть $\varphi : [a, b] \to \gamma$ --- параметризация кривой, согласованная с ориентацией. Тогда $\varphi(a) = p$ --- начальная точка кривой и $\varphi(b) = q$ --- конечная точка кривой.
 	
 	\begin{equation*}
-		\int\limits_{\gamma} df = \int\limits_{a}^{b} df(\varphi(t)) \langle \varphi^{-1}(t) \rangle dt = \int\limits_{a}^{b} [f(\varphi(t))]_t'dt = f(\varphi(t)) \bigg|_{a}^{b}=f(q) - f(p)
+		\int\limits_{\gamma} df = \int\limits_{a}^{b} df(\varphi(t)) \langle \varphi'(t) \rangle dt = \int\limits_{a}^{b} [f(\varphi(t))]_t'dt = f(\varphi(t)) \bigg|_{a}^{b}=f(q) - f(p)
 	\end{equation*}
 \end{proof}
 
@@ -1883,7 +1925,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{example}
 
 \begin{proof}[Решение]
-	Заметим, что $w$ - полный дифференциал функции $f=xy$, а так же, что начальная точка параболы это $(1, 3)$, а конечная $(0, 4)$.
+	Заметим, что $w$ --- полный дифференциал функции $f=xy$, а так же, что начальная точка параболы это $(1, 3)$, а конечная $(0, 4)$.
 	
 	\begin{equation*}
 		\int\limits_{\gamma} xdy + ydx = \int\limits_{\gamma} d(xy) = xy \bigg|_{(1, 3)}^{(0, 4)} = 0 - 3 = -3
@@ -1891,7 +1933,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{proof}
 
 \begin{theorem}[Критерий полного дифференциала]
-	Пусть $w$ - непрерывная 1-форма на множестве $U$. Тогда $w$ является полным дифференциалом некоторой функции $f \in C^1$ тогда и только тогда, когда $\oint\limits_{\gamma} w = 0$ для всех ориентированных замкнутых контуров $\gamma \subset U$.
+	Пусть $w$ --- непрерывная 1-форма на множестве $U$. Тогда $w$ является полным дифференциалом некоторой функции $f \in C^1$ тогда и только тогда, когда $\oint\limits_{\gamma} w = 0$ для всех ориентированных замкнутых контуров $\gamma \subset U$.
 \end{theorem}
 
 \begin{proof}
@@ -1899,9 +1941,9 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	
 	Для доказательства достаточности построим функцию $f$. 
 	
-	Пусть $U$ - открытое связное множество. Возьмем точку $x_0 \in U$ и положим, что $f(x_0)=C$. Возьмем так же $x \in U$ - другую точку и положим $f(x)=f(x_0)+\int\limits_{\gamma} w$, где $\gamma$ - кривая, соеденяющая точки $x$ и $x_0$ (начало в $x_0$, конец в $x$). 
+	Пусть $U$ --- открытое связное множество. Возьмем точку $x_0 \in U$ и положим, что $f(x_0)=C$. Возьмем так же $x \in U$ --- другую точку и положим $f(x)=f(x_0)+\int\limits_{\gamma} w$, где $\gamma$ --- кривая, соединяющая точки $x$ и $x_0$ (начало в $x_0$, конец в $x$). 
 	
-	Если $\gamma_1$ и $\gamma_2$ - две кривые из $x_0$ в $x$, то $\gamma_1 - \gamma_2$ - замкнутый контур и 
+	Если $\gamma_1$ и $\gamma_2$ --- две кривые из $x_0$ в $x$, то $\gamma_1 - \gamma_2$ - замкнутый контур и 
 	
 	\begin{equation*}
 		0 = \int\limits_{\gamma_1 - \gamma_2}w = \int\limits_{\gamma_1} w - \int\limits_{\gamma_2} w
@@ -1962,8 +2004,9 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Функция в задаче выглядит не очень, так что воспользуемся формулой Грина:
 	
 	\begin{equation*}
-	\oint\limits_{U} x^2 \arctan(x^2+\sin x)dx + xdy = -\iint\limits_{U} (1 - 0) dxdy = -\pi ab
+	\oint\limits_{U} x^2 \arctan(x^2+\sin x)dx + xdy = -\iint\limits_{W} (1 - 0) dxdy = -\pi ab
 	\end{equation*}
+	где $W$ задано неравенством $\frac{x^2}{a^2} + \frac{y^2}{b^2} \leq 1$.
 \end{proof}
 
 \begin{definition}
@@ -2367,7 +2410,7 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	Пусть $\bar{v}$ --- векторное поле в плоскости. 
 	Ротация (вихрь) векторного поля $\bar{v}$ в точке $(x_0, y_0)$ 
 	\[\rot_{x, y} \bar{v} (x_0, y_0) = 
-	\lim\limits_{r \to 0} \oint\limits_{C} \bar{v}d\bar{r}, \text{ где } C: (x-x_0)^2 + (y - y_0)^2 = r^2 \]
+	\lim\limits_{r \to 0} \oint\limits_{C\slash \pi r^{2}} \bar{v}d\bar{r}, \text{ где } C: (x-x_0)^2 + (y - y_0)^2 = r^2 \]
 \end{definition}
 \begin{lemma}
 	Для $C^1$-гладкого векторного поля $\bar{v}(x,y) = 
@@ -2507,7 +2550,7 @@ $ w^k \wedge w^l = \sum\limits_{I,J} a_Ib_J dx_I \wedge dx_J$.
 	Тогда
 	\begin{eqnarray}\nonumber
 		(2dx+3dy+4dz)\wedge (5dz\wedge dx + 6dx\wedge dy) =
-		\\\nonumber 0 + 0 + 16dy \wedge dz \wedge dx + 0 + 0 + 24dz \wedge dx \wedge dy  = 
+		\\\nonumber 0 + 0 + 15dy \wedge dz \wedge dx + 0 + 0 + 24dz \wedge dx \wedge dy  = 
 		\\\nonumber 39dx \wedge dy \wedge dz 
 	\end{eqnarray} т.к.
 	$ dy \wedge dz \wedge dx = - dy \wedge dx \wedge dz = dx \wedge dy \wedge dz$.
@@ -2868,7 +2911,7 @@ TODO
 
 \subsection{25.04.19}
 
-Пусть поверхность $S$ окружает тело $V$ в $\mathbb{R}^2$. Тогда объем тела $V$ можно вычислить проинтегрировав по внешней стороне поверхности одну из форм:
+Пусть поверхность $S$ окружает тело $V$ в $\mathbb{R}^3$. Тогда объем тела $V$ можно вычислить проинтегрировав по внешней стороне поверхности одну из форм:
 
 \begin{equation*}
 	xdy \wedge dz \quad ydz \wedge dx \quad zdx \wedge dy
