@@ -1040,6 +1040,11 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 	Пусть $\{M_i\}_{i \in N}$ -- не более чем счетный дизъюнктный набор множеств, тогда $S^k(\bigcup M_i) = \sum\limits_{i} S^k(M_i)$.
 	
 	\item Меру можно доопределить для кусочно-гладкого многообразия, так как мера множества размерности меньше $k$ равна нулю в мере $S^k$.
+	
+	Пусть $M$ --- кусочно-гладкое многообразие размерности $k$, тогда, из того что, $\dim Z_i < k$ следует $S^k(Z_i) = 0$, получаем
+	\begin{equation*}
+		S^k(M) = S^k(\tilde{M} \cup (\bigcup_{i=0}^{n} Z_i)) = S^k(\tilde{M}) + \sum\limits_{i = 0}^{n} S^k(Z_i) = S^k(\tilde{M})
+	\end{equation*}	
 \end{enumerate}
 
 \begin{example}
@@ -1253,7 +1258,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 	
 	Для того, чтобы вывести формулу, нам нужно параметризовать поверхность.
 	Должно быть два параметра $(x, \varphi)$.
-	Воспользуемся цилиндрической системой координат: 
+	Воспользуемся цилиндрической системой координат $\varphi(x, \varphi) : U \to M$:
 	\begin{equation*}
 		\begin{cases}
 		x = x, \\
@@ -1262,7 +1267,36 @@ D\varphi$. Если мы будем считать «в лоб»:
 		\end{cases}
 	\end{equation*}
 	
-	Вывод формулы: TODO. %TODO
+	Вывод формулы: 
+	
+	\begin{equation*}
+		D \varphi = 
+		\begin{pmatrix}
+			1 & 0 \\
+			f'\cos \varphi & -f \sin \varphi \\
+			f' \sin \varphi &  f \cos \varphi
+		\end{pmatrix}
+		\quad
+		D \varphi^* = 
+		\begin{pmatrix}
+		1 & f'\cos \varphi & f' \sin \varphi \\
+		0 & -f \sin \varphi & f \cos \varphi
+		\end{pmatrix}
+	\end{equation*}
+	
+	\begin{equation}
+		\sqrt {\det (D \varphi \cdot D \varphi^*) } = \sqrt{\det
+		\begin{pmatrix}
+			1 + (f')^2 & 0 \\
+			0 & f^2
+		\end{pmatrix}} = \sqrt{f^2(1 + (f')^2)} = f \sqrt{f^2(1 + (f')^2}
+	\end{equation}
+	
+	Отсюда получаем формулу площади поверхности тела вращения
+	
+	\begin{equation*}
+		\int\limits_{0}^{2\pi} \int\limits_{a}^{b} f \sqrt{f^2(1 + (f')^2} dx d\varphi = 2\pi \int\limits_{a}^{b} f \sqrt{f^2(1 + (f')^2} dx
+	\end{equation*}
 \end{example}
 
 \section{Криволинейные интегралы}
@@ -1289,6 +1323,21 @@ D\varphi$. Если мы будем считать «в лоб»:
  
  Свойства интеграла по поверхности
  \begin{enumerate}
+ 	\item корректность: интеграл не зависит от параметризации многообразия
+ 	
+ 	\begin{proof}
+ 		Пусть $M = \varphi(U) = \phi(V)$, тогда
+ 		
+ 		\begin{align*}
+ 			\int\limits_M f\ dS^k = \int_U f(\varphi(x))\cdot J_\varphi (x)dx = \bigg[ 
+ 			\begin{array}{c}
+ 				x = \varphi^{-1} \circ \psi \\
+ 				dx = J_{\varphi^{-1} \circ \psi} = J_{\varphi^{-1}} \cdot J_{\psi} = J^{-1}_{\varphi} \cdot J_{\psi} dy
+ 			\end{array}
+ 			\bigg] \\ \int\limits_{V} f(\varphi(\varphi^{-1} \circ \psi)(y)) \cdot J_\varphi J^{-1}_{\varphi} \cdot J_{\psi} dy = \int\limits_{V} f(\psi(y)) J_{\psi} dy
+ 		\end{align*}
+ 	\end{proof} 
+ 		
  	\item 
  	линейность: если $f, g: M \to \mathbb{E}$ и $\alpha, \beta \in \mathbb{R}$, то 
  	\[ \int_M (\alpha f + \beta g) dS^k = \alpha \int_M f dS^k + 
@@ -1596,8 +1645,8 @@ D\varphi$. Если мы будем считать «в лоб»:
 
 
 \begin{definition}\label{OrientationInRn}
-	Пусть $\mathfrak{B}^n$ --- множество базисов в $\mathbb{R}^n$
-	\textit{ориентацией} на $\mathfrak{B}^n$ назовем функцию 
+	Пусть $\mathfrak{B}^n$ --- множество базисов в $\mathbb{R}^n$.
+	\textit{Ориентацией} на $\mathfrak{B}^n$ назовем функцию 
 	\[ \Theta: \mathfrak{B}^n \to \{-1, 1 \} \]
 	такую что:
 	\begin{enumerate}
@@ -1794,6 +1843,14 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 
 Ориентация задается нормалью. 
 \end{itemize}
+
+\begin{definition}
+	Параметризация $\varphi$ кривой $\gamma \in C^1$ называется \textit{согласованной с ориентацией} $\Theta$, если $\Theta (\varphi(t), \varphi'(t)) > 0$.
+\end{definition}
+
+\begin{definition}
+	Параметризации $\varphi, \psi$ называются \textit{сориентированными}, если $(\psi \circ \varphi)' > 0$.
+\end{definition}
 
 \medskip
 
