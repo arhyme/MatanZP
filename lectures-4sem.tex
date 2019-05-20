@@ -200,7 +200,7 @@
 	Отображение $\Phi$ является $C^r$-диффеоморфизмом и $\Phi(x,f(x)) = (x, 0)$, т.\,е. $\Phi(\Gamma_f) = U \times \{0\}$.
 \end{proof}
 
-\begin{theorem}[О локальном вложении]
+\begin{theorem}[О локальном вложении]\label{thParamManifold}
 
 	Пусть $U \subset \mathbb{R}^n$ --- открытое множество, $f: U \to \mathbb{R}^n$, $f \in C^r$ и $k \leq n $. Тогда, если $t^0 \in U$ и $\rank Df(t^0) = k$, то существует $V$-окрестность $t^0$, такая что $f(V)$ является $C^r$-гладким $k$-мерным многообразием.
 		\begin{equation*}
@@ -918,11 +918,11 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \end{proof}
 
 \begin{definition}
-	Пусть $A$ -  матрица, имеющая из $n$ строк и $k$ столбцов и $M(n,k) = \{I = (i_1, \ldots, i_k) \in \mathbb{N}^k : 1 \leq  i_1 < i_2 < \ldots < i_k \leq n \}$ - множество мультииндексов. Тогда $A_I$ - минор, составленный из $i_1, i_2, \ldots, i_k$ строк матрицы $A$.
+	Пусть $A$ ---  матрица, имеющая из $n$ строк и $k$ столбцов и $M(n,k) = \{I = (i_1, \ldots, i_k) \in \mathbb{N}^k : 1 \leq  i_1 < i_2 < \ldots < i_k \leq n \}$ - множество мультииндексов. Тогда $A_I$ --- минор, составленный из $i_1, i_2, \ldots, i_k$ строк матрицы $A$.
 \end{definition}
 
 \begin{theorem}[Формула Бине-Коши]
-	Пусть $A$ --  матрица, имеющая из $n$ строк и $k$ столбцов, тогда $\det A^* A = \sum\limits_{I \in M(n,k)}^{} \det^2 A_I$.
+	Пусть $A$ ---  матрица, имеющая из $n$ строк и $k$ столбцов, тогда $\det A^* A = \sum\limits_{I \in M(n,k)}^{} \det^2 A_I$.
 \end{theorem}
 
 \begin{proof}
@@ -945,7 +945,7 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 \end{proof}
 
 \begin{corollary}
-	Пусть $L : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ - линейное отображение, такое, что $\rank L = k \leq n$. Тогда для каждого измеримого множества $A$, $L(A)$ - измеримо и $| L(A) |_k = J_L |A|_k$, где $J_L = \sqrt{\det L^* L}$.
+	Пусть $L : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$ --- линейное отображение, такое, что $\rank L = k \leq n$. Тогда для каждого измеримого множества $A$, $L(A)$ --- измеримо и $| L(A) |_k = J_L |A|_k$, где $J_L = \sqrt{\det L^* L}$.
 \end{corollary}
 
 \begin{corollary}
@@ -983,14 +983,14 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 
 Теперь мы готовы определить меру на многообразиях.
 
-Пусть $M \subseteq \mathbb{R}^n$ - $k$-мерное $C^1$-гладкое многообразие, заданное параметрически, т.е. существует $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$, такое что $\varphi \in C^1$ и $M=\varphi(U)$. 
+Пусть $M \subseteq \mathbb{R}^n$ --- $k$-мерное $C^1$-гладкое многообразие, заданное параметрически, т.е. существует $\varphi : U \subseteq \mathbb{R}^k \to \mathbb{R}^n$, такое что $\varphi \in C^1$ и $M=\varphi(U)$. 
 
 \begin{equation*}
 \varphi = 
 \begin{cases}
-	x_1 = \varphi_1(t_1, \ldots, t_k) \\
+	x_1 = \varphi_1(t_1, \ldots, t_k), \\
 	\vdots \\
-	x_n = \varphi_n(t_1, \ldots, t_k)
+	x_n = \varphi_n(t_1, \ldots, t_k),
 \end{cases}
 \quad 
 (t_1, \ldots, t_k) \in U
@@ -998,8 +998,9 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 
 Определим меру $k$-мерной площади $S^k$ на параметрически заданном многообразии $M$.
 
-\begin{definition}
-	Пусть $E \subseteq U \to \mathbb{R}^k$ - измеримо по $|.|_k$, тогда $\varphi(E)$ назовем измеримым по $S^k$ и будем вычислять его меру как $S^k(\varphi(E)) := \int\limits_{E} J_{\varphi}(t)dt$, где $J_{\varphi}(t)=\sqrt{\det D \varphi^*(t) D \varphi(t)}$.
+\begin{definition} 
+	\label{kDimSquare}
+	Пусть $E \subseteq U \subseteq \mathbb{R}^k$ --- измеримо по $|.|_k$, тогда $\varphi(E)$ назовем измеримым по $S^k$ и будем вычислять его меру как $S^k(\varphi(E)) := \int\limits_{E} J_{\varphi}(t)dt$, где $J_{\varphi}(t)=\sqrt{\det D \varphi^*(t) D \varphi(t)}$.
 \end{definition}
 
 Внимательный читатель задастся вопросом: а не зависит ли наша мера от параметризации многообразия?
@@ -1078,6 +1079,65 @@ J_{\varphi(x)} = \lim\limits_{r \to 0} \frac{| \varphi(Q(x,r) ) |}{| Q(x,r)) |} 
 	Мера угла -- длина дуги единичной окружности с центром в начале угла.
 \end{definition}
 
+\begin{example}\label{v-2N1c}
+	Многообразие какой размерности задаёт параметрическая система
+	\begin{equation*}
+	\begin{cases}
+	x = t\cos \theta, & t \in (0, 2), \\
+	y = t\sin \theta, & \theta \in (0, \frac{\pi}{2}), \\
+	z = \theta ?
+	\end{cases}
+	\end{equation*}
+	Вычислите площадь этого многообразия.
+	
+	\textit{Решение.}
+	В силу теоремы \ref{thParamManifold} размерность многообразия, задаваемого системой будет равна 2.
+	
+	Теперь вычислим площадь этого многообразия, используя определение \ref{kDimSquare}. Для этого найдем $J_\varphi(t)$. 
+	
+	\begin{equation*}
+		D\varphi(t) = 
+		\begin{pmatrix}
+			\sin\theta & t\cos\theta \\
+			\cos\theta & -t\sin\theta \\
+			0 & 1
+		\end{pmatrix}, 
+		\quad
+		D\varphi^*(t) = 
+		\begin{pmatrix}
+		\sin\theta & \cos\theta & 0 \\
+		t\cos\theta & -t\sin\theta & 1
+		\end{pmatrix}
+	\end{equation*}
+	тогда
+	\begin{equation*}
+		J_\varphi(t) = \det \sqrt{D\varphi^*(t)D\varphi(t)} = \det
+		\begin{pmatrix}
+		1 & 0 \\
+		0 & t^2 + 1
+		\end{pmatrix}^{1/2}
+		= \sqrt{t^2 + 1}
+	\end{equation*}
+	
+	и, следовательно,
+	\begin{equation*}
+		\int\limits_E \sqrt{t^2 + 1} = \int\limits_{0}^{2}dt\int\limits_{0}^{\frac{\pi}{2}} \sqrt{t^2 + 1}d\theta = 
+		 \frac{\pi}{2}\int\limits_{0}^{2} \sqrt{t^2 + 1} dt
+	\end{equation*}
+	
+	сделаем замену $ t = \tan p, dt = \frac{dp}{\cos^2(p)} $
+	
+	\begin{equation*}
+		\frac{\pi}{2}\int\limits_{0}^{\arctan(2)} \sqrt{\tan^2(p) + 1} \frac{dp}{\cos^2(p)}
+	\end{equation*}
+	так как $\sqrt{\tan^2(p) + 1} = \frac{1}{\cos(p)}$
+	\begin{eqnarray}\nonumber
+		\frac{\pi}{2}\int\limits_{0}^{\arctan(2)}  \frac{dp}{\cos^3(p)} = \frac{\pi}{4} \left( 
+		t\sqrt{t^2 + 1} + \mathrm{arcsinh}(p) \right) \bigg|_0^{\arctan(2)} =\\\nonumber \frac{\pi}{4} \left( \arctan(2)\sqrt{\arctan^2(2) + 1} +  \mathrm{arcsinh}(\arctan(2))\right)
+	\end{eqnarray}
+	
+	Как мы видим, ответ получился довольно страшный, тем не менее задача решена.
+\end{example}
 
 \subsection{Площадь графика функции}
 
@@ -1128,14 +1188,18 @@ D\varphi$. Если мы будем считать «в лоб»:
 \[\det D\varphi^*D\varphi = 1 + f_{x_1}^2 + f_{x_2}^2 + \ldots
 + f_{x_n}^2 = 1 + |\nabla f|^2\]
 Отсюда получаем, что 
-\begin{equation*} \label{SkFormulas}
+\begin{equation*} 
 	S^k(\Gamma_f) = \int\limits_U \sqrt{1 + |\nabla f(x) |^2}\ dx 
 \end{equation*}
 
-Свойство формулы \ref{SkFormulas}:
+Свойство формулы \ref{kDimSquare}:
 \begin{itemize}
 	 \item 
-	 $S^k(\lambda M) = \lambda^k S^k(M)$
+	 \begin{equation}
+	 \label{SkNLinear}
+	 	S^k(\lambda M) = \lambda^k S^k(M)
+	 \end{equation}
+	 
 	 \begin{proof}
 		 $S^k(\lambda M) = $
 	 \end{proof}
@@ -1522,7 +1586,7 @@ D\varphi$. Если мы будем считать «в лоб»:
 Ориентация --- класс сориентированных базисов.
 
 
-\begin{definition}
+\begin{definition}\label{OrientationInRn}
 	Пусть $\mathfrak{B}^n$ --- множество базисов в $\mathbb{R}^n$
 	\textit{ориентацией} на $\mathfrak{B}^n$ назовем функцию 
 	\[ \Theta: \mathfrak{B}^n \to \{-1, 1 \} \]
@@ -1641,7 +1705,7 @@ $e_2$ против часовой стрелки.
 	если на нем задана ориентация.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{OrientationParamEqTh}
 	Если многообразие задано параметрически, то оно ориентируемое.
 \end{lemma}
 
@@ -1661,7 +1725,7 @@ $e_2$ против часовой стрелки.
 	$x = f(t), v_1 =df_x \langle u_1 \rangle, \ldots, v_k =  df_x \langle u_k \rangle$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{OrientationSysEqTh}
 	Многообразие заданное системой уравнений всегда ориентируемое.
 \end{lemma}
 
@@ -1726,7 +1790,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 
 \textbf{Индуцированная ориентация края}
 
-\begin{definition}
+\begin{definition}\label{OrientationManifoldInd}
 	Пусть $M$ --- ориентированное многообразие с краем, $\Theta_M$ --- ориентация на этом многообразии, т.е. 
 	$ \Theta_M(x, v_1,\ldots, v_k) = \pm 1$, где $v_1,\ldots, v_k \in T_x M$.
 	Определим \textit{ориентацию края} $\Theta_{\partial M}$ следующим образом:
@@ -1779,7 +1843,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Параметризация $\varphi$ кривой $\gamma$ называется согласованной с ориентацией $\theta$, если $\theta(\varphi(t), \varphi'(t))>0$.
 \end{definition}
 
-\begin{definition}
+\begin{definition}\label{CurveInt1fprm}
 	Пусть $w : U \subseteq \mathbb{R}^n \to \Lambda^1(\mathbb{R}^n)$ --- непрерывная 1-форма и $\gamma \subset U$ --- $C^1$-гладкая кривая с заданной ориентацией. Тогда интегралом 1-формы по ориентированной кривой называется \[\int\limits_{\gamma} w = \int\limits_{a}^{b} w(\varphi(t)) \langle \varphi'(t) \rangle dt\] где $\varphi : [a, b] \to \gamma$ --- параметризация, согласованная с ориентацией.
 \end{definition}
 
@@ -1863,7 +1927,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	\end{proof}
 
 	{\bf Свойство} $\mathbf{3^\circ.}$
-	{\textsc{Линейность}}
+	{\textsc{Линейность}} \label{1FormIntLinear}
 	
 	$\forall w_1, w_2$ --- формы, $\forall \alpha, \beta \in \mathbb{R}$.
 	
@@ -1918,6 +1982,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{example}
 
 \begin{theorem}[Формула Ньютона-Лейбница]
+	\label{NewtonLeibniz}
 	Пусть $w=df$ --- полный дифференциал, $\gamma$ --- ориентированная кривая с начальной точной $p$ и конечной точкой $q$, тогда справедлива формула
 	
 	\begin{equation*}
@@ -2231,11 +2296,11 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 \end{lemma}
 
 \begin{definition}
-	Две кривые $\gamma_0, \gamma_1 : [a, b] \to \mathbb{R}^n$ называются гомотопными, если существует функция $f : [a, b] \times [0, 1] \to \mathbb{R}^n$, такая, что $f$ --- непрерывная и $f(x, 0) = \gamma_0(x)$ и $f(x, 1) = \gamma_1(x)$
+	Две кривые $\gamma_0, \gamma_1 : [a, b] \to \mathbb{R}^n$ называются \textit{гомотопными}, если существует функция $f : [a, b] \times [0, 1] \to \mathbb{R}^n$, такая, что $f$ --- непрерывная и $f(x, 0) = \gamma_0(x)$ и $f(x, 1) = \gamma_1(x)$
 \end{definition}
 
 \begin{definition}
-	Множество $M \subseteq \mathbb{R}^n$ называется односвязным, если всякий замкнутый контур $\gamma \subseteq M$ гомотопен точке.
+	Множество $M \subseteq \mathbb{R}^n$ называется \textit{односвязным}, если всякий замкнутый контур $\gamma \subseteq M$ гомотопен точке.
 \end{definition}
 
 Примеры односвязных множеств
@@ -3335,6 +3400,119 @@ TODO
 Если $\Delta f < 0$, то $f(x)$ меньше своего среднего значения на маленькой сфере с центром в точке $x$.
 
 Если $\Delta f = 0$, то $f(x)$ приблизительно равна своему среднему значению на маленькой сфере с центром в точке $x$.
+
+\newpage
+\section{Билеты II потоковой}
+\subsubsection{Вариант -2}
+
+\begin{enumerate}
+	\item 
+	Мера площади на многообразии. 
+	
+	\begin{itemize}
+		\item[(a)]
+		Определите меру площади на гладком $k$-мерном многообразии.
+		
+		\textsc{Пояснение:}  \ref{kDimSquare}.
+		
+		\item[(b)]
+		Пусть $M$ --- гладкое $k$-мерное многообразие. Докажите,
+		используя данное вами определение, что для всякого 
+		$\lambda > 0$ выполнено $S^k(\lambda M) = \lambda^k S^k(M)$.
+		
+		\textsc{Пояснение:} \ref{SkNLinear}
+		
+		\item[(c)]
+		Многообразие какой размерности задаёт параметрическая система
+		\begin{equation*}
+			\begin{cases}
+			x = t\cos \theta, & t \in (0, 2), \\
+			y = t\sin \theta, & \theta \in (0, \frac{\pi}{2}), \\
+			z = \theta ?
+			\end{cases}
+		\end{equation*}
+		Вычислите площадь этого многообразия.
+		
+	\end{itemize}
+
+	\item
+	Индуцированная ориентация края.
+	
+	\begin{itemize}
+		\item[(a)]
+		Сформулируйте понятие ориентации на многообразии и
+		ориентируемого многообразия. Всякое ли многообразие
+		ориентируемо? Как классы многообразий ориентируемы?
+		
+		\textsc{Пояснение:} \ref{orient}, \ref{OrientationParamEqTh}, \ref{OrientationSysEqTh}.
+		
+		\item[(b)]
+		Сформулируйте определение индуцированной ориентации края
+		ориентированного многообразия.
+		
+		\textsc{Пояснение:} \ref{OrientationManifoldInd}.
+		
+		\item[(c)]
+		Изобразите верхнюю полусферу, заданную системой
+		$x^2 + y^2 + z^2 = 4, z \geq 0$. Что из себя представляет край этой полусферы?
+		Какое направление обхода края индуцирует нижняя сторона
+		полусферы и почему?
+	\end{itemize}
+\end{enumerate}
+
+\newpage
+\subsubsection{Вариант -1}
+
+\begin{enumerate}
+	\item 
+	Ориентация на многообразии.
+	
+	\begin{itemize}
+		\item[(a)]
+		Сформулируйте понятие ориентации в $\mathbb{R}^n$. Сколько ориентаций
+		существует в $\mathbb{R}^n$ и почему? Как задаётся стандартная ориентация в $\mathbb{R}^3$?
+		
+		\textsc{Пояснение:} \ref{OrientationInRn}.
+		
+		\item[(b)]
+		Сформулируйте понятие ориентации на многообразии и ориентируемого многообразия. Всякое ли многообразие ориентируемо? Какие классы многообразий ориентируемы?
+		
+		\textsc{Пояснение:} \ref{orient}, \ref{OrientationParamEqTh}, \ref{OrientationSysEqTh}.
+		
+		
+		\item[(c)]
+		Пусть $S \subset \mathbb{R}^3$ (двумерная) гладкая ориентируемая поверхность,
+		$x \in S$, и $\vec{n}$ --- заданная нормаль к $S$ в точке $x$. Как задаётся ориентация $S$, согласованная с этой нормалью?
+		
+		\textsc{Пояснение:} \ref{v-2N1c}.
+		
+		
+	\end{itemize}
+	
+	\item
+	Формула Ньютона — Лейбница.
+	
+	\begin{itemize}
+		\item[(a)]
+		Сформулируйте определение интеграла 1-формы по кривой.
+		Докажите, что интеграл линеен.
+		
+		\textsc{Пояснение:} \ref{CurveInt1fprm}, \ref{1FormIntLinear}.
+		
+		\item[(b)]
+		Сформулируйте и докажите формулу Ньютона --- Лейбница для
+		1-форм.
+			
+		\textsc{Пояснение:} \ref{NewtonLeibniz}.
+		
+		\item[(c)]
+		Опишите алгоритм восстановления функции по дифференциалу. Найдите $f(x, y)$ такую, что $f(0, 0) = 1$
+		и 
+		\[ df = (x^2 + y^2)dx + (y^2 + 2xy)dy. \]
+	\end{itemize}
+\end{enumerate}
+
+
 
 
 \end{document}
