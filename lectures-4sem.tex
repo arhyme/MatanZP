@@ -1201,7 +1201,16 @@ D\varphi$. Если мы будем считать «в лоб»:
 	 \end{equation}
 	 
 	 \begin{proof}
-		 $S^k(\lambda M) = $
+	 	Пусть $\psi$ --- параметризация многообразия $M$, то есть $\psi(V) = M$. Тогда
+	 	$\lambda M = \lambda \psi(V)$. 
+		 \begin{eqnarray}\nonumber
+		 	S^k(\lambda M) = S^k (\lambda \psi(V)) = \int\limits_V J_{\lambda\psi}(t)dt = 
+		 	\int\limits_{V} \sqrt{\det D(\lambda\varphi(t))^*D(\lambda\varphi(t))}dt = \\\nonumber
+		 	\int\limits_{V} \sqrt{\lambda^{2k}\det D(\varphi(t))^*D(\varphi(t))}dt = 
+		 	\lambda^{k}\int\limits_{V} \sqrt{\det D(\varphi(t))^*D(\varphi(t))}dt =\\\nonumber
+		 	= \lambda^k S^k(M)
+		 \end{eqnarray}
+		 
 	 \end{proof}
 	 
 \end{itemize}
