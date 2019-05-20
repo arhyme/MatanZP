@@ -2621,6 +2621,24 @@ dw \langle \vec{u}, \vec{v} \rangle = d (w \langle \vec{u} \rangle ) \langle \ve
 	\end{definition}
 \end{proof}
 
+Как известно, для функций одной переменной у нас есть обычная производная. А вот для функций
+$f : \mathbb{R}^n \to \mathbb{R}$ --- производных уже невероятное количество, по всем направлениям и, чтобы
+<<обуздать>> эту силу мы ввели специальный оператор $df(x_0) : \vec{v} \mapsto \frac{\partial f}{\partial \vec{v}}$.
+Проделаем то же самое с многомерным векторным полем.
+
+Пусть $\vec{v}$ --- векторное поле на $U \subseteq \mathbb{R}^n$, если $l_1, l_2 \in \mathbb{R}^n$ и 
+$l_1 \nparallel l_2$ определим,
+
+\[ \rot_{e_1, e_2} \vec{v}(x_0) = \lim\limits_{r \to 0} \frac{1}{\pi r^2} \int\limits_{\gamma_r}
+\vec{v} d\vec{r} \]
+где $\gamma_r = \{ x_0 +_r r\cos t\cdot l_1 +_r \sin t\cdot l_2,\ t \in [0, 2\pi] \}$.
+
+\begin{definition}
+	Формой ротора назовем функцию
+	\[ \rot \vec{v}(x_0) : e_1, e_2 \mapsto \rot_{e_1, e_2} \vec{v}(x_0) \]
+	--- кососимметричная билинейная форма.
+\end{definition}
+
 {\bf Свойства ротации.}
 
 \medskip
