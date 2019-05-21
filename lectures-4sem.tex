@@ -1558,15 +1558,14 @@ D\varphi$. Если мы будем считать «в лоб»:
 {\bf Свойство} $\mathbf{3^\circ.}$
 {\textsc{перенос композиции является композицией переносов}}
 
-	пусть $\varphi : U \to V$, $\psi : V \to W$ --- $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*}=\varphi^{*} \circ\psi^{*}$.
+Пусть $\varphi : U \to V$, $\psi : V \to W$ --- $C^1$-диффеоморфизмы, тогда $(\varphi \circ \psi)^{*} w =\varphi^{*} ( \psi^{*} w)$.
 	
-	\medskip
-	{\bf Свойство} $\mathbf{4^\circ.}$
-	{\textsc{перестановочность с дифференциалом}}
+\medskip
+{\bf Свойство} $\mathbf{4^\circ.}$
+{\textsc{перестановочность с дифференциалом}}
 	
-	$\varphi^{*}d=d \varphi^{*}$.
+$\varphi^{*}d=d \varphi^{*}$.
 	
-
 
 Для доказательства последнего свойства, нам нужно ввести определение дифференциальной формы, а для этого нужно вспомнить некоторые свойства линейных отображений.
 
@@ -1610,8 +1609,24 @@ D\varphi$. Если мы будем считать «в лоб»:
 Определим теперь оператор переноса для $1$-форм.
 
 \begin{definition}
-	Пусть $w$ -- $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ --- $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ --- $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
+	Пусть $w$ --- $1$-форма на $V$. Пусть $\varphi : U \to V \subseteq \mathbb{R}^n$ --- $C^1$-диффеоморфизм. Тогда $\varphi^{*}w$ --- $1$-форма на $U$ и $\varphi^{*} w(x) \langle v \rangle = w(\varphi(x)) \langle d \varphi(x) \langle v \rangle \rangle$.
 \end{definition}
+
+Пусть $w(x) = \sum\limits_{i=1}^{n} a_i(x) dx_i$ и $\varphi$ задано в виде
+
+\begin{equation*}
+	\begin{cases}
+		x_1 = \varphi_1(y_1, \ldots, y_n) \\
+		\ldots \\
+		x_n = \varphi_n(y_1, \ldots, y_n)
+	\end{cases}
+\end{equation*}
+
+тогда оператор переноса можно записать в координатном виде,
+
+\begin{equation}
+	\varphi^* w(y) = \sum\limits_{i=1}^{n} a_i(\varphi(y)) d\varphi_i(y)
+\end{equation}
 
 Теперь мы можем доказать 4 свойство оператора переноса.
 
@@ -1970,7 +1985,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 		Так как $w(\psi(s))$ --- линейный оператор, можем внести $(\psi^{-1} \circ \varphi)'(s)$ как множитель аргумента. Имеем $\psi'(\psi^{-1}(\varphi(s)))(\psi^{-1} \circ \varphi)'(s) = (\psi \circ \psi^{-1} \circ \varphi)(s)= \varphi(s)$ как производную композиции.
 		
 		\begin{equation*}
-			 \int\limits_{a}^{b} w(\psi(\psi^{-1}(\varphi(s)))) \langle \psi'(\psi^{-1}(\varphi(s))) \rangle (\psi^{-1} \circ \varphi)'(s) ds = \int\limits_{a}^{b} w(\varphi(s)) \langle \varphi^{-1}(s) \rangle ds
+			 \int\limits_{a}^{b} w(\psi(\psi^{-1}(\varphi(s)))) \langle \psi'(\psi^{-1}(\varphi(s))) \rangle (\psi^{-1} \circ \varphi)'(s) ds = \int\limits_{a}^{b} w(\varphi(s)) \langle \varphiэ(s) \rangle ds
 		\end{equation*} 
 	\end{proof}
 
@@ -2358,7 +2373,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	Пусть $\gamma$ --- кривая, не проходящая через 0, с началом в $p$ и концом в $q$. Тогда 
 	
 	\begin{equation*}
-		\int\limits_{\gamma} = \varphi(q) - \varphi(p)
+		\int\limits_{\gamma} \Theta = \varphi(q) - \varphi(p)
 	\end{equation*}
 	
 	--- разность углов с осью $Ox$ радиус векторов в из начала координат в начальную и конечную точку.
@@ -2443,7 +2458,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	\end{equation*}
 	
 	\begin{remark} \label{v1c1}
-		В двумерном случае, удобно использовать частный случай этой формулы. 
+		В двумерном случае удобно использовать частный случай этой формулы. 
 		
 		Пусть $w=Pdx + Qdy$ и $x_0=(x^0, y^0)$ тогда
 		
@@ -2570,7 +2585,7 @@ $k = 2, n = 3$. Поверхность в $\mathbb{R}^3$.
 	\varphi^{*} w(t, s) = (f \circ \varphi) (t, s) (x_t dt + x_s ds) \wedge (y_t dt + y_s ds) = \\ = (f \circ \varphi) (t, s) \cdot \det 
 	\begin{pmatrix}
 		x_t & x_s \\
-		y_y & y_s
+		y_t & y_s
 	\end{pmatrix} dt \wedge ds
 \end{multline*}
 
@@ -2935,6 +2950,15 @@ TODO
 %Лекция 16.04.19 конец
 
 %Лекция 18.04.19
+
+\begin{definition}
+	Пусть $M \subseteq \mathbb{R}^n$ --- $k$-мерное $C^1$-гладкое ориентированное многообразие, а $w : M \to \Lambda^k(\mathbb{R}^n)$ --- непрерывная $k$-форма. Тогда, если $\varphi : U \subseteq \mathbb{R}^n \to M$ --- параметризация $M$, тогда интеграл $k$-формы по ориентированному $k$-мерному многообразию вычисляется как
+	
+	\begin{equation*}
+		\int\limits_{M} w := \int\limits_{U} \varphi^* w
+	\end{equation*} 
+\end{definition}
+
 \begin{definition}
 	Пусть $w : U \to \Lambda^k(\mathbb{R}^n) \in C^1$ и $w(x) = \sum\limits_{I \in H(n, k)} a_I (x) dx_I$
 	внешним дифференциалом $k$-формы $w$ назовем дифференциальную $(k+1)$-форму $dw : U \to \Lambda^{k+1}(\mathbb{R}^n)$
